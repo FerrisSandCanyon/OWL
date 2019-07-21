@@ -175,15 +175,6 @@
   <ItemGroup>
     <None Include="Resources\tools16.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vactrak_alpha.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vactrak_beta.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vactrak_release.png" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace vactrak
@@ -23,6 +24,10 @@ namespace vactrak
                 Globals.Config = new Class.VTConfig();
                 Utils.VTConfig.SaveConfig(ref Globals.Config, Globals.Info.cfgPath);
             }
+
+#if DEBUG
+            Debug.Print(String.Format("Config Content ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+#endif
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

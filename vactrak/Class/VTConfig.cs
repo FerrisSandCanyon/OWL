@@ -1,17 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace vactrak.Class
 {
     public class VTConfig
     {
-        public string steamPath        = "C:/Program Files (x86)/Steam", // Path to steam directory
+        public string steamPath        = "C:/Program Files (x86)/Steam",   // Path to steam directory
                       defaultProfile   = "default.json";                   // Default profile to be loaded
 
         public uint   cooldownRefresh  = 500;                              // Cooldown refresh rate measured in milliseconds

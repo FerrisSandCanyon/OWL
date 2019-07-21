@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
+#if DEBUG
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "profiles/000000000000000000",
@@ -37,6 +38,8 @@
             "00d:00h:00m:00s",
             "notes notes notes notes notes ",
             "Status text"}, -1);
+#endif
+
             this.toolstrip = new System.Windows.Forms.ToolStrip();
             this.ddAccount = new System.Windows.Forms.ToolStripDropDownButton();
             this.ddAccountAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -494,8 +497,10 @@
             this.lvData.ForeColor = System.Drawing.Color.White;
             this.lvData.FullRowSelect = true;
             this.lvData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+#if DEBUG
             this.lvData.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem3});
+#endif
             this.lvData.Location = new System.Drawing.Point(0, 25);
             this.lvData.Name = "lvData";
             this.lvData.Size = new System.Drawing.Size(774, 334);
@@ -631,7 +636,7 @@
 
         }
 
-        #endregion
+#endregion
         private System.Windows.Forms.ToolStrip toolstrip;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
