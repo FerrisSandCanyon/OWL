@@ -18,9 +18,9 @@ namespace vactrak.Class
 
 namespace vactrak.Utils
 {
-    public static class VTConfig
+    public class VTConfig
     {
-        public static bool SaveConfig(ref Class.VTConfig _configClass, string _configPath)
+        public static bool Save(ref Class.VTConfig _configClass, string _configPath)
         {
             try
             {
@@ -33,20 +33,28 @@ namespace vactrak.Utils
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Exception: " + ex, "Failed to save Config", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(String.Format("Profile: {0}\nException: {1}", _configPath, ex), "Failed to save config", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
 
-        public static Class.VTConfig LoadConfig(string _configPath)
+        public static Class.VTConfig Load(string _configPath)
         {
-            string content = "";
-            using (StreamReader _sr = new StreamReader(_configPath, System.Text.Encoding.UTF8))
+            try
             {
-                content = _sr.ReadToEnd();
-                _sr.Close();
+                string content = "";
+                using (StreamReader _sr = new StreamReader(_configPath, System.Text.Encoding.UTF8))
+                {
+                    content = _sr.ReadToEnd();
+                    _sr.Close();
+                }
+                return JsonConvert.DeserializeObject<Class.VTConfig>((content));
             }
-            return JsonConvert.DeserializeObject<Class.VTConfig>((content));
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format("Profile: {0}\nException: {1}", _configPath, ex), "Failed to load config", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
 
     }

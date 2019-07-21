@@ -24,13 +24,15 @@ namespace vactrak
 
             // Initialize config
             if (File.Exists(Globals.Info.cfgPath))
-                Globals.Config = Utils.VTConfig.LoadConfig(Globals.Info.cfgPath);
+                Globals.Config = Utils.VTConfig.Load(Globals.Info.cfgPath);
             else
             {
                 MessageBox.Show("VACTrak couldn't load a config because there's none. VACTrak will now generate a new config file containing the default settings.", "Config missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Globals.Config = new Class.VTConfig();
-                Utils.VTConfig.SaveConfig(ref Globals.Config, Globals.Info.cfgPath);
+                if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
             }
+
+            if (Globals.Config == null) return;
 
             #if DEBUG
                 Debug.Print(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
@@ -50,7 +52,7 @@ namespace vactrak
                         if (_fbd.ShowDialog() == DialogResult.Cancel) return;
 
                     Globals.Config.steamPath = _fbd.SelectedPath.Replace('\\', '/');
-                    Utils.VTConfig.SaveConfig(ref Globals.Config, Globals.Info.cfgPath);
+                    if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
                 }
             }
 
