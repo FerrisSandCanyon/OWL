@@ -8,9 +8,10 @@ namespace vactrak.Class
     public class VTConfig
     {
         public string steamPath        = "C:/Program Files (x86)/Steam",   // Path to steam directory
-                      defaultProfile   = "default.json";                   // Default profile to be loaded
+                      defaultProfile   = "default";                        // Default profile to be loaded
 
-        public uint   cooldownRefresh  = 500;                              // Cooldown refresh rate measured in milliseconds
+        public uint   cooldownRefresh  = 500,                              // Cooldown refresh rate measured in milliseconds
+                      hashedKey        = 0;                                // Hashed key / password
 
         public bool   forceStatus      = false;                            // Forces status check on accounts with Bans
     }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "profiles/000000000000000000",
             "account name",
@@ -100,6 +100,9 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.ddProtect = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddProtectAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddProtectRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -450,7 +453,8 @@
             // 
             this.ddUtils.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddUtilsEditor,
-            this.ddUtilsDump});
+            this.ddUtilsDump,
+            this.ddProtect});
             this.ddUtils.ForeColor = System.Drawing.Color.Black;
             this.ddUtils.Image = global::vactrak.Properties.Resources.tools;
             this.ddUtils.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -461,7 +465,7 @@
             // ddUtilsEditor
             // 
             this.ddUtilsEditor.Name = "ddUtilsEditor";
-            this.ddUtilsEditor.Size = new System.Drawing.Size(143, 22);
+            this.ddUtilsEditor.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsEditor.Text = "Profile Editor";
             // 
             // ddUtilsDump
@@ -471,25 +475,25 @@
             this.ddUtilsDumpProfile,
             this.ddUtilsDumpAll});
             this.ddUtilsDump.Name = "ddUtilsDump";
-            this.ddUtilsDump.Size = new System.Drawing.Size(143, 22);
+            this.ddUtilsDump.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsDump.Text = "Dump to text";
             // 
             // ddUtilsDumpSelected
             // 
             this.ddUtilsDumpSelected.Name = "ddUtilsDumpSelected";
-            this.ddUtilsDumpSelected.Size = new System.Drawing.Size(170, 22);
+            this.ddUtilsDumpSelected.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsDumpSelected.Text = "Currently Selected";
             // 
             // ddUtilsDumpProfile
             // 
             this.ddUtilsDumpProfile.Name = "ddUtilsDumpProfile";
-            this.ddUtilsDumpProfile.Size = new System.Drawing.Size(170, 22);
+            this.ddUtilsDumpProfile.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsDumpProfile.Text = "Current Profile";
             // 
             // ddUtilsDumpAll
             // 
             this.ddUtilsDumpAll.Name = "ddUtilsDumpAll";
-            this.ddUtilsDumpAll.Size = new System.Drawing.Size(170, 22);
+            this.ddUtilsDumpAll.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsDumpAll.Text = "All Profiles";
             // 
             // btnSettings
@@ -542,7 +546,7 @@
             this.lvData.FullRowSelect = true;
             this.lvData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvData.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.lvData.Location = new System.Drawing.Point(0, 25);
             this.lvData.Name = "lvData";
             this.lvData.Size = new System.Drawing.Size(774, 334);
@@ -606,6 +610,27 @@
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(717, 22);
             this.tbNote.TabIndex = 11;
+            // 
+            // ddProtect
+            // 
+            this.ddProtect.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ddProtectAdd,
+            this.ddProtectRemove});
+            this.ddProtect.Name = "ddProtect";
+            this.ddProtect.Size = new System.Drawing.Size(180, 22);
+            this.ddProtect.Text = "Password Protect";
+            // 
+            // ddProtectAdd
+            // 
+            this.ddProtectAdd.Name = "ddProtectAdd";
+            this.ddProtectAdd.Size = new System.Drawing.Size(180, 22);
+            this.ddProtectAdd.Text = "Add";
+            // 
+            // ddProtectRemove
+            // 
+            this.ddProtectRemove.Name = "ddProtectRemove";
+            this.ddProtectRemove.Size = new System.Drawing.Size(180, 22);
+            this.ddProtectRemove.Text = "Remove";
             // 
             // main
             // 
@@ -696,6 +721,9 @@
         private System.Windows.Forms.ToolStripMenuItem ddUtilsDumpSelected;
         private System.Windows.Forms.ToolStripMenuItem ddUtilsDumpProfile;
         private System.Windows.Forms.ToolStripMenuItem ddUtilsDumpAll;
+        private System.Windows.Forms.ToolStripMenuItem ddProtect;
+        private System.Windows.Forms.ToolStripMenuItem ddProtectAdd;
+        private System.Windows.Forms.ToolStripMenuItem ddProtectRemove;
     }
 }
 

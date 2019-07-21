@@ -35,12 +35,21 @@ namespace vactrak
             if (Globals.Config == null) return;
 
             #if DEBUG
-                Debug.Print(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+                Debug.Print(String.Format("\nConfig Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
             #endif
 
             // ===================
             // Check config values
             // ===================
+            bool shouldResave = false;
+
+            // Default profile
+            if (String.IsNullOrWhiteSpace(Globals.Config.defaultProfile))
+            {
+                MessageBox.Show("A blank default profile is an invalid parameter. This parameter has been set back to default", "Config error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Globals.Config.defaultProfile = "default";
+                shouldResave = true;
+            }
 
             // Steam Path
             if (!Directory.Exists(Globals.Config.steamPath))
@@ -52,12 +61,15 @@ namespace vactrak
                         if (_fbd.ShowDialog() == DialogResult.Cancel) return;
 
                     Globals.Config.steamPath = _fbd.SelectedPath.Replace('\\', '/');
-                    if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
+                    shouldResave = true;
                 }
             }
 
+            // Resave the config if it was automatically modified due to user errors
+            if (shouldResave) if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
+
             #if DEBUG
-                Debug.Print(String.Format("Config Content after check ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+                Debug.Print(String.Format("\nConfig Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave));
             #endif
 
             Application.Run(new main());
