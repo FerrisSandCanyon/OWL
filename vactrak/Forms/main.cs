@@ -21,5 +21,10 @@ namespace vactrak
         {
             this.Focus();
         }
+
+        private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

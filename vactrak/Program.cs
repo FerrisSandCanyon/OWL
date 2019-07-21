@@ -52,6 +52,8 @@ namespace vactrak
             }
 
 
+
+
 #if DEBUG
             Debug.Print(String.Format("Config Content after check ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
 #endif

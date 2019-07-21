@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-#if DEBUG
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "profiles/000000000000000000",
             "account name",
@@ -38,8 +37,6 @@
             "00d:00h:00m:00s",
             "notes notes notes notes notes ",
             "Status text"}, -1);
-#endif
-
             this.toolstrip = new System.Windows.Forms.ToolStrip();
             this.ddAccount = new System.Windows.Forms.ToolStripDropDownButton();
             this.ddAccountAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,11 +80,18 @@
             this.cbProfile = new System.Windows.Forms.ToolStripComboBox();
             this.btnProfileSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddUtils = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ddUtilsEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddUtilsDump = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddUtilsDumpSelected = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddUtilsDumpProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddUtilsDumpAll = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSettings = new System.Windows.Forms.ToolStripButton();
             this.btnAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.lblBuildInfo = new System.Windows.Forms.ToolStripLabel();
             this.lvData = new System.Windows.Forms.ListView();
+            this.ch_special_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chSteamURL = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chBanned = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -96,13 +100,6 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
-            this.ddUtils = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ch_special_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ddUtilsEditor = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddUtilsDump = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddUtilsDumpSelected = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddUtilsDumpProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddUtilsDumpAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -206,7 +203,7 @@
             this.ddManageObtainBoth});
             this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainBan
@@ -234,7 +231,7 @@
             this.ddManageLoginForce});
             this.ddManageLogin.Image = global::vactrak.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -259,7 +256,7 @@
             this.ddManageClipboardOpen});
             this.ddManageClipboard.Image = global::vactrak.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
@@ -307,7 +304,7 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::vactrak.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
             this.ddManageCooldown.Text = "Cooldown";
             // 
             // ddManageCooldown7days
@@ -399,32 +396,32 @@
             // 
             this.addProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.plus;
             this.addProfileToolStripMenuItem.Name = "addProfileToolStripMenuItem";
-            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addProfileToolStripMenuItem.Text = "Add Profile";
             // 
             // removeProfileToolStripMenuItem
             // 
             this.removeProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.minus;
             this.removeProfileToolStripMenuItem.Name = "removeProfileToolStripMenuItem";
-            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeProfileToolStripMenuItem.Text = "Remove Profile";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripSeparator5.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // copyAccountsToolStripMenuItem
             // 
             this.copyAccountsToolStripMenuItem.Name = "copyAccountsToolStripMenuItem";
-            this.copyAccountsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.copyAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.copyAccountsToolStripMenuItem.Text = "Copy Accounts";
             // 
             // moveAccountsToolStripMenuItem
             // 
             this.moveAccountsToolStripMenuItem.Name = "moveAccountsToolStripMenuItem";
-            this.moveAccountsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.moveAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moveAccountsToolStripMenuItem.Text = "Move Accounts";
             // 
             // cbProfile
@@ -433,6 +430,7 @@
             this.cbProfile.DropDownWidth = 300;
             this.cbProfile.Name = "cbProfile";
             this.cbProfile.Size = new System.Drawing.Size(300, 25);
+            this.cbProfile.SelectedIndexChanged += new System.EventHandler(this.CbProfile_SelectedIndexChanged);
             // 
             // btnProfileSave
             // 
@@ -447,6 +445,52 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ddUtils
+            // 
+            this.ddUtils.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ddUtilsEditor,
+            this.ddUtilsDump});
+            this.ddUtils.ForeColor = System.Drawing.Color.Black;
+            this.ddUtils.Image = global::vactrak.Properties.Resources.tools;
+            this.ddUtils.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ddUtils.Name = "ddUtils";
+            this.ddUtils.Size = new System.Drawing.Size(59, 22);
+            this.ddUtils.Text = "Utils";
+            // 
+            // ddUtilsEditor
+            // 
+            this.ddUtilsEditor.Name = "ddUtilsEditor";
+            this.ddUtilsEditor.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsEditor.Text = "Profile Editor";
+            // 
+            // ddUtilsDump
+            // 
+            this.ddUtilsDump.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ddUtilsDumpSelected,
+            this.ddUtilsDumpProfile,
+            this.ddUtilsDumpAll});
+            this.ddUtilsDump.Name = "ddUtilsDump";
+            this.ddUtilsDump.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDump.Text = "Dump to text";
+            // 
+            // ddUtilsDumpSelected
+            // 
+            this.ddUtilsDumpSelected.Name = "ddUtilsDumpSelected";
+            this.ddUtilsDumpSelected.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDumpSelected.Text = "Currently Selected";
+            // 
+            // ddUtilsDumpProfile
+            // 
+            this.ddUtilsDumpProfile.Name = "ddUtilsDumpProfile";
+            this.ddUtilsDumpProfile.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDumpProfile.Text = "Current Profile";
+            // 
+            // ddUtilsDumpAll
+            // 
+            this.ddUtilsDumpAll.Name = "ddUtilsDumpAll";
+            this.ddUtilsDumpAll.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDumpAll.Text = "All Profiles";
             // 
             // btnSettings
             // 
@@ -497,16 +541,19 @@
             this.lvData.ForeColor = System.Drawing.Color.White;
             this.lvData.FullRowSelect = true;
             this.lvData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-#if DEBUG
             this.lvData.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
-#endif
+            listViewItem1});
             this.lvData.Location = new System.Drawing.Point(0, 25);
             this.lvData.Name = "lvData";
             this.lvData.Size = new System.Drawing.Size(774, 334);
             this.lvData.TabIndex = 9;
             this.lvData.UseCompatibleStateImageBehavior = false;
             this.lvData.View = System.Windows.Forms.View.Details;
+            // 
+            // ch_special_id
+            // 
+            this.ch_special_id.Text = "ch_special_id";
+            this.ch_special_id.Width = 0;
             // 
             // chSteamURL
             // 
@@ -559,57 +606,6 @@
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(717, 22);
             this.tbNote.TabIndex = 11;
-            // 
-            // ddUtils
-            // 
-            this.ddUtils.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ddUtilsEditor,
-            this.ddUtilsDump});
-            this.ddUtils.ForeColor = System.Drawing.Color.Black;
-            this.ddUtils.Image = global::vactrak.Properties.Resources.tools;
-            this.ddUtils.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ddUtils.Name = "ddUtils";
-            this.ddUtils.Size = new System.Drawing.Size(59, 22);
-            this.ddUtils.Text = "Utils";
-            // 
-            // ch_special_id
-            // 
-            this.ch_special_id.Text = "ch_special_id";
-            this.ch_special_id.Width = 0;
-            // 
-            // ddUtilsEditor
-            // 
-            this.ddUtilsEditor.Name = "ddUtilsEditor";
-            this.ddUtilsEditor.Size = new System.Drawing.Size(180, 22);
-            this.ddUtilsEditor.Text = "Profile Editor";
-            // 
-            // ddUtilsDump
-            // 
-            this.ddUtilsDump.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ddUtilsDumpSelected,
-            this.ddUtilsDumpProfile,
-            this.ddUtilsDumpAll});
-            this.ddUtilsDump.Name = "ddUtilsDump";
-            this.ddUtilsDump.Size = new System.Drawing.Size(180, 22);
-            this.ddUtilsDump.Text = "Dump to text";
-            // 
-            // ddUtilsDumpSelected
-            // 
-            this.ddUtilsDumpSelected.Name = "ddUtilsDumpSelected";
-            this.ddUtilsDumpSelected.Size = new System.Drawing.Size(180, 22);
-            this.ddUtilsDumpSelected.Text = "Currently Selected";
-            // 
-            // ddUtilsDumpProfile
-            // 
-            this.ddUtilsDumpProfile.Name = "ddUtilsDumpProfile";
-            this.ddUtilsDumpProfile.Size = new System.Drawing.Size(180, 22);
-            this.ddUtilsDumpProfile.Text = "Current Profile";
-            // 
-            // ddUtilsDumpAll
-            // 
-            this.ddUtilsDumpAll.Name = "ddUtilsDumpAll";
-            this.ddUtilsDumpAll.Size = new System.Drawing.Size(180, 22);
-            this.ddUtilsDumpAll.Text = "All Profiles";
             // 
             // main
             // 
