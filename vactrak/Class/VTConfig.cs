@@ -40,7 +40,13 @@ namespace vactrak.Utils
 
         public static Class.VTConfig LoadConfig(string _configPath)
         {
-            return JsonConvert.DeserializeObject<Class.VTConfig>((new StreamReader(_configPath, System.Text.Encoding.UTF8)).ReadToEnd().ToString());
+            string content = "";
+            using (StreamReader _sr = new StreamReader(_configPath, System.Text.Encoding.UTF8))
+            {
+                content = _sr.ReadToEnd();
+                _sr.Close();
+            }
+                return JsonConvert.DeserializeObject<Class.VTConfig>((content));
         }
 
     }

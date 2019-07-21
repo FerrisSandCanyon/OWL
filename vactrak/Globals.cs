@@ -1,14 +1,16 @@
-﻿namespace vactrak
+﻿using System.Collections.Generic;
+
+namespace vactrak
 {
     public static class Globals
     {
-        // Global VTConfig class
-        public static Class.VTConfig Config;
+        public static Class.VTConfig                      Config;   // Global VTConfig class
+        public static Dictionary<string, Class.VTAccount> Accounts; // Global Dictionary of all the account instances <special id, account class>
 
         // Global constant information
         public static class Info
         {
-            // Version ========================
+            // Version =========================================
             public const int    vMajor = 0,
                                 vMinor = 1,
                                 vPatch = 0;
