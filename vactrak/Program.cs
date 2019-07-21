@@ -16,6 +16,9 @@ namespace vactrak
         static void Main()
         {
 
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             // Initialize config
             if (File.Exists(Globals.Info.cfgPath))
                 Globals.Config = Utils.VTConfig.LoadConfig(Globals.Info.cfgPath);
@@ -26,6 +29,10 @@ namespace vactrak
                 Utils.VTConfig.SaveConfig(ref Globals.Config, Globals.Info.cfgPath);
             }
 
+#if DEBUG
+            Debug.Print(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+#endif
+
             // ===================
             // Check config values
             // ===================
@@ -34,24 +41,21 @@ namespace vactrak
             if (!Directory.Exists(Globals.Config.steamPath))
             {
                 MessageBox.Show("The path: \"" + Globals.Config.steamPath + "\" is an invalid steam path.\n\nPlease point VACTrak to the correct steam directory.", "Config error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 using (FolderBrowserDialog _fbd = new FolderBrowserDialog())
                 {
                     while (!File.Exists(_fbd.SelectedPath + "\\Steam.exe"))
-                        if (_fbd.ShowDialog(null) == DialogResult.Cancel) return;
+                        if (_fbd.ShowDialog() == DialogResult.Cancel) return;
 
-                    Globals.Config.steamPath = _fbd.SelectedPath.Replace('\\', '/'); // Turn C:\directory to C:/directory
+                    Globals.Config.steamPath = _fbd.SelectedPath.Replace('\\', '/');
                     Utils.VTConfig.SaveConfig(ref Globals.Config, Globals.Info.cfgPath);
                 }
             }
 
 
 #if DEBUG
-            Debug.Print(String.Format("Config Content ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+            Debug.Print(String.Format("Config Content after check ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
 #endif
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new main());
         }
     }

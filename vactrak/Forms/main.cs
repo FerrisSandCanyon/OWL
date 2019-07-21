@@ -19,7 +19,7 @@ namespace vactrak
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            this.Focus();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace vactrak.Utils
                 content = _sr.ReadToEnd();
                 _sr.Close();
             }
-                return JsonConvert.DeserializeObject<Class.VTConfig>((content));
+            return JsonConvert.DeserializeObject<Class.VTConfig>((content));
         }
 
     }
