@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "profiles/000000000000000000",
             "account name",
@@ -396,32 +396,32 @@
             // 
             this.addProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.plus;
             this.addProfileToolStripMenuItem.Name = "addProfileToolStripMenuItem";
-            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.addProfileToolStripMenuItem.Text = "Add Profile";
             // 
             // removeProfileToolStripMenuItem
             // 
             this.removeProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.minus;
             this.removeProfileToolStripMenuItem.Name = "removeProfileToolStripMenuItem";
-            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.removeProfileToolStripMenuItem.Text = "Remove Profile";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(154, 6);
             // 
             // copyAccountsToolStripMenuItem
             // 
             this.copyAccountsToolStripMenuItem.Name = "copyAccountsToolStripMenuItem";
-            this.copyAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyAccountsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.copyAccountsToolStripMenuItem.Text = "Copy Accounts";
             // 
             // moveAccountsToolStripMenuItem
             // 
             this.moveAccountsToolStripMenuItem.Name = "moveAccountsToolStripMenuItem";
-            this.moveAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveAccountsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.moveAccountsToolStripMenuItem.Text = "Move Accounts";
             // 
             // cbProfile
@@ -461,7 +461,7 @@
             // ddUtilsEditor
             // 
             this.ddUtilsEditor.Name = "ddUtilsEditor";
-            this.ddUtilsEditor.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsEditor.Size = new System.Drawing.Size(143, 22);
             this.ddUtilsEditor.Text = "Profile Editor";
             // 
             // ddUtilsDump
@@ -471,25 +471,25 @@
             this.ddUtilsDumpProfile,
             this.ddUtilsDumpAll});
             this.ddUtilsDump.Name = "ddUtilsDump";
-            this.ddUtilsDump.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDump.Size = new System.Drawing.Size(143, 22);
             this.ddUtilsDump.Text = "Dump to text";
             // 
             // ddUtilsDumpSelected
             // 
             this.ddUtilsDumpSelected.Name = "ddUtilsDumpSelected";
-            this.ddUtilsDumpSelected.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDumpSelected.Size = new System.Drawing.Size(170, 22);
             this.ddUtilsDumpSelected.Text = "Currently Selected";
             // 
             // ddUtilsDumpProfile
             // 
             this.ddUtilsDumpProfile.Name = "ddUtilsDumpProfile";
-            this.ddUtilsDumpProfile.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDumpProfile.Size = new System.Drawing.Size(170, 22);
             this.ddUtilsDumpProfile.Text = "Current Profile";
             // 
             // ddUtilsDumpAll
             // 
             this.ddUtilsDumpAll.Name = "ddUtilsDumpAll";
-            this.ddUtilsDumpAll.Size = new System.Drawing.Size(180, 22);
+            this.ddUtilsDumpAll.Size = new System.Drawing.Size(170, 22);
             this.ddUtilsDumpAll.Text = "All Profiles";
             // 
             // btnSettings
@@ -542,7 +542,7 @@
             this.lvData.FullRowSelect = true;
             this.lvData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvData.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.lvData.Location = new System.Drawing.Point(0, 25);
             this.lvData.Name = "lvData";
             this.lvData.Size = new System.Drawing.Size(774, 334);

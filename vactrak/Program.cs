@@ -19,6 +19,9 @@ namespace vactrak
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // Check for the profile folder
+            if (!Directory.Exists(Globals.Info.profilesPath)) Directory.CreateDirectory(Globals.Info.profilesPath);
+
             // Initialize config
             if (File.Exists(Globals.Info.cfgPath))
                 Globals.Config = Utils.VTConfig.LoadConfig(Globals.Info.cfgPath);
@@ -29,9 +32,9 @@ namespace vactrak
                 Utils.VTConfig.SaveConfig(ref Globals.Config, Globals.Info.cfgPath);
             }
 
-#if DEBUG
-            Debug.Print(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
-#endif
+            #if DEBUG
+                Debug.Print(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+            #endif
 
             // ===================
             // Check config values
@@ -51,12 +54,9 @@ namespace vactrak
                 }
             }
 
-
-
-
-#if DEBUG
-            Debug.Print(String.Format("Config Content after check ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
-#endif
+            #if DEBUG
+                Debug.Print(String.Format("Config Content after check ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+            #endif
 
             Application.Run(new main());
         }

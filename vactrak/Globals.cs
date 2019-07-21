@@ -15,8 +15,9 @@ namespace vactrak
                                 vMinor = 1,
                                 vPatch = 0;
 
-            public const string verStr  = "0.1.0",
-                                cfgPath = "./config.json";
+            public const string verStr       = "0.1.0",
+                                cfgPath      = "./config.json",
+                                profilesPath = "./profiles";
         }
     }
 }
