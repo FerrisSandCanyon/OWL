@@ -26,6 +26,12 @@ namespace vactrak
             // ==============
             // Initialization
             // ==============
+
+            #if DEBUG
+                this.Text += " - DEBUG MODE";
+            #endif
+
+            Globals.titleFallback = this.Text;
             CbProfile_LoadProfiles();
 
         }
@@ -41,17 +47,17 @@ namespace vactrak
         {
             cbProfile.Items.Clear();
 
-#if DEBUG
-            foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
-            {
-                string _profilename = Path.GetFileNameWithoutExtension(_profile);
-                cbProfile.Items.Add(_profilename);
-                Debug.Write(String.Format("\nProfile: {0}\nProfile Name:[{1}]", _profile, _profilename));
-            } 
-#else
-            foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
-                cbProfile.Items.Add(Path.GetFileNameWithoutExtension(_profile));
-#endif
+            #if DEBUG
+                foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
+                {
+                    string _profilename = Path.GetFileNameWithoutExtension(_profile);
+                    cbProfile.Items.Add(_profilename);
+                    Debug.Write(String.Format("\nProfile: {0}\nProfile Name:[{1}]", _profile, _profilename));
+                } 
+            #else
+                foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
+                    cbProfile.Items.Add(Path.GetFileNameWithoutExtension(_profile));
+            #endif
 
             if (cbProfile.Items.Count != 0)
             {

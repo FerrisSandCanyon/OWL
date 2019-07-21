@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "profiles/000000000000000000",
             "account name",
@@ -466,7 +466,7 @@
             // 
             this.ddUtilsEditor.Name = "ddUtilsEditor";
             this.ddUtilsEditor.Size = new System.Drawing.Size(180, 22);
-            this.ddUtilsEditor.Text = "Profile Editor";
+            this.ddUtilsEditor.Text = "Steam Profile Editor";
             // 
             // ddUtilsDump
             // 
@@ -546,7 +546,7 @@
             this.lvData.FullRowSelect = true;
             this.lvData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvData.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.lvData.Location = new System.Drawing.Point(0, 25);
             this.lvData.Name = "lvData";
             this.lvData.Size = new System.Drawing.Size(774, 334);
