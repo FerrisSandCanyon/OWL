@@ -142,6 +142,7 @@ namespace vactrak
         // Removes a profile
         private void RemoveProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to remove this profile?", "Remove profile", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No) return;
 
             if (cbProfile.Items.Count < 1) return;
             string _profilePath = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
@@ -174,6 +175,44 @@ namespace vactrak
             Globals.Config.defaultProfile = cbProfile.Items[cbProfile.SelectedIndex].ToString();
             if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
             MessageBox.Show("Current profile has been set as the default profile!", "Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+
+                "VACTrak# version " + Globals.Info.verStr + "\n" +
+                "A multipurpose tool for managing Steam accounts.\n\n" +
+                "Developed by: FerrisSandCanyon\n\n" +
+                "https://github.com/FerrisSandCanyon/vactrak"
+
+               ,"VACTrak#", MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
+        }
+
+        private void DdAccountAdd_Click(object sender, EventArgs e)
+        {
+            using (Forms.FormAddAccount _fad = new Forms.FormAddAccount(ref lvData))
+            {
+                _fad.ShowDialog();
+                _fad.Dispose();
+            }
+        }
+
+        private void DdAccountEdit_Click(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("No account selected to edit.", "Edit Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            foreach (ListViewItem _lvi in lvData.SelectedItems)
+                using (Forms.FormAddAccount _fad = new Forms.FormAddAccount(_lvi))
+                {
+                    _fad.ShowDialog();
+                    _fad.Dispose();
+                }
         }
     }
 }
