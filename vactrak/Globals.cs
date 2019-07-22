@@ -18,13 +18,19 @@ namespace vactrak
         public static class Info
         {
             // Version =========================================
-            public const int    vMajor = 0,
-                                vMinor = 1,
-                                vPatch = 0;
+            public const int    vMajor       = 0,
+                                vMinor       = 1,
+                                vPatch       = 0;
 
             public const string verStr       = "0.1.0",
                                 cfgPath      = "./config.json",
                                 profilesPath = "./profiles";
+        }
+
+        // Cached values for some aspects of the program
+        public static class Cache
+        {
+            
         }
     }
 }

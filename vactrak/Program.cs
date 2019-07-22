@@ -35,7 +35,7 @@ namespace vactrak
             if (Globals.Config == null) return;
 
             #if DEBUG
-                Debug.Print(String.Format("\nConfig Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
+                Debug.WriteLine(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
             #endif
 
             // ===================
@@ -69,7 +69,7 @@ namespace vactrak
             if (shouldResave) if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
 
             #if DEBUG
-                Debug.Print(String.Format("\nConfig Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave));
+                Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave));
             #endif
 
             Application.Run(new main());

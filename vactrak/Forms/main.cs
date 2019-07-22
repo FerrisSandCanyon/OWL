@@ -32,10 +32,11 @@ namespace vactrak
             #endif
 
             Globals.titleFallback = this.Text;
-            CbProfile_LoadProfiles();
+            CbProfile_LoadProfileDirectory();
 
         }
 
+        // Loads the selected profile
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbProfile.Items.Count < 1) return;
@@ -43,7 +44,8 @@ namespace vactrak
             if (Globals.CurrentProfile == null) Application.Exit();
         }
 
-        private void CbProfile_LoadProfiles()
+        // Searches the profile directory for profile jsons
+        private void CbProfile_LoadProfileDirectory()
         {
             cbProfile.Items.Clear();
 
@@ -52,7 +54,7 @@ namespace vactrak
                 {
                     string _profilename = Path.GetFileNameWithoutExtension(_profile);
                     cbProfile.Items.Add(_profilename);
-                    Debug.Write(String.Format("\nProfile: {0}\nProfile Name:[{1}]", _profile, _profilename));
+                    Debug.WriteLine(String.Format("Profile: {0}\nProfile Name:[{1}]", _profile, _profilename));
                 } 
             #else
                 foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
@@ -73,7 +75,7 @@ namespace vactrak
             {
                 Globals.CurrentProfile = new Dictionary<string, Class.VTAccount> { };
                 if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
-                CbProfile_LoadProfiles(); // just do recursion cause lazyyy
+                CbProfile_LoadProfileDirectory(); // just do recursion cause lazyyy
             }
         }
     }

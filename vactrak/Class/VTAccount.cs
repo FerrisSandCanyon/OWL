@@ -11,11 +11,10 @@ namespace vactrak.Class
 {
     public class VTAccount
     {
-        public string SteamURL = null, Username = null, Password = null, Note = null;
+        public string SteamURL = null, Name = null, Username = null, Password = null, Note = null;
         public bool   Banned = false;
         public ulong  CooldownDelta = 0;
     }
-
 }
 
 namespace vactrak.Utils
