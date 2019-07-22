@@ -39,6 +39,12 @@ namespace vactrak.Forms
         {
             this.btnApply.BackgroundImage = mode ? global::vactrak.Properties.Resources.edit : global::vactrak.Properties.Resources.plus;
             this.Text                     = mode ? "Edit Account" : "Add Account";
+            this.TopMost                  = cbTop.Checked = Globals.Cache.OnTop;
+        }
+
+        private void CbTop_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.Cache.OnTop = this.TopMost = cbTop.Checked;
         }
     }
 }

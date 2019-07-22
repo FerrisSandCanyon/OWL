@@ -30,7 +30,7 @@ namespace vactrak
         // Cached values for some aspects of the program
         public static class Cache
         {
-            
+            public static bool OnTop = false;
         }
     }
 }

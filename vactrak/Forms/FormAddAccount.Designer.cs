@@ -127,6 +127,7 @@
             this.cbTop.TabIndex = 20;
             this.cbTop.Text = "Always on Top";
             this.cbTop.UseVisualStyleBackColor = true;
+            this.cbTop.CheckedChanged += new System.EventHandler(this.CbTop_CheckedChanged);
             // 
             // cbAdd
             // 

@@ -80,11 +80,8 @@ namespace vactrak
             if (cbProfile.Items.Count != 0)
             {
                 int defaultIndex = cbProfile.FindStringExact(Globals.Config.defaultProfile);
-
-                if (defaultIndex == -1)
-                    cbProfile.SelectedIndex = 0;
-                else 
-                    cbProfile.SelectedIndex = defaultIndex;
+                if (defaultIndex == -1) defaultIndex = 0;
+                cbProfile.SelectedIndex = defaultIndex;
             }
             // Create a default profile if there's no profile
             else
@@ -133,10 +130,8 @@ namespace vactrak
 
             // Load and set the newly created profile to our current one
             int profileIndex = cbProfile.FindStringExact(profileName);
-            if (profileIndex == -1)
-                cbProfile.SelectedIndex = 0;
-            else
-                cbProfile.SelectedIndex = profileIndex;
+            if (profileIndex == -1) profileIndex = 0;
+            cbProfile.SelectedIndex = profileIndex;
         }
 
         // Removes a profile
