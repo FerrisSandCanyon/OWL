@@ -83,8 +83,13 @@ namespace vactrak
         private void AddProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string profileName = Microsoft.VisualBasic.Interaction.InputBox("Enter the profile's name (leave blank to cancel)", "Create new profile", null); // yes, lazy. very
-            if (String.IsNullOrWhiteSpace(profileName)) return;                                                                                              // If canceled by the user
-            string profilePath = Globals.Info.profilesPath + "/" + profileName + ".json";                                                                    // Just for convenience, concat the string altogether.
+
+            // Sanitize the profile name
+            foreach (char _invalid in Path.GetInvalidFileNameChars())
+                profileName.Replace(_invalid, '_');
+
+            if (String.IsNullOrWhiteSpace(profileName)) return;                           // If canceled by the user
+            string profilePath = Globals.Info.profilesPath + "/" + profileName + ".json"; // Just for convenience, concat the string altogether.
 
             // Try to create the profile json
             try

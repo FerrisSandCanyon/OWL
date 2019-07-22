@@ -49,7 +49,7 @@
             this.tbNote = new System.Windows.Forms.TextBox();
             this.ddAccount = new System.Windows.Forms.ToolStripDropDownButton();
             this.ddAccountAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddAccountEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.ddAccountRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.ddAccountImport = new System.Windows.Forms.ToolStripMenuItem();
             this.ddAccountImportSAC = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,6 +97,8 @@
             this.ddProtectRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSettings = new System.Windows.Forms.ToolStripButton();
             this.btnAbout = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.setAsDefaultProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -250,7 +252,7 @@
             this.ddAccount.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ddAccount.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddAccountAdd,
-            this.editToolStripMenuItem,
+            this.ddAccountEdit,
             this.ddAccountRemove,
             this.ddAccountImport,
             this.ddAccountSAG});
@@ -268,12 +270,12 @@
             this.ddAccountAdd.Size = new System.Drawing.Size(180, 22);
             this.ddAccountAdd.Text = "Add";
             // 
-            // editToolStripMenuItem
+            // ddAccountEdit
             // 
-            this.editToolStripMenuItem.Image = global::vactrak.Properties.Resources.edit;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.ddAccountEdit.Image = global::vactrak.Properties.Resources.edit;
+            this.ddAccountEdit.Name = "ddAccountEdit";
+            this.ddAccountEdit.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountEdit.Text = "Edit";
             // 
             // ddAccountRemove
             // 
@@ -327,7 +329,7 @@
             this.ddManageObtainBoth});
             this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainBan
@@ -355,7 +357,7 @@
             this.ddManageLoginForce});
             this.ddManageLogin.Image = global::vactrak.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -380,7 +382,7 @@
             this.ddManageClipboardOpen});
             this.ddManageClipboard.Image = global::vactrak.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
@@ -428,7 +430,7 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::vactrak.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown.Text = "Cooldown";
             // 
             // ddManageCooldown7days
@@ -500,6 +502,8 @@
             this.ddProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProfileToolStripMenuItem,
             this.removeProfileToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.setAsDefaultProfileToolStripMenuItem,
             this.toolStripSeparator5,
             this.copyAccountsToolStripMenuItem,
             this.moveAccountsToolStripMenuItem});
@@ -515,7 +519,7 @@
             // 
             this.addProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.plus;
             this.addProfileToolStripMenuItem.Name = "addProfileToolStripMenuItem";
-            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.addProfileToolStripMenuItem.Text = "Add Profile";
             this.addProfileToolStripMenuItem.Click += new System.EventHandler(this.AddProfileToolStripMenuItem_Click);
             // 
@@ -523,25 +527,25 @@
             // 
             this.removeProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.minus;
             this.removeProfileToolStripMenuItem.Name = "removeProfileToolStripMenuItem";
-            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.removeProfileToolStripMenuItem.Text = "Remove Profile";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripSeparator5.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(178, 6);
             // 
             // copyAccountsToolStripMenuItem
             // 
             this.copyAccountsToolStripMenuItem.Name = "copyAccountsToolStripMenuItem";
-            this.copyAccountsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.copyAccountsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.copyAccountsToolStripMenuItem.Text = "Copy Accounts";
             // 
             // moveAccountsToolStripMenuItem
             // 
             this.moveAccountsToolStripMenuItem.Name = "moveAccountsToolStripMenuItem";
-            this.moveAccountsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.moveAccountsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.moveAccountsToolStripMenuItem.Text = "Move Accounts";
             // 
             // btnProfileSave
@@ -639,6 +643,17 @@
             this.btnAbout.Size = new System.Drawing.Size(23, 22);
             this.btnAbout.Text = "About";
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(178, 6);
+            // 
+            // setAsDefaultProfileToolStripMenuItem
+            // 
+            this.setAsDefaultProfileToolStripMenuItem.Name = "setAsDefaultProfileToolStripMenuItem";
+            this.setAsDefaultProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.setAsDefaultProfileToolStripMenuItem.Text = "Set as default profile";
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -732,7 +747,9 @@
         private System.Windows.Forms.ToolStripMenuItem ddProtectAdd;
         private System.Windows.Forms.ToolStripMenuItem ddProtectRemove;
         private System.Windows.Forms.ColumnHeader chName;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ddAccountEdit;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem setAsDefaultProfileToolStripMenuItem;
     }
 }
 
