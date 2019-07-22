@@ -529,6 +529,7 @@
             this.removeProfileToolStripMenuItem.Name = "removeProfileToolStripMenuItem";
             this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.removeProfileToolStripMenuItem.Text = "Remove Profile";
+            this.removeProfileToolStripMenuItem.Click += new System.EventHandler(this.RemoveProfileToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 

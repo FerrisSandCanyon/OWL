@@ -36,11 +36,21 @@ namespace vactrak
 
         }
 
-        // Loads the selected profile. Note: add check if that json still exists before attempting to load
+        // Loads the selected profile.
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbProfile.Items.Count < 1) return;
-            Globals.CurrentProfile = Utils.VTAccount.Load(Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json");
+            string _profilePath    = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
+
+            // Make sure it exists
+            if (!File.Exists(_profilePath))
+            {
+                MessageBox.Show("This profile does not exist", "Load profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CbProfile_LoadProfileDirectory();
+                return;
+            }
+
+            Globals.CurrentProfile = Utils.VTAccount.Load(_profilePath);
             if (Globals.CurrentProfile == null) Application.Exit();
         }
 
@@ -91,6 +101,13 @@ namespace vactrak
             if (String.IsNullOrWhiteSpace(profileName)) return;                           // If canceled by the user
             string profilePath = Globals.Info.profilesPath + "/" + profileName + ".json"; // Just for convenience, concat the string altogether.
 
+            // Check if it already exists
+            if (File.Exists(profilePath))
+            {
+                MessageBox.Show("This profile already exists!", "Create profile", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Try to create the profile json
             try
             {
@@ -116,5 +133,33 @@ namespace vactrak
                 cbProfile.SelectedIndex = profileIndex;
         }
 
+        // Removes a profile
+        private void RemoveProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (cbProfile.Items.Count < 1) return;
+            string _profilePath = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
+
+            // Make sure it exists
+            if (!File.Exists(_profilePath))
+            {
+                MessageBox.Show("This profile does not exist", "Delete profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CbProfile_LoadProfileDirectory();
+                return;
+            }
+
+            try
+            {
+                File.Delete(_profilePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format("Failed to delete profile.\n\nFile: {0}\nException: {1}", _profilePath, ex), "Delete profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Reload the profile drop down
+            CbProfile_LoadProfileDirectory();
+        }
     }
 }

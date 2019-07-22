@@ -27,12 +27,16 @@ namespace vactrak
                 Globals.Config = Utils.VTConfig.Load(Globals.Info.cfgPath);
             else
             {
-                MessageBox.Show("VACTrak couldn't load a config because there's none. VACTrak will now generate a new config file containing the default settings.", "Config missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("VACTrak couldn't load a config because there's none. VACTrak will now generate a new config file containing the default settings.", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Globals.Config = new Class.VTConfig();
                 if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
             }
 
-            if (Globals.Config == null) return;
+            if (Globals.Config == null)
+            {
+                MessageBox.Show("Config was unsuccessfuly initialized.", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             #if DEBUG
                 Debug.WriteLine(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
