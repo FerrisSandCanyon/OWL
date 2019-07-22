@@ -161,5 +161,13 @@ namespace vactrak
             // Reload the profile drop down
             CbProfile_LoadProfileDirectory();
         }
+
+        // Set as default profile
+        private void SetAsDefaultProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.Config.defaultProfile = cbProfile.Items[cbProfile.SelectedIndex].ToString();
+            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
+            MessageBox.Show("Current profile has been set as the default profile!", "Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

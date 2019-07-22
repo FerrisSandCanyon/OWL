@@ -654,6 +654,7 @@
             this.setAsDefaultProfileToolStripMenuItem.Name = "setAsDefaultProfileToolStripMenuItem";
             this.setAsDefaultProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.setAsDefaultProfileToolStripMenuItem.Text = "Set as default profile";
+            this.setAsDefaultProfileToolStripMenuItem.Click += new System.EventHandler(this.SetAsDefaultProfileToolStripMenuItem_Click);
             // 
             // main
             // 
