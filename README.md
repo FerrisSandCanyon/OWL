@@ -27,7 +27,7 @@ You can configure VACTrak through the options form or manually through the <i>co
 ```json
 {
     "steamPath":"C:/Program Files (x86)/Steam",
-    "defaultProfile":"default.json",
+    "defaultProfile":"default",
     "cooldownRefresh":500,
     "forceStatus":false
 }

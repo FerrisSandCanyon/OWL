@@ -36,7 +36,7 @@ namespace vactrak
 
         }
 
-        // Loads the selected profile
+        // Loads the selected profile. Note: add check if that json still exists before attempting to load
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbProfile.Items.Count < 1) return;
@@ -78,5 +78,38 @@ namespace vactrak
                 CbProfile_LoadProfileDirectory(); // just do recursion cause lazyyy
             }
         }
+
+        // Create a new profile
+        private void AddProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string profileName = Microsoft.VisualBasic.Interaction.InputBox("Enter the profile's name (leave blank to cancel)", "Create new profile", null); // yes, lazy. very
+            if (String.IsNullOrWhiteSpace(profileName)) return;                                                                                              // If canceled by the user
+            string profilePath = Globals.Info.profilesPath + "/" + profileName + ".json";                                                                    // Just for convenience, concat the string altogether.
+
+            // Try to create the profile json
+            try
+            {
+                File.CreateText(profilePath).Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to create profile.\n\nException: " + ex, "Create profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            CbProfile_LoadProfileDirectory();
+
+            // Create the actual profile
+            Globals.CurrentProfile = new Dictionary<string, Class.VTAccount> { };
+            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, profilePath)) Application.Exit();
+
+            // Load and set the newly created profile to our current one
+            int profileIndex = cbProfile.FindStringExact(profileName);
+            if (profileIndex == -1)
+                cbProfile.SelectedIndex = 0;
+            else
+                cbProfile.SelectedIndex = profileIndex;
+        }
+
     }
 }
