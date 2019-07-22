@@ -12,14 +12,14 @@ using System.Diagnostics;
 
 namespace vactrak
 {
-    public partial class main : Form
+    public partial class FormMain : Form
     {
-        public main()
+        public FormMain()
         {
             InitializeComponent();
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             this.Focus();
 
@@ -28,12 +28,18 @@ namespace vactrak
             // ==============
 
             #if DEBUG
-                this.Text += " - DEBUG MODE";
+                this.Text += " (DEBUG MODE)";
             #endif
 
             Globals.titleFallback = this.Text;
             CbProfile_LoadProfileDirectory();
 
+        }
+
+        private void FormMain_SetTitle(string _title = null)
+        {
+            if (_title == null) this.Text = Globals.titleFallback;
+            this.Text = Globals.titleFallback + " - " + _title;
         }
 
         // Loads the selected profile.
