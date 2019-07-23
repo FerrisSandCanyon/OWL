@@ -179,6 +179,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Account/Edit Account";
             this.Load += new System.EventHandler(this.FormAddAccount_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddAccount_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

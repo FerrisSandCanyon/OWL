@@ -11,6 +11,20 @@ namespace vactrak.Class
 {
     public class VTAccount
     {
+
+        public VTAccount() { }
+
+        public VTAccount(string _SteamURL, string _Name, string _Username, string _Password, string _Note, bool _Banned, ulong _CooldownDelta)
+        {
+            SteamURL      = _SteamURL;
+            Name          = _Name;
+            Username      = _Username;
+            Password      = _Password;
+            Note          = _Note;
+            Banned        = _Banned;
+            CooldownDelta = _CooldownDelta;
+        }
+
         public string SteamURL = null, Name = null, Username = null, Password = null, Note = null;
         public bool   Banned = false;
         public ulong  CooldownDelta = 0;
@@ -56,6 +70,11 @@ namespace vactrak.Utils
                 MessageBox.Show(String.Format("Profile: {0}\nException: {1}", _profilePath, ex), "Failed to load profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
+        }
+
+        public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.VTAccount _vta)
+        {
+            _lv.Items.Add(_uniqueID).SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note });
         }
 
     }
