@@ -58,8 +58,16 @@ namespace vactrak
                 return;
             }
 
+            // Load the profile
             Globals.CurrentProfile = Utils.VTAccount.Load(_profilePath);
             if (Globals.CurrentProfile == null) Application.Exit();
+
+            // Load all the accounts to our table
+            foreach (KeyValuePair<string, Class.VTAccount> _data in Globals.CurrentProfile)
+            {
+                Class.VTAccount _vta = _data.Value;
+                Utils.VTAccount.AddToTable(ref lvData, _data.Key, ref _vta);
+            }
         }
 
         // Searches the profile directory for profile jsons
