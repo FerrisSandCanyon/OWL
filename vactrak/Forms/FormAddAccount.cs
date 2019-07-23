@@ -25,6 +25,7 @@ namespace vactrak.Forms
         {
             lvData = _lvData;
             mode   = false;
+            Globals.Cache.AddAnotherFlag = false;
             InitializeComponent();
         }
 
@@ -40,11 +41,24 @@ namespace vactrak.Forms
             this.btnApply.BackgroundImage = mode ? global::vactrak.Properties.Resources.edit : global::vactrak.Properties.Resources.plus;
             this.Text                     = mode ? "Edit Account" : "Add Account";
             this.TopMost                  = cbTop.Checked = Globals.Cache.OnTop;
+            cbAdd.Enabled                 = !mode;
+            cbAdd.Checked                 = Globals.Cache.AddAnother;
         }
 
         private void CbTop_CheckedChanged(object sender, EventArgs e)
         {
             Globals.Cache.OnTop = this.TopMost = cbTop.Checked;
+        }
+
+        private void CbAdd_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.Cache.AddAnother = cbAdd.Checked;
+        }
+
+        private void BtnApply_Click(object sender, EventArgs e)
+        {
+            Globals.Cache.AddAnotherFlag = true;
+            this.Close();
         }
     }
 }

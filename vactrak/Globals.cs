@@ -30,7 +30,10 @@ namespace vactrak
         // Cached values for some aspects of the program
         public static class Cache
         {
-            public static bool OnTop = false;
+            public static bool OnTop          = false, // Add account form is always on top of every other window
+
+                               AddAnother     = false, // Automatically re-open the add account menu (Ignored on edit mode)
+                               AddAnotherFlag = false; // Set to true when the user selected "Add" account, otherwise false. This is to prevent re-opening the UI if the user closed it
         }
     }
 }

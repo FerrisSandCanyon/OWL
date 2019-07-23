@@ -187,11 +187,14 @@ namespace vactrak
 
         private void DdAccountAdd_Click(object sender, EventArgs e)
         {
-            using (Forms.FormAddAccount _fad = new Forms.FormAddAccount(ref lvData))
+            do
             {
-                _fad.ShowDialog();
-                _fad.Dispose();
-            }
+                using (Forms.FormAddAccount _fad = new Forms.FormAddAccount(ref lvData))
+                {
+                    _fad.ShowDialog();
+                    _fad.Dispose();
+                }
+            } while (Globals.Cache.AddAnother && Globals.Cache.AddAnotherFlag);
         }
 
         private void DdAccountEdit_Click(object sender, EventArgs e)

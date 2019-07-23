@@ -138,6 +138,7 @@
             this.cbAdd.TabIndex = 21;
             this.cbAdd.Text = "Add another";
             this.cbAdd.UseVisualStyleBackColor = true;
+            this.cbAdd.CheckedChanged += new System.EventHandler(this.CbAdd_CheckedChanged);
             // 
             // btnApply
             // 
@@ -150,6 +151,7 @@
             this.btnApply.Size = new System.Drawing.Size(32, 32);
             this.btnApply.TabIndex = 22;
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
             // FormAddAccount
             // 
