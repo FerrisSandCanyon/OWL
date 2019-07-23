@@ -212,5 +212,14 @@ namespace vactrak
                     _fad.Dispose();
                 }
         }
+
+        // Save profile
+        private void BtnProfileSave_Click(object sender, EventArgs e)
+        {
+            if (cbProfile.Items.Count < 1) return;
+            string _profilePath = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
+            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, _profilePath)) Application.Exit();
+            MessageBox.Show("Profile has been saved!", "Save profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

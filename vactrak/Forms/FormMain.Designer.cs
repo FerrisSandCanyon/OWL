@@ -465,6 +465,7 @@
             this.btnProfileSave.Name = "btnProfileSave";
             this.btnProfileSave.Size = new System.Drawing.Size(23, 22);
             this.btnProfileSave.Text = "Save Profile";
+            this.btnProfileSave.Click += new System.EventHandler(this.BtnProfileSave_Click);
             // 
             // toolStripSeparator3
             // 
