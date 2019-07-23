@@ -43,7 +43,7 @@ namespace vactrak.Forms
             this.TopMost                  = cbTop.Checked = Globals.Cache.OnTop;
             cbAdd.Enabled                 = !mode;
             cbAdd.Checked                 = Globals.Cache.AddAnother;
-            tbNote.Text                   = Globals.Cache.Notes;
+            tbNote.Text                   = mode ? lvItem.SubItems[6].Text : Globals.Cache.Notes;
         }
 
         private void FormAddAccount_Closing(object sender, EventArgs e)

@@ -161,6 +161,7 @@
             this.ddAccountRemove.Name = "ddAccountRemove";
             this.ddAccountRemove.Size = new System.Drawing.Size(180, 22);
             this.ddAccountRemove.Text = "Remove";
+            this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
             // ddAccountImport
             // 

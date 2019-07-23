@@ -42,6 +42,8 @@ namespace vactrak
             this.Text = Globals.titleFallback + " - " + _title;
         }
 
+        #region Profile
+
         // Loads the selected profile.
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -164,6 +166,15 @@ namespace vactrak
             CbProfile_LoadProfileDirectory();
         }
 
+        // Save profile
+        private void BtnProfileSave_Click(object sender, EventArgs e)
+        {
+            if (cbProfile.Items.Count < 1) return;
+            string _profilePath = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
+            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, _profilePath)) Application.Exit();
+            MessageBox.Show("Profile has been saved!", "Save profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         // Set as default profile
         private void SetAsDefaultProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -171,6 +182,8 @@ namespace vactrak
             if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
             MessageBox.Show("Current profile has been set as the default profile!", "Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        #endregion
 
         private void BtnAbout_Click(object sender, EventArgs e)
         {
@@ -181,10 +194,13 @@ namespace vactrak
                 "Developed by: FerrisSandCanyon\n\n" +
                 "https://github.com/FerrisSandCanyon/vactrak"
 
-               ,"VACTrak#", MessageBoxButtons.OK, MessageBoxIcon.Information
+               , "VACTrak#", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
         }
 
+        #region Account
+
+        // Add an account
         private void DdAccountAdd_Click(object sender, EventArgs e)
         {
             do
@@ -197,6 +213,7 @@ namespace vactrak
             } while (Globals.Cache.AddAnother && Globals.Cache.AddAnotherFlag);
         }
 
+        // Edit an account
         private void DdAccountEdit_Click(object sender, EventArgs e)
         {
             if (lvData.SelectedItems.Count == 0)
@@ -213,13 +230,26 @@ namespace vactrak
                 }
         }
 
-        // Save profile
-        private void BtnProfileSave_Click(object sender, EventArgs e)
+        // Remove an account
+        private void DdAccountRemove_Click(object sender, EventArgs e)
         {
-            if (cbProfile.Items.Count < 1) return;
-            string _profilePath = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
-            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, _profilePath)) Application.Exit();
-            MessageBox.Show("Profile has been saved!", "Save profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (lvData.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("No account selected to remove.", "Remove Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            foreach (ListViewItem _lvi in lvData.SelectedItems)
+            {
+                #if DEBUG
+                    Debug.WriteLine("Deleting account id: " + _lvi.SubItems[0].Text);
+                #endif
+                Globals.CurrentProfile.Remove(_lvi.SubItems[0].Text);
+                _lvi.Remove();
+            }
         }
+
+        #endregion
+
     }
 }
