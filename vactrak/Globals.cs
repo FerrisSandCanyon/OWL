@@ -6,8 +6,6 @@ namespace vactrak
     {
         public static Class.VTConfig                      Config         = null; // Global VTConfig class
         public static Dictionary<string, Class.VTAccount> CurrentProfile = null; // Global Dictionary of all the account instances <special id, account class>
-        
-        public static string                              titleFallback  = "";   // Main form title fallback
 
         public static string                              passKey        = "";   // Store the passkey
         // I know that bad actors can simply take a peek at the memory and find the user's password but...
@@ -36,7 +34,8 @@ namespace vactrak
                                  AddAnother     = false, // Automatically re-open the add account menu (Ignored on edit mode)
                                  AddAnotherFlag = false; // Set to true when the user selected "Add" account, otherwise false. This is to prevent re-opening the UI if the user closed it
 
-            public static string Notes          = "";    // Cached notes 
+            public static string Notes          = "",    // Cached notes 
+                                 TitleFallback  = "";    // Main form title fallback
         }
     }
 }

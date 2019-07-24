@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,7 +13,11 @@ namespace vactrak.Class
     public class VTAccount
     {
 
-        public VTAccount() { }
+        // ==============
+        // Initialization
+        // ==============
+
+        public VTAccount() { Initialize(); }
         public VTAccount(string _SteamURL, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false, ulong _CooldownDelta = 0)
         {
             SteamURL      = _SteamURL;
@@ -22,14 +27,39 @@ namespace vactrak.Class
             Note          = _Note;
             Banned        = _Banned;
             CooldownDelta = _CooldownDelta;
+            Initialize();
         }
+
+        void Initialize()
+        {
+            ParserThreadEntry = new ThreadStart(this.Parse);
+        }
+
+        // ======
+        // Values
+        // ======
 
         public string SteamURL = null, Name = null, Username = null, Password = null, Note = null;
         public bool   Banned = false;
         public ulong  CooldownDelta = 0;
 
+        // =================
+        // Instance handling
+        // =================
+
         [JsonIgnore]
-        public ListViewItem LVI = null; // Reference to the list view item of the current account instance
+        public ListViewItem LVI               = null; // Reference to the list view item of the current account instance
+
+        [JsonIgnore]
+        public Thread       ParserThread      = null; // Reference to the parser thread that is running
+
+        [JsonIgnore]
+        ThreadStart         ParserThreadEntry = null;
+
+        public void Parse()
+        {
+
+        }
     }
 }
 

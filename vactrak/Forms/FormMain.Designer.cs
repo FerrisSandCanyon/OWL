@@ -99,6 +99,8 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddManageObtainAbort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,28 +212,30 @@
             this.ddManageObtain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddManageObtainBan,
             this.ddManageObtainName,
-            this.ddManageObtainBoth});
+            this.ddManageObtainBoth,
+            this.toolStripSeparator7,
+            this.ddManageObtainAbort});
             this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainBan
             // 
             this.ddManageObtainBan.Name = "ddManageObtainBan";
-            this.ddManageObtainBan.Size = new System.Drawing.Size(129, 22);
+            this.ddManageObtainBan.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtainBan.Text = "Ban Status";
             // 
             // ddManageObtainName
             // 
             this.ddManageObtainName.Name = "ddManageObtainName";
-            this.ddManageObtainName.Size = new System.Drawing.Size(129, 22);
+            this.ddManageObtainName.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtainName.Text = "Name";
             // 
             // ddManageObtainBoth
             // 
             this.ddManageObtainBoth.Name = "ddManageObtainBoth";
-            this.ddManageObtainBoth.Size = new System.Drawing.Size(129, 22);
+            this.ddManageObtainBoth.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtainBoth.Text = "Both";
             // 
             // ddManageLogin
@@ -241,7 +245,7 @@
             this.ddManageLoginForce});
             this.ddManageLogin.Image = global::vactrak.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -266,7 +270,7 @@
             this.ddManageClipboardOpen});
             this.ddManageClipboard.Image = global::vactrak.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
@@ -314,7 +318,7 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::vactrak.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown.Text = "Cooldown";
             // 
             // ddManageCooldown7days
@@ -661,6 +665,17 @@
             this.tbNote.Size = new System.Drawing.Size(798, 22);
             this.tbNote.TabIndex = 11;
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
+            // 
+            // ddManageObtainAbort
+            // 
+            this.ddManageObtainAbort.Name = "ddManageObtainAbort";
+            this.ddManageObtainAbort.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainAbort.Text = "Abort Parsing";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -757,6 +772,8 @@
         private System.Windows.Forms.ToolStripMenuItem ddAccountEdit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem setAsDefaultProfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem ddManageObtainAbort;
     }
 }
 

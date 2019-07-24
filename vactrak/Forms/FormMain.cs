@@ -31,14 +31,14 @@ namespace vactrak
                 this.Text += " (DEBUG MODE)";
             #endif
 
-            Globals.titleFallback = this.Text;
+            Globals.Cache.TitleFallback = this.Text;
             CbProfile_LoadProfileDirectory();
 
         }
 
         private void FormMain_SetTitle(string _title = null)
         {
-            this.Text = _title == null ? Globals.titleFallback : Globals.titleFallback + " - " + _title;
+            this.Text = _title == null ? Globals.Cache.TitleFallback : Globals.Cache.TitleFallback + " - " + _title;
         }
 
         #region Profile
