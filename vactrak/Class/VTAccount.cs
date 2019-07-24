@@ -76,7 +76,7 @@ namespace vactrak.Utils
 
         public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.VTAccount _vta)
         {
-            _vta.LVI = new ListViewItem(_uniqueID);
+            _vta.LVI = (new ListViewItem(_uniqueID));
             _vta.LVI.SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note });
             _lv.Items.Add(_vta.LVI);
         }

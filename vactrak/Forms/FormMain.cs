@@ -38,8 +38,7 @@ namespace vactrak
 
         private void FormMain_SetTitle(string _title = null)
         {
-            if (_title == null) this.Text = Globals.titleFallback;
-            this.Text = Globals.titleFallback + " - " + _title;
+            this.Text = _title == null ? Globals.titleFallback : Globals.titleFallback + " - " + _title;
         }
 
         #region Profile
