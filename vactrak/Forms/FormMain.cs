@@ -231,11 +231,21 @@ namespace vactrak
             }
 
             foreach (ListViewItem _lvi in lvData.SelectedItems)
-                using (Forms.FormAddAccount _fad = new Forms.FormAddAccount(_lvi))
+            {
+                // Find the account in our profile dictionary
+                Class.VTAccount _vta;
+                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                {
+                    MessageBox.Show("Failed to obtain account data for steam url: " + _lvi.SubItems[1].Text + " with a unique id: " + _lvi.SubItems[0].Text + ". \n\nThis account has been skipped.", "Edit account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    continue;
+                }
+
+                using (Forms.FormAddAccount _fad = new Forms.FormAddAccount(_lvi, ref _vta))
                 {
                     _fad.ShowDialog();
                     _fad.Dispose();
                 }
+            }
         }
 
         // Remove an account

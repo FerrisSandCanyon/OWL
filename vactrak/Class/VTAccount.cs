@@ -13,8 +13,7 @@ namespace vactrak.Class
     {
 
         public VTAccount() { }
-
-        public VTAccount(string _SteamURL, string _Name, string _Username, string _Password, string _Note, bool _Banned, ulong _CooldownDelta)
+        public VTAccount(string _SteamURL, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false, ulong _CooldownDelta = 0)
         {
             SteamURL      = _SteamURL;
             Name          = _Name;
