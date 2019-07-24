@@ -13,7 +13,8 @@ namespace vactrak.Class
 
         public uint   cooldownRefresh  = 500;                              // Cooldown refresh rate measured in milliseconds
 
-        public bool   forceStatus      = false;                            // Forces status check on accounts with Bans
+        public bool   forceStatus      = false,                            // Forces status check on accounts with Bans
+                      maskPassword     = true;                             // Display the password in plain text or mask it with • on the accounts form
     }
 }
 

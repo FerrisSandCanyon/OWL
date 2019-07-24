@@ -54,11 +54,11 @@
   <ItemGroup>
     <Compile Include="Class\VTAccount.cs" />
     <Compile Include="Class\VTConfig.cs" />
-    <Compile Include="Forms\FormAddAccount.cs">
+    <Compile Include="Forms\FormAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAddAccount.Designer.cs">
-      <DependentUpon>FormAddAccount.cs</DependentUpon>
+    <Compile Include="Forms\FormAccount.Designer.cs">
+      <DependentUpon>FormAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
@@ -69,8 +69,8 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FormAddAccount.resx">
-      <DependentUpon>FormAddAccount.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormAccount.resx">
+      <DependentUpon>FormAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

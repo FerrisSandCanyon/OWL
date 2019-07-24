@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace vactrak.Forms
 {
-    public partial class FormAddAccount : Form
+    public partial class FormAccount : Form
     {
         // References to our data list view for adding new accounts
         ListView        lvData = null;
@@ -24,7 +24,7 @@ namespace vactrak.Forms
         // true  = Edit account
         bool         mode   = false;
 
-        public FormAddAccount(ref ListView _lvData)
+        public FormAccount(ref ListView _lvData)
         {
             lvData = _lvData;
             mode   = false;
@@ -32,7 +32,7 @@ namespace vactrak.Forms
             InitializeComponent();
         }
 
-        public FormAddAccount(ListViewItem _lvItem, ref Class.VTAccount _vta)
+        public FormAccount(ListViewItem _lvItem, ref Class.VTAccount _vta)
         {
             lvItem = _lvItem;
             vta    = _vta;
@@ -48,6 +48,8 @@ namespace vactrak.Forms
             cbAdd.Enabled                 = !mode;
             cbAdd.Checked                 = Globals.Cache.AddAnother;
             tbNote.Text                   = mode ? vta.Note : Globals.Cache.Notes;
+
+            if (Globals.Config.maskPassword) tbPass.PasswordChar = '•';
 
             if (mode)
             {

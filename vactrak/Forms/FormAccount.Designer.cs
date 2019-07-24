@@ -1,6 +1,6 @@
 ﻿namespace vactrak.Forms
 {
-    partial class FormAddAccount
+    partial class FormAccount
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddAccount));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAccount));
             this.tbURL = new System.Windows.Forms.TextBox();
             this.lblURL = new System.Windows.Forms.Label();
             this.tbUser = new System.Windows.Forms.TextBox();
