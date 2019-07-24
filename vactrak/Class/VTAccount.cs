@@ -27,6 +27,9 @@ namespace vactrak.Class
         public string SteamURL = null, Name = null, Username = null, Password = null, Note = null;
         public bool   Banned = false;
         public ulong  CooldownDelta = 0;
+
+        [JsonIgnore]
+        public ListViewItem LVI = null; // Reference to the list view item of the current account instance
     }
 }
 
@@ -73,7 +76,9 @@ namespace vactrak.Utils
 
         public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.VTAccount _vta)
         {
-            _lv.Items.Add(_uniqueID).SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note });
+            _vta.LVI = new ListViewItem(_uniqueID);
+            _vta.LVI.SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note });
+            _lv.Items.Add(_vta.LVI);
         }
 
     }

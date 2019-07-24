@@ -19,6 +19,8 @@ namespace vactrak
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            bool shouldResave = false;
+
             // Check for the profile folder
             if (!Directory.Exists(Globals.Info.profilesPath)) Directory.CreateDirectory(Globals.Info.profilesPath);
 
@@ -29,7 +31,7 @@ namespace vactrak
             {
                 MessageBox.Show("VACTrak couldn't load a config because there's none. VACTrak will now generate a new config file containing the default settings.", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Globals.Config = new Class.VTConfig();
-                if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
+                shouldResave = true;
             }
 
             if (Globals.Config == null)
@@ -45,7 +47,6 @@ namespace vactrak
             // ===================
             // Check config values
             // ===================
-            bool shouldResave = false;
 
             // Default profile
             if (String.IsNullOrWhiteSpace(Globals.Config.defaultProfile))

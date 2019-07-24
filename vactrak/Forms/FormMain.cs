@@ -240,7 +240,7 @@ namespace vactrak
                     continue;
                 }
 
-                using (Forms.FormAccount _fad = new Forms.FormAccount(_lvi, ref _vta))
+                using (Forms.FormAccount _fad = new Forms.FormAccount(ref _vta))
                 {
                     _fad.ShowDialog();
                     _fad.Dispose();

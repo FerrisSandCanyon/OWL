@@ -15,8 +15,7 @@ namespace vactrak.Forms
         // References to our data list view for adding new accounts
         ListView        lvData = null;
 
-        // References to our data list view items and account for editing accounts
-        ListViewItem    lvItem = null;
+        // References to our account for editing accounts
         Class.VTAccount vta    = null;
 
         // Mode / usage of this form instance
@@ -32,9 +31,8 @@ namespace vactrak.Forms
             InitializeComponent();
         }
 
-        public FormAccount(ListViewItem _lvItem, ref Class.VTAccount _vta)
+        public FormAccount(ref Class.VTAccount _vta)
         {
-            lvItem = _lvItem;
             vta    = _vta;
             mode   = true;
             InitializeComponent();
@@ -49,7 +47,7 @@ namespace vactrak.Forms
             cbAdd.Checked                 = Globals.Cache.AddAnother;
             tbNote.Text                   = mode ? vta.Note : Globals.Cache.Notes;
 
-            if (Globals.Config.maskPassword) tbPass.PasswordChar = '•';
+            if (Globals.Config.maskPassword) tbPass.PasswordChar = '●';
 
             if (mode)
             {
@@ -79,10 +77,10 @@ namespace vactrak.Forms
             // Edit account
             if (mode)
             {
-                lvItem.SubItems[1].Text = vta.SteamURL = tbURL.Text;
-                lvItem.SubItems[3].Text = vta.Username = tbUser.Text;
-                                          vta.Password = tbPass.Text;
-                lvItem.SubItems[6].Text = vta.Note     = tbNote.Text;
+                vta.LVI.SubItems[1].Text = vta.SteamURL = tbURL.Text;
+                vta.LVI.SubItems[3].Text = vta.Username = tbUser.Text;
+                                           vta.Password = tbPass.Text;
+                vta.LVI.SubItems[6].Text = vta.Note     = tbNote.Text;
             }
             // Add account
             else
