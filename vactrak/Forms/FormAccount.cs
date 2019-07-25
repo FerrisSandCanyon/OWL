@@ -93,9 +93,9 @@ namespace vactrak.Forms
             };
 
             // pEfficiency
-            if (Sanitize("https://steamcommunity.com/", false) ||
-                Sanitize("http://steamcommunity.com/" , false) ||
-                Sanitize("/"                          , true )    ) return;
+            if ((Sanitize("https://steamcommunity.com/", false)  ||
+                 Sanitize("http://steamcommunity.com/" , false)) &&
+                 Sanitize("/"                          , true )     ) return;
         }
 
         private void BtnApply_Click(object sender, EventArgs e)
