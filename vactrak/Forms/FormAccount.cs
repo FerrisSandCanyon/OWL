@@ -117,6 +117,7 @@ namespace vactrak.Forms
                                            vta.Password = tbPass.Text;
                 vta.LVI.SubItems[6].Text = vta.Note     = tbNote.Text;
             }
+
             // Add account
             else
             {
@@ -141,6 +142,13 @@ namespace vactrak.Forms
             }
 
             this.Close();
+        }
+
+        // Auto Paste
+        private void Event_AutoPaste(object sender, EventArgs e)
+        {
+            if (!Clipboard.ContainsText()) return;
+            ((System.Windows.Forms.TextBox)sender).Text = Clipboard.GetText();
         }
     }
 }

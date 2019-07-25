@@ -51,6 +51,7 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(209, 22);
             this.tbURL.TabIndex = 13;
+            this.tbURL.DoubleClick += new System.EventHandler(this.Event_AutoPaste);
             // 
             // lblURL
             // 
@@ -70,6 +71,7 @@
             this.tbUser.Name = "tbUser";
             this.tbUser.Size = new System.Drawing.Size(209, 22);
             this.tbUser.TabIndex = 15;
+            this.tbUser.DoubleClick += new System.EventHandler(this.Event_AutoPaste);
             // 
             // lblUser
             // 
@@ -89,6 +91,7 @@
             this.tbPass.Name = "tbPass";
             this.tbPass.Size = new System.Drawing.Size(209, 22);
             this.tbPass.TabIndex = 17;
+            this.tbPass.DoubleClick += new System.EventHandler(this.Event_AutoPaste);
             // 
             // lblPass
             // 
@@ -108,6 +111,7 @@
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(209, 22);
             this.tbNote.TabIndex = 19;
+            this.tbNote.DoubleClick += new System.EventHandler(this.Event_AutoPaste);
             // 
             // lblNotes
             // 
@@ -154,7 +158,7 @@
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
-            // FormAddAccount
+            // FormAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -176,7 +180,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "FormAddAccount";
+            this.Name = "FormAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Account/Edit Account";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddAccount_Closing);
