@@ -75,11 +75,17 @@ namespace vactrak.Forms
         private void tbURL_Sanitize()
         {
             // lambda gang
-            Func<string, bool> Sanitize = (string s) =>
+            Func<string, bool, bool> Sanitize = (string s, bool end) =>
             {
                 if (tbURL.Text.StartsWith(s))
                 {
                     tbURL.Text = tbURL.Text.Remove(0, s.Length);
+                    if (!end) return true;
+                }
+
+                if (end && tbURL.Text.EndsWith(s))
+                {
+                    tbURL.Text = tbURL.Text.Remove(tbURL.Text.Length - s.Length, s.Length);
                     return true;
                 }
 
@@ -87,9 +93,9 @@ namespace vactrak.Forms
             };
 
             // pEfficiency
-            if (Sanitize("https://steamcommunity.com/") ||
-                Sanitize("http://steamcommunity.com/" ) ||
-                Sanitize("/"                          )    ) return;
+            if (Sanitize("https://steamcommunity.com/", false) ||
+                Sanitize("http://steamcommunity.com/" , false) ||
+                Sanitize("/"                          , true )    ) return;
         }
 
         private void BtnApply_Click(object sender, EventArgs e)
