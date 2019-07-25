@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace vactrak.Class
         // Initialization
         // ==============
 
-        public VTAccount() { Initialize(); }
+        public VTAccount() { }
         public VTAccount(string _SteamURL, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false, ulong _CooldownDelta = 0)
         {
             SteamURL      = _SteamURL;
@@ -27,12 +28,6 @@ namespace vactrak.Class
             Note          = _Note;
             Banned        = _Banned;
             CooldownDelta = _CooldownDelta;
-            Initialize();
-        }
-
-        void Initialize()
-        {
-            ParserThreadEntry = new ThreadStart(this.Parse);
         }
 
         // ======
@@ -48,18 +43,52 @@ namespace vactrak.Class
         // =================
 
         [JsonIgnore]
-        public ListViewItem LVI               = null; // Reference to the list view item of the current account instance
+        public ListViewItem LVI = null; // Reference to the list view item of the current account instance
+
+        // ==============
+        // Parser Threads
+        // ==============
 
         [JsonIgnore]
-        public Thread       ParserThread      = null; // Reference to the parser thread that is running
+        public Thread hThread = null; // Reference to the parser thread that is running
 
-        [JsonIgnore]
-        ThreadStart         ParserThreadEntry = null;
-
-        public void Parse()
+        public bool Parse()
         {
+            if (this.LVI == null) return false;
 
+            this.SetStatus("Starting parser...");
+
+            try
+            {
+                this.hThread = new Thread(new ThreadStart(this.ParserThreadFn));
+                this.hThread.Start();
+                this.SetStatus("Parsing...");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this.SetStatus("Thread failed!");
+                MessageBox.Show("Failed to start thread for account: \"" + this.Username + "\"\n\nException: " + ex, "Account parser", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
+
+        private void ParserThreadFn()
+        {
+            string test = new WebClient().DownloadString("https://steamcommunity.com/" + this.SteamURL);
+        }
+
+        // =========
+        // Utilities
+        // =========
+
+        public bool SetStatus(string status)
+        {
+            if (this.LVI == null) return false;
+            this.LVI.SubItems[6].Text = status;
+            return true;
+        }
+
     }
 }
 

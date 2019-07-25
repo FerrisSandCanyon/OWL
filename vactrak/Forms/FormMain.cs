@@ -198,7 +198,9 @@ namespace vactrak
                 "VACTrak# version " + Globals.Info.verStr + "\n" +
                 "A multipurpose tool for managing Steam accounts.\n\n" +
                 "Developed by: FerrisSandCanyon\n\n" +
-                "https://github.com/FerrisSandCanyon/vactrak"
+                "https://github.com/FerrisSandCanyon/vactrak\n\n" +
+                "* You can paste contents to the textbox in the accounts form using double click.\n" +
+                "* Steam URL's are automatically sanitized."
 
                , "VACTrak#", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
@@ -267,5 +269,27 @@ namespace vactrak
 
         #endregion
 
+        private void DdManageObtainStart_Click(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select an account to parse", "Parse Account", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+
+            foreach (ListViewItem _lvi in lvData.SelectedItems)
+            {
+                Class.VTAccount _vta;
+                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                {
+                    _lvi.SubItems[7].Text = "Reference error!";
+                    return;
+                }
+
+                if (_vta.hThread != null) if (_vta.hThread.IsAlive) return;
+
+                _vta.Parse();
+            }
+        }
     }
 }
