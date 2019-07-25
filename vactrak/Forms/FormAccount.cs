@@ -72,8 +72,32 @@ namespace vactrak.Forms
             Globals.Cache.AddAnother = cbAdd.Checked;
         }
 
+        private void tbURL_Sanitize()
+        {
+            // lambda gang
+            Func<string, System.Windows.Forms.TextBox, bool> Sanitize = (string s, System.Windows.Forms.TextBox tb) =>
+            {
+                if (tb.Text.StartsWith(s))
+                {
+                    tb.Text = tb.Text.Replace(s, "");
+                    return true;
+                }
+
+                return false;
+            };
+
+            // pEfficiency
+            if (Sanitize("https://steamcommunity.com/", tbURL) ||
+                Sanitize("http://steamcommunity.com/" , tbURL) ||
+                Sanitize("/"                          , tbURL)    ) return;
+
+        }
+
         private void BtnApply_Click(object sender, EventArgs e)
         {
+            // Validate user input
+            tbURL_Sanitize();
+
             // Edit account
             if (mode)
             {
