@@ -148,7 +148,7 @@ namespace vactrak.Forms
         private void Event_AutoPaste(object sender, EventArgs e)
         {
             if (!Clipboard.ContainsText()) return;
-            ((System.Windows.Forms.TextBox)sender).Text = Clipboard.GetText();
+            ((System.Windows.Forms.TextBox)sender).Text = Clipboard.GetText() ?? "";
         }
     }
 }
