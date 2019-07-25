@@ -90,13 +90,18 @@ namespace vactrak.Forms
             if (Sanitize("https://steamcommunity.com/", tbURL) ||
                 Sanitize("http://steamcommunity.com/" , tbURL) ||
                 Sanitize("/"                          , tbURL)    ) return;
-
         }
 
         private void BtnApply_Click(object sender, EventArgs e)
         {
+            tbURL_Sanitize(); // Sanitize the url
+
             // Validate user input
-            tbURL_Sanitize();
+            if ((String.IsNullOrWhiteSpace(tbURL.Text) || !(tbURL.Text.StartsWith("id/") || tbURL.Text.StartsWith("profile/"))) && (String.IsNullOrWhiteSpace(tbUser.Text) || String.IsNullOrWhiteSpace(tbPass.Text)))
+            {
+                MessageBox.Show("You must atleast provide a steam url (that begins with either \"id/\" or \"profile/\") or a username and password to make a valid entry!", "Add account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Edit account
             if (mode)
