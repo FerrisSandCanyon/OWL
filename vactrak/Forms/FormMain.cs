@@ -331,7 +331,7 @@ namespace vactrak
             }
 
             FormMain_SetTitle("Logging in...");
-            _vta.Login();
+            if (!_vta.Login()) FormMain_SetTitle();
         }
 
         #endregion

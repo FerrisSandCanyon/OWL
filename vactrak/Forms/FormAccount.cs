@@ -74,7 +74,6 @@ namespace vactrak.Forms
 
         private void tbURL_Sanitize()
         {
-            // lambda gang
             Func<string, bool, bool> Sanitize = (string s, bool end) =>
             {
                 if (tbURL.Text.StartsWith(s))
@@ -92,7 +91,6 @@ namespace vactrak.Forms
                 return false;
             };
 
-            // pEfficiency
             if ((Sanitize("https://steamcommunity.com/", false)  ||
                  Sanitize("http://steamcommunity.com/" , false)) &&
                  Sanitize("/"                          , true )     ) return;

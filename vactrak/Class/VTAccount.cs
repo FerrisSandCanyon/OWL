@@ -56,8 +56,23 @@ namespace vactrak.Class
             if (this.LVI == null) return false;
             if (this.hThread != null && this.hThread.IsAlive) return false;
 
+            // Check if this instance has a URL
+            if (string.IsNullOrWhiteSpace(this.SteamURL))
+            {
+                this.SetText("No URL!");
+                return false;
+            }
+
+            // Check if its already banned, if it is skip it unless the config is set to force the account status
+            if (this.LVI.SubItems[4].Text == "True" && !Globals.Config.forceStatus)
+            {
+                this.SetText("Skipped!");
+                return false;
+            }
+
             this.SetText("Init parser...");
 
+            // Initialize the parser
             try
             {
                 this.hThread = new Thread(new ThreadStart(this.ParserThread));
@@ -76,6 +91,12 @@ namespace vactrak.Class
         // Login the account
         public bool Login(bool forceKill = false)
         {
+            if (string.IsNullOrWhiteSpace(this.Username) || string.IsNullOrWhiteSpace(this.Password))
+            {
+                MessageBox.Show("This account doesn't contain any credentials to login to", "Login Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             // Make sure steam is closed
             while (Process.GetProcessesByName("Steam").Count() > 0)
             {
