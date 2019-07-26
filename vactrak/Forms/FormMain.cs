@@ -269,23 +269,28 @@ namespace vactrak
 
         private void DdManageObtainStart_Click(object sender, EventArgs e)
         {
-            if (lvData.SelectedItems.Count == 0)
+            if (lvData.Items.Count == 0)
             {
-                MessageBox.Show("Please select an account to parse", "Parse Account", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("There are no accounts to parse!", "Parse account", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            foreach (ListViewItem _lvi in lvData.SelectedItems)
+            Func<ListViewItem, bool> RunParserThread = (ListViewItem _lvi) =>
             {
                 Class.VTAccount _vta;
                 if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                 {
                     _lvi.SubItems[7].Text = "Reference error!";
-                    return;
+                    return false;
                 }
 
                 _vta.Parse();
-            }
+                return true;
+            };
+
+            if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         RunParserThread(_lvi); // Parses all items when there's non selected
+            else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) RunParserThread(_lvi); // Parses the selected item
+
         }
 
         #endregion

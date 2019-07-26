@@ -57,7 +57,7 @@ namespace vactrak.Class
             if (this.LVI == null) return false;
             if (this.hThread != null && this.hThread.IsAlive) return false;
 
-            this.SetText("Starting parser...");
+            this.SetText("Init parser...");
 
             try
             {
@@ -68,7 +68,7 @@ namespace vactrak.Class
             }
             catch (Exception ex)
             {
-                this.SetText("Thread failed!");
+                this.SetText("Failed! (Thread)");
                 MessageBox.Show("Failed to start thread for account: \"" + this.Username + "\"\n\nException: " + ex, "Account parser", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -84,7 +84,7 @@ namespace vactrak.Class
             }
             catch
             {
-                this.SetTextInvoked("Failed! (Exception)");
+                this.SetTextInvoked("Failed! (HttpClient)");
                 return;
             }
 
