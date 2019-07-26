@@ -98,6 +98,11 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddManageObtainFullStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddManageObtainFullAbort = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddManageObtainInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,7 +213,12 @@
             // 
             this.ddManageObtain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddManageObtainStart,
-            this.ddManageObtainAbort});
+            this.ddManageObtainAbort,
+            this.toolStripSeparator7,
+            this.ddManageObtainFullStart,
+            this.ddManageObtainFullAbort,
+            this.toolStripSeparator8,
+            this.ddManageObtainInfo});
             this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
             this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
@@ -615,7 +625,7 @@
             // chBanned
             // 
             this.chBanned.Text = "Banned";
-            this.chBanned.Width = 99;
+            this.chBanned.Width = 53;
             // 
             // chCD
             // 
@@ -630,7 +640,7 @@
             // chStatus
             // 
             this.chStatus.Text = "Status";
-            this.chStatus.Width = 71;
+            this.chStatus.Width = 121;
             // 
             // label1
             // 
@@ -653,6 +663,35 @@
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(798, 22);
             this.tbNote.TabIndex = 11;
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
+            // 
+            // ddManageObtainFullStart
+            // 
+            this.ddManageObtainFullStart.Name = "ddManageObtainFullStart";
+            this.ddManageObtainFullStart.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainFullStart.Text = "Start Full Parsing";
+            // 
+            // ddManageObtainFullAbort
+            // 
+            this.ddManageObtainFullAbort.Name = "ddManageObtainFullAbort";
+            this.ddManageObtainFullAbort.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainFullAbort.Text = "Abort Full Parsing";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
+            // 
+            // ddManageObtainInfo
+            // 
+            this.ddManageObtainInfo.Name = "ddManageObtainInfo";
+            this.ddManageObtainInfo.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainInfo.Text = "[Info]";
+            this.ddManageObtainInfo.Click += new System.EventHandler(this.DdManageObtainInfo_Click);
             // 
             // FormMain
             // 
@@ -749,6 +788,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem setAsDefaultProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ddManageObtainAbort;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem ddManageObtainFullStart;
+        private System.Windows.Forms.ToolStripMenuItem ddManageObtainFullAbort;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem ddManageObtainInfo;
     }
 }
 

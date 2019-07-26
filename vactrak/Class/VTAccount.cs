@@ -55,37 +55,75 @@ namespace vactrak.Class
         public bool Parse()
         {
             if (this.LVI == null) return false;
+            if (this.hThread != null && this.hThread.IsAlive) return false;
 
-            this.SetStatus("Starting parser...");
+            this.SetText("Starting parser...");
 
             try
             {
-                this.hThread = new Thread(new ThreadStart(this.ParserThreadFn));
+                this.hThread = new Thread(new ThreadStart(this.ParserThread));
                 this.hThread.Start();
-                this.SetStatus("Parsing...");
+                this.SetText("Parsing...");
                 return true;
             }
             catch (Exception ex)
             {
-                this.SetStatus("Thread failed!");
+                this.SetText("Thread failed!");
                 MessageBox.Show("Failed to start thread for account: \"" + this.Username + "\"\n\nException: " + ex, "Account parser", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
 
-        private void ParserThreadFn()
+        private void ParserThread()
         {
-            string test = new WebClient().DownloadString("https://steamcommunity.com/" + this.SteamURL);
+            NSoup.Nodes.Document _steamPage = null;
+
+            try
+            {
+                _steamPage = NSoup.NSoupClient.Connect("https://steamcommunity.com/" + this.SteamURL).Get();
+            }
+            catch
+            {
+                this.SetTextInvoked("Failed! (Exception)");
+                return;
+            }
+
+            if (_steamPage == null)
+            {
+                this.SetTextInvoked("Failed! (Null)");
+                return;
+            }
+
+            this.SetTextInvoked(this.Name = _steamPage.Select(".actual_persona_name").Text ?? "", 2);
+
+            if (String.IsNullOrWhiteSpace(this.Name))
+            {
+                this.SetTextInvoked("Invalid URL!");
+                return;
+            }
+
+            bool _temp_isbanned = this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty;
+            this.SetTextInvoked(_temp_isbanned.ToString(), 4);
+
+            this.SetTextInvoked("Finished!");
         }
 
         // =========
         // Utilities
         // =========
 
-        public bool SetStatus(string status)
+        // Defaults to 6 to set status text
+        public bool SetText(string status, int index = 7)
         {
             if (this.LVI == null) return false;
-            this.LVI.SubItems[6].Text = status;
+            this.LVI.SubItems[index].Text = status;
+            return true;
+        }
+
+        private bool SetTextInvoked(string status, int index = 7)
+        {
+            if (this.LVI == null) return false;
+            this.LVI.ListView.Invoke(new Action(() => { this.LVI.SubItems[index].Text = status; }));
             return true;
         }
 
@@ -136,7 +174,7 @@ namespace vactrak.Utils
         public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.VTAccount _vta)
         {
             _vta.LVI = (new ListViewItem(_uniqueID));
-            _vta.LVI.SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note });
+            _vta.LVI.SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note, "" });
             _lv.Items.Add(_vta.LVI);
         }
 

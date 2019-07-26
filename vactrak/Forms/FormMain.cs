@@ -267,8 +267,6 @@ namespace vactrak
             }
         }
 
-        #endregion
-
         private void DdManageObtainStart_Click(object sender, EventArgs e)
         {
             if (lvData.SelectedItems.Count == 0)
@@ -286,10 +284,19 @@ namespace vactrak
                     return;
                 }
 
-                if (_vta.hThread != null) if (_vta.hThread.IsAlive) return;
-
                 _vta.Parse();
             }
+        }
+
+        #endregion
+
+        private void DdManageObtainInfo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Normal Parsing uses simple HttpClient to obtain the HTML of the account's steam page then parses for the information it needs, This is done because its faster since the information that is needed is already public.\n\n" +
+                "Full Parsing on the other hand utilizes steam api and sometimes an actual login since some information aren't displayed publicly, therefore slower."
+               , "VACTrak# Account Parsing", MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
         }
     }
 }
