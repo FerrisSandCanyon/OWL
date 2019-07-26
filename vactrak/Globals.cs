@@ -19,7 +19,6 @@ namespace vactrak
         // Global constant information
         public static class Info
         {
-            // Version =========================================
             public const int    vMajor       = 0,
                                 vMinor       = 1,
                                 vPatch       = 0;
