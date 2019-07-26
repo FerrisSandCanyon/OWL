@@ -11,7 +11,8 @@ namespace vactrak.Class
                       defaultProfile   = "default",                        // Default profile to be loaded
                       hashedKey        = "";                               // Hashed key / password
 
-        public uint   cooldownRefresh  = 500;                              // Cooldown refresh rate measured in milliseconds
+        public uint   cooldownRefresh  = 500,                              // Cooldown refresh rate measured in milliseconds
+                      maxThreads       = 4;                                // Maximum threads that can run at the same time
 
         public bool   forceStatus      = false,                            // Forces status check on accounts with Bans
                       maskPassword     = true;                             // Display the password in plain text or mask it with • on the accounts form

@@ -79,7 +79,7 @@ namespace vactrak
                 Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
             #endif
 
-            Application.Run(new FormMain());
+            Application.Run(Globals.hFormMain = new FormMain());
         }
     }
 }

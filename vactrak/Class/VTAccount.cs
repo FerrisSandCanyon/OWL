@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -45,13 +46,11 @@ namespace vactrak.Class
         [JsonIgnore]
         public ListViewItem LVI = null; // Reference to the list view item of the current account instance
 
-        // ==============
-        // Parser Threads
-        // ==============
+        // =======
+        // Methods
+        // =======
 
-        [JsonIgnore]
-        public Thread hThread = null; // Reference to the parser thread that is running
-
+        // Initializes the parser
         public bool Parse()
         {
             if (this.LVI == null) return false;
@@ -73,6 +72,38 @@ namespace vactrak.Class
                 return false;
             }
         }
+
+        // Login the account
+        public bool Login(bool forceKill = false)
+        {
+            // Make sure steam is closed
+            while (Process.GetProcessesByName("Steam").Count() > 0)
+            {
+                if (forceKill || MessageBox.Show("VACTrak# has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    foreach (Process steam in Process.GetProcessesByName("Steam")) steam.Kill();
+                else
+                    return false;
+
+                Thread.Sleep(800); // lazy
+            }
+
+            new Thread(new ThreadStart(() =>
+            {
+                // TODO: Add user option to add custom steam parameters
+                Process.Start(Globals.Config.steamPath + "/Steam.exe", String.Format("-login {0} {1}", this.Username, this.Password));
+                Globals.hFormMain.Invoke(new Action(() => { Globals.hFormMain.FormMain_SetTitle(); }));
+            }
+            )).Start();
+
+            return true;
+        }
+
+        // =============
+        // Parser Thread
+        // =============
+
+        [JsonIgnore]
+        public Thread hThread = null; // Reference to the parser thread that is running
 
         private void ParserThread()
         {
@@ -112,7 +143,7 @@ namespace vactrak.Class
         // Utilities
         // =========
 
-        // Defaults to 6 to set status text
+        // Defaults to 7 to set status text
         public bool SetText(string status, int index = 7)
         {
             if (this.LVI == null) return false;

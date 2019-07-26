@@ -6,12 +6,15 @@ namespace vactrak
     {
         public static Class.VTConfig                      Config         = null; // Global VTConfig class
         public static Dictionary<string, Class.VTAccount> CurrentProfile = null; // Global Dictionary of all the account instances <special id, account class>
+        public static FormMain                            hFormMain      = null; // Handle to our main form for access and invoking
 
         public static string                              passKey        = "";   // Store the passkey
         // I know that bad actors can simply take a peek at the memory and find the user's password but...
         // It's not really *THAT* unconventional since the whole encryption is for keeping the json profiles away from plain text and the whole hashing is just for verification that the password is indeed correct.
         
         public const  string                              Charset        = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // Predefined charset
+
+        public static uint                                RunningThreads = 0;    // Number of threads that are currently running
 
         // Global constant information
         public static class Info

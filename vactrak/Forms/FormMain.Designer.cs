@@ -42,6 +42,11 @@
             this.ddManageObtain = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageObtainStart = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageObtainAbort = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddManageObtainFullStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddManageObtainFullAbort = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddManageObtainInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageLoginNormal = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageLoginForce = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,11 +103,6 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.ddManageObtainFullStart = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddManageObtainFullAbort = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.ddManageObtainInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -237,6 +237,35 @@
             this.ddManageObtainAbort.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtainAbort.Text = "Abort Parsing";
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
+            // 
+            // ddManageObtainFullStart
+            // 
+            this.ddManageObtainFullStart.Name = "ddManageObtainFullStart";
+            this.ddManageObtainFullStart.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainFullStart.Text = "Start Full Parsing";
+            // 
+            // ddManageObtainFullAbort
+            // 
+            this.ddManageObtainFullAbort.Name = "ddManageObtainFullAbort";
+            this.ddManageObtainFullAbort.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainFullAbort.Text = "Abort Full Parsing";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
+            // 
+            // ddManageObtainInfo
+            // 
+            this.ddManageObtainInfo.Name = "ddManageObtainInfo";
+            this.ddManageObtainInfo.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainInfo.Text = "[Info]";
+            this.ddManageObtainInfo.Click += new System.EventHandler(this.DdManageObtainInfo_Click);
+            // 
             // ddManageLogin
             // 
             this.ddManageLogin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -250,14 +279,16 @@
             // ddManageLoginNormal
             // 
             this.ddManageLoginNormal.Name = "ddManageLoginNormal";
-            this.ddManageLoginNormal.Size = new System.Drawing.Size(114, 22);
+            this.ddManageLoginNormal.Size = new System.Drawing.Size(180, 22);
             this.ddManageLoginNormal.Text = "Normal";
+            this.ddManageLoginNormal.Click += new System.EventHandler(this.DdManageLoginNormal_Click);
             // 
             // ddManageLoginForce
             // 
             this.ddManageLoginForce.Name = "ddManageLoginForce";
-            this.ddManageLoginForce.Size = new System.Drawing.Size(114, 22);
+            this.ddManageLoginForce.Size = new System.Drawing.Size(180, 22);
             this.ddManageLoginForce.Text = "Force";
+            this.ddManageLoginForce.Click += new System.EventHandler(this.DdManageLoginForce_Click);
             // 
             // ddManageClipboard
             // 
@@ -663,35 +694,6 @@
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(798, 22);
             this.tbNote.TabIndex = 11;
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
-            // 
-            // ddManageObtainFullStart
-            // 
-            this.ddManageObtainFullStart.Name = "ddManageObtainFullStart";
-            this.ddManageObtainFullStart.Size = new System.Drawing.Size(180, 22);
-            this.ddManageObtainFullStart.Text = "Start Full Parsing";
-            // 
-            // ddManageObtainFullAbort
-            // 
-            this.ddManageObtainFullAbort.Name = "ddManageObtainFullAbort";
-            this.ddManageObtainFullAbort.Size = new System.Drawing.Size(180, 22);
-            this.ddManageObtainFullAbort.Text = "Abort Full Parsing";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
-            // 
-            // ddManageObtainInfo
-            // 
-            this.ddManageObtainInfo.Name = "ddManageObtainInfo";
-            this.ddManageObtainInfo.Size = new System.Drawing.Size(180, 22);
-            this.ddManageObtainInfo.Text = "[Info]";
-            this.ddManageObtainInfo.Click += new System.EventHandler(this.DdManageObtainInfo_Click);
             // 
             // FormMain
             // 

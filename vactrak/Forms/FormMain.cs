@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
@@ -36,7 +30,7 @@ namespace vactrak
 
         }
 
-        private void FormMain_SetTitle(string _title = null)
+        public void FormMain_SetTitle(string _title = null)
         {
             this.Text = _title == null ? Globals.Cache.TitleFallback : Globals.Cache.TitleFallback + " - " + _title;
         }
@@ -106,11 +100,12 @@ namespace vactrak
         {
             string profileName = Microsoft.VisualBasic.Interaction.InputBox("Enter the profile's name (leave blank to cancel)", "Create new profile", null); // yes, lazy. very
 
+            if (String.IsNullOrWhiteSpace(profileName)) return; // If canceled by the user
+
             // Sanitize the profile name
             foreach (char _invalid in Path.GetInvalidFileNameChars())
                 profileName.Replace(_invalid, '_');
 
-            if (String.IsNullOrWhiteSpace(profileName)) return;                           // If canceled by the user
             string profilePath = Globals.Info.profilesPath + "/" + profileName + ".json"; // Just for convenience, concat the string altogether.
 
             // Check if it already exists
@@ -190,21 +185,6 @@ namespace vactrak
         }
 
         #endregion
-
-        private void BtnAbout_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-
-                "VACTrak# version " + Globals.Info.verStr + "\n" +
-                "A multipurpose tool for managing Steam accounts.\n\n" +
-                "Developed by: FerrisSandCanyon\n\n" +
-                "https://github.com/FerrisSandCanyon/vactrak\n\n" +
-                "* You can paste contents to the textbox in the accounts form using double click.\n" +
-                "* Steam URL's are automatically sanitized."
-
-               , "VACTrak#", MessageBoxButtons.OK, MessageBoxIcon.Information
-            );
-        }
 
         #region Account
 
@@ -288,12 +268,14 @@ namespace vactrak
                 return true;
             };
 
-            if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         RunParserThread(_lvi); // Parses all items when there's non selected
+            if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         RunParserThread(_lvi); // Parses all of the items when there's non selected
             else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) RunParserThread(_lvi); // Parses the selected item
 
         }
 
         #endregion
+
+        #region User Information
 
         private void DdManageObtainInfo_Click(object sender, EventArgs e)
         {
@@ -303,5 +285,55 @@ namespace vactrak
                , "VACTrak# Account Parsing", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
         }
+
+        private void BtnAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+
+                "VACTrak# version " + Globals.Info.verStr + "\n" +
+                "A multipurpose tool for managing Steam accounts.\n\n" +
+                "Developed by: FerrisSandCanyon\n\n" +
+                "https://github.com/FerrisSandCanyon/vactrak\n\n" +
+                "* You can paste contents to the textbox in the accounts form using double click.\n" +
+                "* Steam URL's are automatically sanitized."
+
+               , "VACTrak#", MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
+        }
+
+        #endregion
+
+        #region Account Login
+
+        private void DdManageLoginNormal_Click(object sender, EventArgs e)
+        {
+            AccountLogin();
+        }
+
+        private void DdManageLoginForce_Click(object sender, EventArgs e)
+        {
+            AccountLogin(true);
+        }
+
+        private void AccountLogin(bool force = false)
+        {
+            if (lvData.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("Please select a single account to login to!", "Parse account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Class.VTAccount _vta;
+            if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
+            {
+                MessageBox.Show("Reference error!", "Login Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            FormMain_SetTitle("Logging in...");
+            _vta.Login();
+        }
+
+        #endregion
     }
 }
