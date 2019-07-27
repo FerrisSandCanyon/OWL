@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
 
 namespace vactrak
 {
@@ -290,9 +291,48 @@ namespace vactrak
                 return true;
             };
 
+            // Thread handling
+            new Thread(new ThreadStart(() =>
+            {
+
+            }
+            )).Start();
+
             if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         RunParserThread(_lvi); // Parses all of the items when there's non selected
             else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) RunParserThread(_lvi); // Parses the selected item
 
+        }
+
+        private void DdManageObtainAbort_Click(object sender, EventArgs e)
+        {
+            if (lvData.Items.Count == 0)
+            {
+                MessageBox.Show("There are no accounts to be selected!", "Parse account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Func<ListViewItem, bool> AbortParserThread = (ListViewItem _lvi) =>
+            {
+                Class.VTAccount _vta;
+                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                {
+                    _lvi.SubItems[7].Text = "Reference error!";
+                    return false;
+                }
+
+                // Abort it if it the instance has a running thread
+                if (_vta.hThread != null && _vta.hThread.IsAlive)
+                {
+                    _vta.hThread.Abort();
+                    _lvi.SubItems[7].Text = "Parse Aborted!";
+                    return true;
+                }
+
+                return false;
+            };
+
+            if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         AbortParserThread(_lvi); // Abort all of the items when there's non selected
+            else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) AbortParserThread(_lvi); // Abort the selected item
         }
 
         #endregion
@@ -341,7 +381,7 @@ namespace vactrak
         {
             if (lvData.SelectedItems.Count != 1)
             {
-                MessageBox.Show("Please select a single account to login to!", "Parse account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a single account to login to!", "Login account", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

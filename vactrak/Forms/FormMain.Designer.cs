@@ -236,6 +236,7 @@
             this.ddManageObtainAbort.Name = "ddManageObtainAbort";
             this.ddManageObtainAbort.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtainAbort.Text = "Abort Parsing";
+            this.ddManageObtainAbort.Click += new System.EventHandler(this.DdManageObtainAbort_Click);
             // 
             // toolStripSeparator7
             // 
@@ -279,14 +280,14 @@
             // ddManageLoginNormal
             // 
             this.ddManageLoginNormal.Name = "ddManageLoginNormal";
-            this.ddManageLoginNormal.Size = new System.Drawing.Size(180, 22);
+            this.ddManageLoginNormal.Size = new System.Drawing.Size(114, 22);
             this.ddManageLoginNormal.Text = "Normal";
             this.ddManageLoginNormal.Click += new System.EventHandler(this.DdManageLoginNormal_Click);
             // 
             // ddManageLoginForce
             // 
             this.ddManageLoginForce.Name = "ddManageLoginForce";
-            this.ddManageLoginForce.Size = new System.Drawing.Size(180, 22);
+            this.ddManageLoginForce.Size = new System.Drawing.Size(114, 22);
             this.ddManageLoginForce.Text = "Force";
             this.ddManageLoginForce.Click += new System.EventHandler(this.DdManageLoginForce_Click);
             // 

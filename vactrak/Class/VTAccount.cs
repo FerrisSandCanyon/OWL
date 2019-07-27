@@ -129,7 +129,7 @@ namespace vactrak.Class
         private void ParserThread()
         {
             NSoup.Nodes.Document _steamPage = null;
-
+            
             try
             {
                 _steamPage = NSoup.NSoupClient.Connect("https://steamcommunity.com/" + this.SteamURL).Get();
