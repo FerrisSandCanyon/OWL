@@ -4,7 +4,7 @@ A multipurpose tool for managing Steam accounts
     <tr><td><b>State</b></td><td>Dev</td></tr>
     <tr><td><b>Version</b></td><td>0.1.0</td></tr>
     <tr><td><b>Latest Release</b></td><td>N/A</td></tr>
-    <tr><td><b>License</b></td><td>GPL 3.0</td></tr>
+    <tr><td><b>License</b></td><td>???</td></tr>
 </table>
 
 <img src="ss.png"/>
@@ -13,8 +13,8 @@ A multipurpose tool for managing Steam accounts
 * <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework</a> (4.5 or <b>Higher</b>)
 
 ## (Planned) Features
-* Multiple Loadable Profiles for different set of accounts.
-* Auto-Login
+* Multiple Loadable Profiles for different set of accounts. ✓
+* Auto-Login ✓
 * Cooldown Tracker
 * Profile Editor
 * Protection of information (Encryption/Obfuscation + Hashing)
@@ -49,4 +49,5 @@ You can configure VACTrak# through the options form or manually through the <i>c
 
 ## Development
 ### Prerequisite
-* <a href="https://www.newtonsoft.com/json">Json .NET</a> Framework for handling the Json format. (<a href="https://www.nuget.org/packages/Newtonsoft.Json/">NuGet</a>)
+* <a href="https://www.newtonsoft.com/json">Json.NET</a> Framework for handling the Json format. (<a href="https://www.nuget.org/packages/Newtonsoft.Json/">NuGet</a>)
+* <a href="https://github.com/GeReV/NSoup">NSoup</a> for parsing HTML (<a href="https://www.nuget.org/packages/NSoup/">NuGet</a>)

@@ -55,6 +55,8 @@ namespace vactrak
             Globals.CurrentProfile = Utils.VTAccount.Load(_profilePath);
             if (Globals.CurrentProfile == null) Application.Exit();
 
+            lvData.Items.Clear();
+
             // Load all the accounts to our table
             foreach (KeyValuePair<string, Class.VTAccount> _data in Globals.CurrentProfile)
             {
@@ -180,7 +182,7 @@ namespace vactrak
         private void SetAsDefaultProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Globals.Config.defaultProfile = cbProfile.Items[cbProfile.SelectedIndex].ToString();
-            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
+            if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) Application.Exit();
             MessageBox.Show("Current profile has been set as the default profile!", "Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
