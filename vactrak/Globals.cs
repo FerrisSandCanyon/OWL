@@ -9,6 +9,7 @@ namespace vactrak
         public static Dictionary<string, Class.VTAccount> CurrentProfile    = null; // Global Dictionary of all the account instances <special id, account class>
         public static FormMain                            hFormMain         = null; // Handle to our main form for access and invoking
         public static Thread                              ParserQueue       = null; // Handle to the parser queue thread that manages all the running parser threads
+        public static Thread                              hMainThread       = null; // Handle to the main Thread
 
         public static string                              passKey           = "";   // Store the passkey
         // I know that bad actors can simply take a peek at the memory and find the user's password but...

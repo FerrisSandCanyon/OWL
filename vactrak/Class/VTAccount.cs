@@ -190,7 +190,7 @@ namespace vactrak.Class
 
         public bool SetTextInvoked(string status, int index = 7)
         {
-            if (this.LVI == null) return false;
+            if (this.LVI == null || !(Globals.hMainThread != null && Globals.hMainThread.IsAlive)) return false;
             this.LVI.ListView.Invoke(new Action(() => { this.LVI.SubItems[index].Text = status; }));
             return true;
         }

@@ -27,8 +27,37 @@ namespace vactrak
             #endif
 
             Globals.Cache.TitleFallback = this.Text;
+            Globals.hMainThread = Thread.CurrentThread;
             CbProfile_LoadProfileDirectory();
 
+            // Cooldown tracker thread
+            new Thread(new ThreadStart(() =>
+            {
+                Func<bool> IsAlive = () =>
+                {
+                    return Globals.hMainThread != null && Globals.hMainThread.IsAlive;
+                };
+
+                while (IsAlive())
+                {
+                    Thread.Sleep(1000);
+
+                    if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0) continue;
+
+                    foreach (KeyValuePair<string, Class.VTAccount> _account in Globals.CurrentProfile)
+                    {
+                        if (!IsAlive()) break;
+                        if (_account.Value.LVI == null) continue;
+
+                        if (_account.Value.CooldownDelta == 0) _account.Value.SetTextInvoked("No Cooldown!", 5);
+                        else
+                        {
+
+                        }
+                    }
+                }
+            }
+            )).Start();
         }
 
         public void FormMain_SetTitle(string _title = null)
@@ -274,7 +303,7 @@ namespace vactrak
         {
             if (lvData.Items.Count == 0)
             {
-                MessageBox.Show("There are no accounts to parse!", "Parse account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There are no accounts to parse!", "Parse Queue", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
