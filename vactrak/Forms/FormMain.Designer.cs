@@ -103,6 +103,8 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddManageObtainQueueAbort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,7 +149,7 @@
             // 
             this.ddAccountAdd.Image = global::vactrak.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
-            this.ddAccountAdd.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountAdd.Size = new System.Drawing.Size(180, 22);
             this.ddAccountAdd.Text = "Add";
             this.ddAccountAdd.Click += new System.EventHandler(this.DdAccountAdd_Click);
             // 
@@ -155,7 +157,7 @@
             // 
             this.ddAccountEdit.Image = global::vactrak.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
-            this.ddAccountEdit.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountEdit.Size = new System.Drawing.Size(180, 22);
             this.ddAccountEdit.Text = "Edit";
             this.ddAccountEdit.Click += new System.EventHandler(this.DdAccountEdit_Click);
             // 
@@ -163,7 +165,7 @@
             // 
             this.ddAccountRemove.Image = global::vactrak.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
-            this.ddAccountRemove.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountRemove.Size = new System.Drawing.Size(180, 22);
             this.ddAccountRemove.Text = "Remove";
             this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
@@ -172,7 +174,7 @@
             this.ddAccountImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddAccountImportSAC});
             this.ddAccountImport.Name = "ddAccountImport";
-            this.ddAccountImport.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountImport.Size = new System.Drawing.Size(180, 22);
             this.ddAccountImport.Text = "Import";
             // 
             // ddAccountImportSAC
@@ -186,7 +188,7 @@
             // 
             this.ddAccountSAG.Image = global::vactrak.Properties.Resources.cathook;
             this.ddAccountSAG.Name = "ddAccountSAG";
-            this.ddAccountSAG.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountSAG.Size = new System.Drawing.Size(180, 22);
             this.ddAccountSAG.Text = "SAG Generate";
             // 
             // toolStripSeparator1
@@ -218,6 +220,8 @@
             this.ddManageObtainFullStart,
             this.ddManageObtainFullAbort,
             this.toolStripSeparator8,
+            this.ddManageObtainQueueAbort,
+            this.toolStripSeparator9,
             this.ddManageObtainInfo});
             this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
@@ -524,7 +528,7 @@
             // ddUtilsEditor
             // 
             this.ddUtilsEditor.Name = "ddUtilsEditor";
-            this.ddUtilsEditor.Size = new System.Drawing.Size(178, 22);
+            this.ddUtilsEditor.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsEditor.Text = "Steam Profile Editor";
             // 
             // ddUtilsDump
@@ -534,7 +538,7 @@
             this.ddUtilsDumpProfile,
             this.ddUtilsDumpAll});
             this.ddUtilsDump.Name = "ddUtilsDump";
-            this.ddUtilsDump.Size = new System.Drawing.Size(178, 22);
+            this.ddUtilsDump.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsDump.Text = "Dump to text";
             // 
             // ddUtilsDumpSelected
@@ -561,7 +565,7 @@
             this.ddProtectAdd,
             this.ddProtectRemove});
             this.ddProtect.Name = "ddProtect";
-            this.ddProtect.Size = new System.Drawing.Size(178, 22);
+            this.ddProtect.Size = new System.Drawing.Size(180, 22);
             this.ddProtect.Text = "Password Protect";
             // 
             // ddProtectAdd
@@ -696,6 +700,18 @@
             this.tbNote.Size = new System.Drawing.Size(798, 22);
             this.tbNote.TabIndex = 11;
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(177, 6);
+            // 
+            // ddManageObtainQueueAbort
+            // 
+            this.ddManageObtainQueueAbort.Name = "ddManageObtainQueueAbort";
+            this.ddManageObtainQueueAbort.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtainQueueAbort.Text = "Abort Queue";
+            this.ddManageObtainQueueAbort.Click += new System.EventHandler(this.DdManageObtainQueueAbort_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -796,6 +812,8 @@
         private System.Windows.Forms.ToolStripMenuItem ddManageObtainFullAbort;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem ddManageObtainInfo;
+        private System.Windows.Forms.ToolStripMenuItem ddManageObtainQueueAbort;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
     }
 }
 

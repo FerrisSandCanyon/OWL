@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace vactrak
 {

@@ -278,29 +278,49 @@ namespace vactrak
                 return;
             }
 
-            Func<ListViewItem, bool> RunParserThread = (ListViewItem _lvi) =>
+            if (Globals.ParserQueue != null && Globals.ParserQueue.IsAlive)
             {
-                Class.VTAccount _vta;
-                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
-                {
-                    _lvi.SubItems[7].Text = "Reference error!";
-                    return false;
-                }
-
-                _vta.Parse();
-                return true;
-            };
-
-            // Thread handling
-            new Thread(new ThreadStart(() =>
-            {
-
+                MessageBox.Show("A parsing queue is already active!", "Parse Queue", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            )).Start();
 
-            if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         RunParserThread(_lvi); // Parses all of the items when there's non selected
-            else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) RunParserThread(_lvi); // Parses the selected item
+            try
+            {
+                // Better than invoking 3 delegates that doesn't even work
+                List<ListViewItem> _tmp_acc_list = new List<ListViewItem> { };
+                if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         _tmp_acc_list.Add(_lvi); // Parses all of the items when there's non selected
+                else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) _tmp_acc_list.Add(_lvi); // Parses the selected item
 
+                // Thread handling
+                Globals.ParserQueue = new Thread(new ThreadStart(() =>
+                {
+                    Func<ListViewItem, bool> RunParserThread = (ListViewItem _lvi) =>
+                    {
+                        // Hold the thread if we exceed max thread limit defined by the config
+                        while (Globals.RunningThreads >= Globals.Config.maxThreads) Thread.Sleep(500);
+
+                        Class.VTAccount _vta;
+                        if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                        {
+                           _vta.SetTextInvoked("Reference error!");
+                            return false;
+                        }
+
+                        _vta.Parse();
+                        return true;
+                    };
+
+                    foreach (ListViewItem _lvi in _tmp_acc_list)
+                        RunParserThread(_lvi);
+                }
+                ));
+
+                Globals.ParserQueue.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to create parser queue!\n\nException: " + ex, "Parse Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void DdManageObtainAbort_Click(object sender, EventArgs e)
@@ -323,7 +343,7 @@ namespace vactrak
                 // Abort it if it the instance has a running thread
                 if (_vta.hThread != null && _vta.hThread.IsAlive)
                 {
-                    _vta.hThread.Abort();
+                    _vta.SafeAbort();
                     _lvi.SubItems[7].Text = "Parse Aborted!";
                     return true;
                 }
@@ -333,6 +353,17 @@ namespace vactrak
 
             if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         AbortParserThread(_lvi); // Abort all of the items when there's non selected
             else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) AbortParserThread(_lvi); // Abort the selected item
+        }
+
+        private void DdManageObtainQueueAbort_Click(object sender, EventArgs e)
+        {
+            if (Globals.ParserQueue == null || !Globals.ParserQueue.IsAlive)
+            {
+                MessageBox.Show("There's current no running parser queue to terminate.", "Abort queue", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Globals.ParserQueue.Abort();
         }
 
         #endregion
@@ -397,5 +428,6 @@ namespace vactrak
         }
 
         #endregion
+
     }
 }

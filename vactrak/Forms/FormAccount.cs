@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace vactrak.Forms
@@ -91,9 +84,9 @@ namespace vactrak.Forms
                 return false;
             };
 
-            if ((Sanitize("https://steamcommunity.com/", false)  ||
-                 Sanitize("http://steamcommunity.com/" , false)) &&
-                 Sanitize("/"                          , true )     ) return;
+            if (Sanitize("https", false) || Sanitize("http", false)) Sanitize("://steamcommunity.com/", false);
+
+            Sanitize("/", true);
         }
 
         private void BtnApply_Click(object sender, EventArgs e)
@@ -101,7 +94,7 @@ namespace vactrak.Forms
             tbURL_Sanitize(); // Sanitize the url
 
             // Validate user input
-            if ((String.IsNullOrWhiteSpace(tbURL.Text) || !(tbURL.Text.StartsWith("id/") || tbURL.Text.StartsWith("profile/"))) && (String.IsNullOrWhiteSpace(tbUser.Text) || String.IsNullOrWhiteSpace(tbPass.Text)))
+            if ((String.IsNullOrWhiteSpace(tbURL.Text) || !(tbURL.Text.StartsWith("id/") || tbURL.Text.StartsWith("profiles/"))) && (String.IsNullOrWhiteSpace(tbUser.Text) || String.IsNullOrWhiteSpace(tbPass.Text)))
             {
                 MessageBox.Show("You must atleast provide a steam url (that begins with either \"id/\" or \"profile/\") or a username and password to make a valid entry!", "Add account", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

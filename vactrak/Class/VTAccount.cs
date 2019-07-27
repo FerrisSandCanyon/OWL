@@ -59,32 +59,43 @@ namespace vactrak.Class
             // Check if this instance has a URL
             if (string.IsNullOrWhiteSpace(this.SteamURL))
             {
-                this.SetText("No URL!");
+                this.SetTextInvoked("No URL!");
                 return false;
             }
 
             // Check if its already banned, if it is skip it unless the config is set to force the account status
             if (this.LVI.SubItems[4].Text == "True" && !Globals.Config.forceStatus)
             {
-                this.SetText("Skipped!");
+                this.SetTextInvoked("Skipped!");
                 return false;
             }
 
-            this.SetText("Init parser...");
+            this.SetTextInvoked("Init parser...");
 
             // Initialize the parser
             try
             {
                 this.hThread = new Thread(new ThreadStart(this.ParserThread));
+                this.hThread.Name = "vt_parser";
                 this.hThread.Start();
-                this.SetText("Parsing...");
+                this.SetTextInvoked("Parsing...");
                 return true;
             }
             catch (Exception ex)
             {
-                this.SetText("Failed! (Thread)");
+                this.SetTextInvoked("Failed! (Thread)");
                 MessageBox.Show("Failed to start thread for account: \"" + this.Username + "\"\n\nException: " + ex, "Account parser", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+        // Safely abort a parser thread
+        public void SafeAbort()
+        {
+            if (this.hThread != null && this.hThread.IsAlive)
+            {
+                this.hThread.Abort();
+                Globals.RunningThreads--;
             }
         }
 
@@ -128,6 +139,7 @@ namespace vactrak.Class
 
         private void ParserThread()
         {
+            Globals.RunningThreads++;
             NSoup.Nodes.Document _steamPage = null;
             
             try
@@ -136,12 +148,14 @@ namespace vactrak.Class
             }
             catch
             {
+                Globals.RunningThreads--;
                 this.SetTextInvoked("Failed! (HttpClient)");
                 return;
             }
 
             if (_steamPage == null)
             {
+                Globals.RunningThreads--;
                 this.SetTextInvoked("Failed! (Null)");
                 return;
             }
@@ -150,6 +164,7 @@ namespace vactrak.Class
 
             if (String.IsNullOrWhiteSpace(this.Name))
             {
+                Globals.RunningThreads--;
                 this.SetTextInvoked("Invalid URL!");
                 return;
             }
@@ -157,6 +172,7 @@ namespace vactrak.Class
             bool _temp_isbanned = this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty;
             this.SetTextInvoked(_temp_isbanned.ToString(), 4);
 
+            Globals.RunningThreads--;
             this.SetTextInvoked("Finished!");
         }
 
@@ -172,7 +188,7 @@ namespace vactrak.Class
             return true;
         }
 
-        private bool SetTextInvoked(string status, int index = 7)
+        public bool SetTextInvoked(string status, int index = 7)
         {
             if (this.LVI == null) return false;
             this.LVI.ListView.Invoke(new Action(() => { this.LVI.SubItems[index].Text = status; }));
