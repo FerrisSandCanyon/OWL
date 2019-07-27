@@ -222,6 +222,12 @@ namespace vactrak
                     continue;
                 }
 
+                if (_vta.hThread != null && _vta.hThread.IsAlive)
+                {
+                    MessageBox.Show("You cannot edit an account that is actively parsing!", "Edit account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    continue;
+                }
+
                 using (Forms.FormAccount _fad = new Forms.FormAccount(ref _vta))
                 {
                     _fad.ShowDialog();
@@ -244,6 +250,20 @@ namespace vactrak
                 #if DEBUG
                     Debug.WriteLine("Deleting account id: " + _lvi.SubItems[0].Text);
                 #endif
+
+                Class.VTAccount _vta;
+                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                {
+                    MessageBox.Show("Failed to obtain account data for unique id: " + _lvi.SubItems[0].Text + ". \n\nThis account has been skipped.", "Remove account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    continue;
+                }
+
+                if (_vta.hThread != null && _vta.hThread.IsAlive)
+                {
+                    MessageBox.Show("You cannot remove an account that is actively parsing!", "Remove account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    continue;
+                }
+
                 Globals.CurrentProfile.Remove(_lvi.SubItems[0].Text);
                 _lvi.Remove();
             }
