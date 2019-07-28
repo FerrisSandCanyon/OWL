@@ -109,10 +109,11 @@ namespace vactrak.Class
             }
 
             // Make sure steam is closed
-            while (Process.GetProcessesByName("Steam").Count() > 0)
+            Process[] _temp_proc_list;
+            while ((_temp_proc_list = Process.GetProcessesByName("Steam")).Count() > 0)
             {
                 if (forceKill || MessageBox.Show("VACTrak# has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                    foreach (Process steam in Process.GetProcessesByName("Steam")) steam.Kill();
+                    foreach (Process steam in _temp_proc_list) steam.Kill();
                 else
                     return false;
 
