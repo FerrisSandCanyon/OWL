@@ -9,7 +9,8 @@ namespace vactrak.Class
     {
         public string steamPath        = "C:/Program Files (x86)/Steam",   // Path to steam directory
                       defaultProfile   = "default",                        // Default profile to be loaded
-                      hashedKey        = "";                               // Hashed key / password
+                      hashedKey        = "",                               // Hashed key / password
+                      steamParam       = "";                               // Custom steam startup parameters
 
         public int    cooldownRefresh  = 800,                              // Cooldown refresh rate measured in milliseconds
                       maxThreads       = 4;                                // Maximum threads that can run at the same time

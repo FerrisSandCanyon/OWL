@@ -123,7 +123,7 @@ namespace vactrak.Class
             new Thread(new ThreadStart(() =>
             {
                 // TODO: Add user option to add custom steam parameters
-                Process.Start(Globals.Config.steamPath + "/Steam.exe", String.Format("-login \"{0}\" \"{1}\"", this.Username, this.Password));
+                Process.Start(Globals.Config.steamPath + "/Steam.exe", String.Format("-login \"{0}\" \"{1}\" {2}", this.Username, this.Password, Globals.Config.steamParam));
                 Globals.hFormMain.Invoke(new Action(() => { Globals.hFormMain.FormMain_SetTitle(); }));
             }
             )).Start();

@@ -511,5 +511,14 @@ namespace vactrak
             if (lvData.SelectedItems.Count == 0 || VTASelectedAccount == null || VTASelectedAccount.LVI == null) return;
             VTASelectedAccount.LVI.SubItems[6].Text = VTASelectedAccount.Note = tbNote.Text;
         }
+
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            using (Forms.FormSettings _fs = new Forms.FormSettings())
+            {
+                _fs.ShowDialog();
+                _fs.Dispose();
+            }
+        }
     }
 }

@@ -609,6 +609,7 @@
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(23, 22);
             this.btnSettings.Text = "Settings";
+            this.btnSettings.Click += new System.EventHandler(this.BtnSettings_Click);
             // 
             // btnAbout
             // 
