@@ -107,6 +107,9 @@ namespace vactrak.Forms
                 vta.LVI.SubItems[3].Text = vta.Username = tbUser.Text;
                                            vta.Password = tbPass.Text;
                 vta.LVI.SubItems[6].Text = vta.Note     = tbNote.Text;
+
+                if (Globals.hFormMain.VTASelectedAccount == vta)
+                    Globals.hFormMain.tbNote.Text = vta.Note; // This might trigger the event rendering the upper assignment useless but, eh.
             }
 
             // Add account

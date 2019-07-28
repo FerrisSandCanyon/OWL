@@ -9,6 +9,9 @@ namespace vactrak
 {
     public partial class FormMain : Form
     {
+
+        public Class.VTAccount VTASelectedAccount = null; // Reference to the currently selected account in lvData
+
         public FormMain()
         {
             InitializeComponent();
@@ -487,6 +490,26 @@ namespace vactrak
                 }
 
             }
+        }
+
+        private void LvData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0)
+            {
+                tbNote.Text = "";
+                VTASelectedAccount = null;
+            }
+            else
+            {
+                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount)) return;
+                tbNote.Text = VTASelectedAccount.Note;
+            }
+        }
+
+        private void TbNote_TextChanged(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0 || VTASelectedAccount == null || VTASelectedAccount.LVI == null) return;
+            VTASelectedAccount.LVI.SubItems[6].Text = VTASelectedAccount.Note = tbNote.Text;
         }
     }
 }

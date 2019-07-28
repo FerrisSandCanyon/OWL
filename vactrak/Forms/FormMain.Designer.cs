@@ -149,7 +149,7 @@
             // 
             this.ddAccountAdd.Image = global::vactrak.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
-            this.ddAccountAdd.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountAdd.Size = new System.Drawing.Size(180, 22);
             this.ddAccountAdd.Text = "Add";
             this.ddAccountAdd.Click += new System.EventHandler(this.DdAccountAdd_Click);
             // 
@@ -157,7 +157,7 @@
             // 
             this.ddAccountEdit.Image = global::vactrak.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
-            this.ddAccountEdit.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountEdit.Size = new System.Drawing.Size(180, 22);
             this.ddAccountEdit.Text = "Edit";
             this.ddAccountEdit.Click += new System.EventHandler(this.DdAccountEdit_Click);
             // 
@@ -165,7 +165,7 @@
             // 
             this.ddAccountRemove.Image = global::vactrak.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
-            this.ddAccountRemove.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountRemove.Size = new System.Drawing.Size(180, 22);
             this.ddAccountRemove.Text = "Remove";
             this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
@@ -174,7 +174,7 @@
             this.ddAccountImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddAccountImportSAC});
             this.ddAccountImport.Name = "ddAccountImport";
-            this.ddAccountImport.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountImport.Size = new System.Drawing.Size(180, 22);
             this.ddAccountImport.Text = "Import";
             // 
             // ddAccountImportSAC
@@ -188,7 +188,7 @@
             // 
             this.ddAccountSAG.Image = global::vactrak.Properties.Resources.cathook;
             this.ddAccountSAG.Name = "ddAccountSAG";
-            this.ddAccountSAG.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountSAG.Size = new System.Drawing.Size(180, 22);
             this.ddAccountSAG.Text = "SAG Generate";
             // 
             // toolStripSeparator1
@@ -225,7 +225,7 @@
             this.ddManageObtainInfo});
             this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainStart
@@ -290,7 +290,7 @@
             this.ddManageLoginForce});
             this.ddManageLogin.Image = global::vactrak.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -317,7 +317,7 @@
             this.ddManageClipboardOpen});
             this.ddManageClipboard.Image = global::vactrak.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
@@ -365,70 +365,70 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::vactrak.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
             this.ddManageCooldown.Text = "Cooldown";
             // 
             // ddManageCooldown7days
             // 
-            this.ddManageCooldown7days.Name = "7days";
-            this.ddManageCooldown7days.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown7days.Name = "ddManageCooldown7days";
+            this.ddManageCooldown7days.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown7days.Text = "7 Days";
             this.ddManageCooldown7days.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1day
             // 
-            this.ddManageCooldown1day.Name = "1day";
-            this.ddManageCooldown1day.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown1day.Name = "ddManageCooldown1day";
+            this.ddManageCooldown1day.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown1day.Text = "1 Day";
             this.ddManageCooldown1day.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown22hours
             // 
-            this.ddManageCooldown22hours.Name = "22hours";
-            this.ddManageCooldown22hours.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown22hours.Name = "ddManageCooldown22hours";
+            this.ddManageCooldown22hours.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown22hours.Text = "22 Hours";
             this.ddManageCooldown22hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown21hours
             // 
-            this.ddManageCooldown21hours.Name = "21hours";
-            this.ddManageCooldown21hours.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown21hours.Name = "ddManageCooldown21hours";
+            this.ddManageCooldown21hours.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown21hours.Text = "21 Hours";
             this.ddManageCooldown21hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown2hours
             // 
-            this.ddManageCooldown2hours.Name = "2hours";
-            this.ddManageCooldown2hours.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown2hours.Name = "ddManageCooldown2hours";
+            this.ddManageCooldown2hours.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown2hours.Text = "2 Hours";
             this.ddManageCooldown2hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1hour
             // 
-            this.ddManageCooldown1hour.Name = "1hour";
-            this.ddManageCooldown1hour.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown1hour.Name = "ddManageCooldown1hour";
+            this.ddManageCooldown1hour.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown1hour.Text = "1 Hour";
             this.ddManageCooldown1hour.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown30min
             // 
-            this.ddManageCooldown30min.Name = "30min";
-            this.ddManageCooldown30min.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown30min.Name = "ddManageCooldown30min";
+            this.ddManageCooldown30min.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown30min.Text = "30 Minutes";
             this.ddManageCooldown30min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown15min
             // 
-            this.ddManageCooldown15min.Name = "15min";
-            this.ddManageCooldown15min.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown15min.Name = "ddManageCooldown15min";
+            this.ddManageCooldown15min.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown15min.Text = "15 Minutes";
             this.ddManageCooldown15min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldownRemove
             // 
             this.ddManageCooldownRemove.Image = global::vactrak.Properties.Resources.minus;
-            this.ddManageCooldownRemove.Name = "remove";
-            this.ddManageCooldownRemove.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldownRemove.Name = "ddManageCooldownRemove";
+            this.ddManageCooldownRemove.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldownRemove.Text = "Remove";
             this.ddManageCooldownRemove.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
@@ -437,7 +437,7 @@
             this.ddManageCooldownCustom.BackColor = System.Drawing.SystemColors.Control;
             this.ddManageCooldownCustom.Image = global::vactrak.Properties.Resources.plus;
             this.ddManageCooldownCustom.Name = "ddManageCooldownCustom";
-            this.ddManageCooldownCustom.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldownCustom.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldownCustom.Text = "Custom";
             // 
             // toolStripSeparator2
@@ -658,6 +658,7 @@
             this.lvData.TabIndex = 9;
             this.lvData.UseCompatibleStateImageBehavior = false;
             this.lvData.View = System.Windows.Forms.View.Details;
+            this.lvData.SelectedIndexChanged += new System.EventHandler(this.LvData_SelectedIndexChanged);
             // 
             // ch_special_id
             // 
@@ -720,6 +721,7 @@
             this.tbNote.Name = "tbNote";
             this.tbNote.Size = new System.Drawing.Size(798, 22);
             this.tbNote.TabIndex = 11;
+            this.tbNote.TextChanged += new System.EventHandler(this.TbNote_TextChanged);
             // 
             // FormMain
             // 
@@ -759,7 +761,6 @@
         private System.Windows.Forms.ColumnHeader chNote;
         private System.Windows.Forms.ColumnHeader chStatus;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbNote;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel lblBuildInfo;
         private System.Windows.Forms.ToolStripDropDownButton ddProfile;
@@ -823,6 +824,7 @@
         private System.Windows.Forms.ToolStripMenuItem ddManageObtainInfo;
         private System.Windows.Forms.ToolStripMenuItem ddManageObtainQueueAbort;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        public System.Windows.Forms.TextBox tbNote;
     }
 }
 

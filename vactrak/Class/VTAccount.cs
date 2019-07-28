@@ -218,12 +218,11 @@ namespace vactrak.Class
                 catch(Exception ex)
                 {
                     #if DEBUG
-                        Debug.WriteLine("STI Exception: " + ex + "\nMain Thread alive? (Obv not)" + Globals.hMainThread.IsAlive.ToString());
+                        Debug.WriteLine("STI Exception: " + ex + "\nMain Thread alive? (Obv not): " + Globals.hMainThread.IsAlive.ToString());
                     #endif
 
                     return false;
                 }
-
             }
             else
             {
