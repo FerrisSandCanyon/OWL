@@ -20,7 +20,7 @@ namespace vactrak.Class
         // ==============
 
         public VTAccount() { }
-        public VTAccount(string _SteamURL, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false, ulong _CooldownDelta = 0)
+        public VTAccount(DateTime _CooldownDelta, string _SteamURL = null, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false)
         {
             SteamURL      = _SteamURL;
             Name          = _Name;
@@ -35,9 +35,9 @@ namespace vactrak.Class
         // Values
         // ======
 
-        public string SteamURL = null, Name = null, Username = null, Password = null, Note = null;
-        public bool   Banned = false;
-        public ulong  CooldownDelta = 0;
+        public string    SteamURL = null, Name = null, Username = null, Password = null, Note = null;
+        public bool      Banned = false;
+        public DateTime  CooldownDelta = DateTime.MinValue;
 
         // =================
         // Instance handling
@@ -59,18 +59,18 @@ namespace vactrak.Class
             // Check if this instance has a URL
             if (string.IsNullOrWhiteSpace(this.SteamURL))
             {
-                this.SetTextInvoked("No URL!");
+                this.SetText("No URL!");
                 return false;
             }
 
             // Check if its already banned, if it is skip it unless the config is set to force the account status
             if (this.LVI.SubItems[4].Text == "True" && !Globals.Config.forceStatus)
             {
-                this.SetTextInvoked("Skipped!");
+                this.SetText("Skipped!");
                 return false;
             }
 
-            this.SetTextInvoked("Init parser...");
+            this.SetText("Init parser...");
 
             // Initialize the parser
             try
@@ -78,12 +78,12 @@ namespace vactrak.Class
                 this.hThread = new Thread(new ThreadStart(this.ParserThread));
                 this.hThread.Name = "vt_parser";
                 this.hThread.Start();
-                this.SetTextInvoked("Parsing...");
+                this.SetText("Parsing...");
                 return true;
             }
             catch (Exception ex)
             {
-                this.SetTextInvoked("Failed! (Thread)");
+                this.SetText("Failed! (Thread)");
                 MessageBox.Show("Failed to start thread for account: \"" + this.Username + "\"\n\nException: " + ex, "Account parser", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -130,6 +130,27 @@ namespace vactrak.Class
             return true;
         }
 
+        // Obtains the cooldown
+        public bool DisplayCooldown()
+        {
+            if (this.LVI == null) return false;
+
+            if (this.CooldownDelta == DateTime.MinValue) this.SetText("No Cooldown!", 5);
+            else
+            {
+                TimeSpan _time = this.CooldownDelta - DateTime.Now;
+                if (_time.TotalSeconds < 1)
+                {
+                    this.CooldownDelta = DateTime.MinValue;
+                    return true;
+                }
+
+                this.SetText(String.Format("{0:00}d:{1:00}h:{2:00}m:{3:00}s", _time.Days, _time.Hours, _time.Minutes, _time.Seconds), 5);
+            }
+
+            return true;
+        }
+
         // =============
         // Parser Thread
         // =============
@@ -149,31 +170,31 @@ namespace vactrak.Class
             catch
             {
                 Globals.RunningThreads--;
-                this.SetTextInvoked("Failed! (HttpClient)");
+                this.SetText("Failed! (HttpClient)");
                 return;
             }
 
             if (_steamPage == null)
             {
                 Globals.RunningThreads--;
-                this.SetTextInvoked("Failed! (Null)");
+                this.SetText("Failed! (Null)");
                 return;
             }
 
-            this.SetTextInvoked(this.Name = _steamPage.Select(".actual_persona_name").Text ?? "", 2);
+            this.SetText(this.Name = _steamPage.Select(".actual_persona_name").Text ?? "", 2);
 
             if (String.IsNullOrWhiteSpace(this.Name))
             {
                 Globals.RunningThreads--;
-                this.SetTextInvoked("Invalid URL!");
+                this.SetText("Invalid URL!");
                 return;
             }
 
             bool _temp_isbanned = this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty;
-            this.SetTextInvoked(_temp_isbanned.ToString(), 4);
+            this.SetText(_temp_isbanned.ToString(), 4);
 
             Globals.RunningThreads--;
-            this.SetTextInvoked("Finished!");
+            this.SetText("Finished!");
         }
 
         // =========
@@ -184,17 +205,32 @@ namespace vactrak.Class
         public bool SetText(string status, int index = 7)
         {
             if (this.LVI == null) return false;
-            this.LVI.SubItems[index].Text = status;
-            return true;
-        }
 
-        public bool SetTextInvoked(string status, int index = 7)
-        {
-            if (this.LVI == null || !(Globals.hMainThread != null && Globals.hMainThread.IsAlive)) return false;
-            this.LVI.ListView.Invoke(new Action(() => { this.LVI.SubItems[index].Text = status; }));
-            return true;
-        }
+            if (this.LVI.ListView.InvokeRequired)
+            {
+                if (Globals.hMainThread == null && !Globals.hMainThread.IsAlive) return false;
 
+                try
+                {
+                    this.LVI.ListView.Invoke(new Action(() => { this.LVI.SubItems[index].Text = status; }));
+                    return true;
+                }
+                catch(Exception ex)
+                {
+                    #if DEBUG
+                        Debug.WriteLine("STI Exception: " + ex + "\nMain Thread alive? (Obv not)" + Globals.hMainThread.IsAlive.ToString());
+                    #endif
+
+                    return false;
+                }
+
+            }
+            else
+            {
+                this.LVI.SubItems[index].Text = status;
+                return true;
+            }
+        }
     }
 }
 

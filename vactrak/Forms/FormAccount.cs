@@ -122,7 +122,7 @@ namespace vactrak.Forms
                 } while (Globals.CurrentProfile.ContainsKey(uniqueId));
 
                 // Create the new account
-                Class.VTAccount _vta = new Class.VTAccount(tbURL.Text, "", tbUser.Text, tbPass.Text, tbNote.Text, false, 0);
+                Class.VTAccount _vta = new Class.VTAccount(DateTime.MinValue, tbURL.Text, "", tbUser.Text, tbPass.Text, tbNote.Text, false);
 
                 // Add it
                 Globals.CurrentProfile.Add(uniqueId, _vta);

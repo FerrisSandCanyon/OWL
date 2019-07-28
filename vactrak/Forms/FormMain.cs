@@ -40,20 +40,14 @@ namespace vactrak
 
                 while (IsAlive())
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(Globals.Config.cooldownRefresh);
 
                     if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0) continue;
 
                     foreach (KeyValuePair<string, Class.VTAccount> _account in Globals.CurrentProfile)
                     {
                         if (!IsAlive()) break;
-                        if (_account.Value.LVI == null) continue;
-
-                        if (_account.Value.CooldownDelta == 0) _account.Value.SetTextInvoked("No Cooldown!", 5);
-                        else
-                        {
-
-                        }
+                        _account.Value.DisplayCooldown();
                     }
                 }
             }
@@ -331,7 +325,7 @@ namespace vactrak
                         Class.VTAccount _vta;
                         if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                         {
-                           _vta.SetTextInvoked("Reference error!");
+                           _vta.SetText("Reference error!");
                             return false;
                         }
 
@@ -458,5 +452,41 @@ namespace vactrak
 
         #endregion
 
+        private void Event_AddCooldown(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select an account to apply the cooldown to!", "Add Cooldown", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            foreach (ListViewItem _lvi in lvData.SelectedItems)
+            {
+                Class.VTAccount _vta;
+                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
+                {
+                    MessageBox.Show("Reference error!", "Add Cooldown", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    continue;
+                }
+
+                switch (((ToolStripMenuItem)sender).Name)
+                {
+                    case "7days":   _vta.CooldownDelta = DateTime.Now.AddDays(7)           ; break;
+                    case "1day":    _vta.CooldownDelta = DateTime.Now.AddDays(1)           ; break;
+                    case "22hours": _vta.CooldownDelta = DateTime.Now.AddHours(22)         ; break;
+                    case "21hours": _vta.CooldownDelta = DateTime.Now.AddHours(21)         ; break;
+                    case "2hours":  _vta.CooldownDelta = DateTime.Now.AddHours(2)          ; break;
+                    case "1hour":   _vta.CooldownDelta = DateTime.Now.AddHours(1)          ; break;
+                    case "30min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(30)       ; break;
+                    case "15min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(15)       ; break;
+
+                    case "remove":
+                    default:
+                        _vta.CooldownDelta = DateTime.MinValue;
+                        break;
+                }
+
+            }
+        }
     }
 }
