@@ -123,7 +123,7 @@ namespace vactrak.Class
             new Thread(new ThreadStart(() =>
             {
                 // TODO: Add user option to add custom steam parameters
-                Process.Start(Globals.Config.steamPath + "/Steam.exe", String.Format("-login \"{0}\" \"{1}\" {2}", this.Username, this.Password, Globals.Config.steamParam));
+                Process.Start(Globals.Config.steamPath + "/Steam.exe", $"-login \"{this.Username}\" \"{this.Password}\" {Globals.Config.steamParam}");
                 Globals.hFormMain.Invoke(new Action(() => { Globals.hFormMain.FormMain_SetTitle(); }));
             }
             )).Start();
@@ -251,7 +251,7 @@ namespace vactrak.Utils
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("Profile: {0}\nException: {1}", _profilePath, ex), "Failed to save profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Profile: {_profilePath}\nException: {ex}", "Failed to save profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -270,7 +270,7 @@ namespace vactrak.Utils
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("Profile: {0}\nException: {1}", _profilePath, ex), "Failed to load profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Profile: {_profilePath}\nException: {ex}", "Failed to load profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }

@@ -42,6 +42,7 @@
             this.cbMask = new System.Windows.Forms.CheckBox();
             this.btnBrowse = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnClip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -136,7 +137,7 @@
             // cbForce
             // 
             this.cbForce.AutoSize = true;
-            this.cbForce.Location = new System.Drawing.Point(142, 96);
+            this.cbForce.Location = new System.Drawing.Point(142, 125);
             this.cbForce.Name = "cbForce";
             this.cbForce.Size = new System.Drawing.Size(89, 17);
             this.cbForce.TabIndex = 20;
@@ -148,7 +149,7 @@
             this.cbMask.AutoSize = true;
             this.cbMask.Checked = true;
             this.cbMask.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbMask.Location = new System.Drawing.Point(249, 96);
+            this.cbMask.Location = new System.Drawing.Point(249, 125);
             this.cbMask.Name = "cbMask";
             this.cbMask.Size = new System.Drawing.Size(105, 17);
             this.cbMask.TabIndex = 21;
@@ -174,19 +175,33 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(384, 47);
+            this.btnSave.Location = new System.Drawing.Point(382, 60);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(32, 32);
             this.btnSave.TabIndex = 23;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
+            // btnClip
+            // 
+            this.btnClip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.btnClip.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnClip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClip.Location = new System.Drawing.Point(142, 96);
+            this.btnClip.Name = "btnClip";
+            this.btnClip.Size = new System.Drawing.Size(212, 23);
+            this.btnClip.TabIndex = 24;
+            this.btnClip.Text = "Clipboard Mode: Single Line";
+            this.btnClip.UseVisualStyleBackColor = false;
+            this.btnClip.Click += new System.EventHandler(this.BtnClip_Click);
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(429, 131);
+            this.ClientSize = new System.Drawing.Size(429, 147);
+            this.Controls.Add(this.btnClip);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.cbMask);
@@ -229,5 +244,6 @@
         private System.Windows.Forms.CheckBox cbMask;
         private System.Windows.Forms.LinkLabel btnBrowse;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnClip;
     }
 }

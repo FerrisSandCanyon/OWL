@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace vactrak.Forms
 {
     public partial class FormSettings : Form
     {
+
+        private bool clipmode = false;
+
         public FormSettings()
         {
             InitializeComponent();
@@ -26,6 +22,9 @@ namespace vactrak.Forms
             tbThread.Text   = Globals.Config.maxThreads.ToString() ?? "4";
             cbForce.Checked = Globals.Config.forceStatus;
             cbMask.Checked  = Globals.Config.maskPassword;
+            clipmode        = Globals.Config.clipboardDetail;
+
+            BtnClip_SetTxt();
         }
 
         private void BtnBrowse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -54,6 +53,7 @@ namespace vactrak.Forms
             Globals.Config.maxThreads      = newmax;
             Globals.Config.forceStatus     = cbForce.Checked;
             Globals.Config.maskPassword    = cbMask.Checked;
+            Globals.Config.clipboardDetail = clipmode;
 
             if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath))
             {
@@ -63,6 +63,17 @@ namespace vactrak.Forms
 
             MessageBox.Show("Settings saved!", "Settings", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
+        }
+
+        private void BtnClip_Click(object sender, EventArgs e)
+        {
+            clipmode = !clipmode;
+            BtnClip_SetTxt();
+        }
+
+        private void BtnClip_SetTxt()
+        {
+            btnClip.Text = "Clipboard Mode: " + (clipmode ? "Detailed" : "Single Line");
         }
     }
 }

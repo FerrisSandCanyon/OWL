@@ -16,7 +16,8 @@ namespace vactrak.Class
                       maxThreads       = 4;                                // Maximum threads that can run at the same time
 
         public bool   forceStatus      = false,                            // Forces status check on accounts with Bans
-                      maskPassword     = true;                             // Display the password in plain text or mask it with • on the accounts form
+                      maskPassword     = true,                             // Display the password in plain text or mask it with • on the accounts form
+                      clipboardDetail  = false;                            // Dictates clipboard mode whether to use a single line (false) or detailed (true) format
     }
 }
 
@@ -37,7 +38,7 @@ namespace vactrak.Utils
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("Profile: {0}\nException: {1}", _configPath, ex), "Failed to save config", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Profile: {_configPath}\nException: {ex}", "Failed to save config", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -56,7 +57,7 @@ namespace vactrak.Utils
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("Profile: {0}\nException: {1}", _configPath, ex), "Failed to load config", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Profile: {_configPath}\nException: {ex}", "Failed to load config", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
