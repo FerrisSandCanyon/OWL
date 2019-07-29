@@ -62,6 +62,35 @@ namespace vactrak
             this.Text = _title == null ? Globals.Cache.TitleFallback : Globals.Cache.TitleFallback + " - " + _title;
         }
 
+        private void LvData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0)
+            {
+                tbNote.Text = "";
+                VTASelectedAccount = null;
+            }
+            else
+            {
+                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount)) return;
+                tbNote.Text = VTASelectedAccount.Note;
+            }
+        }
+
+        private void TbNote_TextChanged(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0 || VTASelectedAccount == null || VTASelectedAccount.LVI == null) return;
+            VTASelectedAccount.LVI.SubItems[6].Text = VTASelectedAccount.Note = tbNote.Text;
+        }
+
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            using (Forms.FormSettings _fs = new Forms.FormSettings())
+            {
+                _fs.ShowDialog();
+                _fs.Dispose();
+            }
+        }
+
         #region Profile
 
         // Loads the selected profile.
@@ -455,6 +484,8 @@ namespace vactrak
 
         #endregion
 
+        #region Events
+
         private void Event_AddCooldown(object sender, EventArgs e)
         {
             if (lvData.SelectedItems.Count == 0)
@@ -492,33 +523,81 @@ namespace vactrak
             }
         }
 
-        private void LvData_SelectedIndexChanged(object sender, EventArgs e)
+        private void Event_CopyToClipboard(object sender, EventArgs e)
         {
-            if (lvData.SelectedItems.Count == 0)
+            if (lvData.SelectedItems.Count != 1)
             {
-                tbNote.Text = "";
-                VTASelectedAccount = null;
+                MessageBox.Show("Please select an account to obtain information from", "Copy to clipboard", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            Func<string[], string[], string> ClipFormat = (string[] data, string[] rep) =>
             {
-                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount)) return;
-                tbNote.Text = VTASelectedAccount.Note;
+                string result = "";
+
+                if (data.Length != rep.Length) return null;
+
+                if (Globals.Config.clipboardDetail)
+                {
+                    for (int idx = 0; idx < data.Length; idx++)
+                    {
+                        result += $"{rep[idx]}: {data[idx]}\r\n";
+                    }
+                }
+                else
+                {
+                    foreach (string _info in data) result += _info + ":";
+                }
+
+                return result;
+            };
+
+            Class.VTAccount _vta;
+            if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
+            {
+                MessageBox.Show("Reference error!", "Copy to clipboard", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            string relay = "";
+
+            switch(((ToolStripMenuItem)sender).Name)
+            {
+                case "cb_cpyUserPass":
+                    Clipboard.SetText(relay = ClipFormat(
+                        new string[]{ _vta.Username, _vta.Password },
+                        new string[]{ "Username",    "Password"    }
+                        ) ?? "");
+                    break;
+
+                case "cb_cpyURL":
+                    Clipboard.SetText(relay = ClipFormat(
+                        new string[] { _vta.SteamURL },
+                        new string[] { "Steam URL" }
+                        ) ?? "");
+                    break;
+
+                case "cb_cpyNotes":
+                    Clipboard.SetText(relay = ClipFormat(
+                        new string[] { _vta.Note }, 
+                        new string[] { "Note" }
+                        ) ?? "");
+                    break;
+
+                case "cb_cpyAll":
+                    Clipboard.SetText(relay = ClipFormat(
+                        new string[] { "https://steamcommunity.com/" + _vta.SteamURL, _vta.Username, _vta.Password, _vta.Name, _vta.Banned.ToString(), _vta.Note },
+                        new string[] {                                     "Steam URL",   "Username",    "Password",    "Name",    "Banned",               "Note"}
+                        ) ?? "");
+                    break;
+
+                default:
+                    return;
+            }
+
+            MessageBox.Show(relay, "Copied to clipboard!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void TbNote_TextChanged(object sender, EventArgs e)
-        {
-            if (lvData.SelectedItems.Count == 0 || VTASelectedAccount == null || VTASelectedAccount.LVI == null) return;
-            VTASelectedAccount.LVI.SubItems[6].Text = VTASelectedAccount.Note = tbNote.Text;
-        }
-
-        private void BtnSettings_Click(object sender, EventArgs e)
-        {
-            using (Forms.FormSettings _fs = new Forms.FormSettings())
-            {
-                _fs.ShowDialog();
-                _fs.Dispose();
-            }
-        }
+        #endregion
     }
 }

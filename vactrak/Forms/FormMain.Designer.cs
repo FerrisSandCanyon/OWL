@@ -149,7 +149,7 @@
             // 
             this.ddAccountAdd.Image = global::vactrak.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
-            this.ddAccountAdd.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountAdd.Size = new System.Drawing.Size(146, 22);
             this.ddAccountAdd.Text = "Add";
             this.ddAccountAdd.Click += new System.EventHandler(this.DdAccountAdd_Click);
             // 
@@ -157,7 +157,7 @@
             // 
             this.ddAccountEdit.Image = global::vactrak.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
-            this.ddAccountEdit.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountEdit.Size = new System.Drawing.Size(146, 22);
             this.ddAccountEdit.Text = "Edit";
             this.ddAccountEdit.Click += new System.EventHandler(this.DdAccountEdit_Click);
             // 
@@ -165,7 +165,7 @@
             // 
             this.ddAccountRemove.Image = global::vactrak.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
-            this.ddAccountRemove.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountRemove.Size = new System.Drawing.Size(146, 22);
             this.ddAccountRemove.Text = "Remove";
             this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
@@ -174,7 +174,7 @@
             this.ddAccountImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddAccountImportSAC});
             this.ddAccountImport.Name = "ddAccountImport";
-            this.ddAccountImport.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImport.Size = new System.Drawing.Size(146, 22);
             this.ddAccountImport.Text = "Import";
             // 
             // ddAccountImportSAC
@@ -188,7 +188,7 @@
             // 
             this.ddAccountSAG.Image = global::vactrak.Properties.Resources.cathook;
             this.ddAccountSAG.Name = "ddAccountSAG";
-            this.ddAccountSAG.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountSAG.Size = new System.Drawing.Size(146, 22);
             this.ddAccountSAG.Text = "SAG Generate";
             // 
             // toolStripSeparator1
@@ -225,7 +225,7 @@
             this.ddManageObtainInfo});
             this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainStart
@@ -290,7 +290,7 @@
             this.ddManageLoginForce});
             this.ddManageLogin.Image = global::vactrak.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -317,32 +317,36 @@
             this.ddManageClipboardOpen});
             this.ddManageClipboard.Image = global::vactrak.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
             // 
-            this.ddManageClipboardUserPass.Name = "ddManageClipboardUserPass";
+            this.ddManageClipboardUserPass.Name = "cb_cpyUserPass";
             this.ddManageClipboardUserPass.Size = new System.Drawing.Size(216, 22);
             this.ddManageClipboardUserPass.Text = "Username and Password";
+            this.ddManageClipboardUserPass.Click += new System.EventHandler(this.Event_CopyToClipboard);
             // 
             // ddManageClipboardURL
             // 
-            this.ddManageClipboardURL.Name = "ddManageClipboardURL";
+            this.ddManageClipboardURL.Name = "cb_cpyURL";
             this.ddManageClipboardURL.Size = new System.Drawing.Size(216, 22);
             this.ddManageClipboardURL.Text = "Steam URL";
+            this.ddManageClipboardURL.Click += new System.EventHandler(this.Event_CopyToClipboard);
             // 
             // ddManageClipboardNotes
             // 
-            this.ddManageClipboardNotes.Name = "ddManageClipboardNotes";
+            this.ddManageClipboardNotes.Name = "cb_cpyNotes";
             this.ddManageClipboardNotes.Size = new System.Drawing.Size(216, 22);
             this.ddManageClipboardNotes.Text = "Notes";
+            this.ddManageClipboardNotes.Click += new System.EventHandler(this.Event_CopyToClipboard);
             // 
             // ddManageClipboardAll
             // 
-            this.ddManageClipboardAll.Name = "ddManageClipboardAll";
+            this.ddManageClipboardAll.Name = "cb_cpyAll";
             this.ddManageClipboardAll.Size = new System.Drawing.Size(216, 22);
             this.ddManageClipboardAll.Text = "All";
+            this.ddManageClipboardAll.Click += new System.EventHandler(this.Event_CopyToClipboard);
             // 
             // ddManageClipboardOpen
             // 
@@ -365,7 +369,7 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::vactrak.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown.Text = "Cooldown";
             // 
             // ddManageCooldown7days
