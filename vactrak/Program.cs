@@ -16,34 +16,41 @@ namespace vactrak
         [STAThread]
         static void Main()
         {
+            Initialize();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(Globals.hFormMain = new FormMain());
+        }
 
+        static void Initialize()
+        {
             bool shouldResave = false;
 
-            // Check for the profile folder
-            if (!Directory.Exists(Globals.Info.profilesPath)) Directory.CreateDirectory(Globals.Info.profilesPath);
+            // Check for the profile folder if it doesnt exist already
+            Directory.CreateDirectory(Globals.Info.profilesPath);
 
             // Initialize config
             if (File.Exists(Globals.Info.cfgPath))
+            {
                 Globals.Config = Utils.VTConfig.Load(Globals.Info.cfgPath);
+            }
             else
             {
-                MessageBox.Show("VACTrak couldn't load a config because there's none. VACTrak will now generate a new config file containing the default settings.", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("VACTrak couldn't find any existing config. default config will be generated and used in this session", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Globals.Config = new Class.VTConfig();
                 shouldResave = true;
             }
 
             if (Globals.Config == null)
             {
-                MessageBox.Show("Config was unsuccessfuly initialized.", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: Config was unsuccessfully loaded.", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            #if DEBUG
-                Debug.WriteLine(String.Format("Config Content on load ({0}): {1}", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config)));
-            #endif
+#if DEBUG
+            Debug.WriteLine($"Config Content on load ({Globals.Info.cfgPath}): {JsonConvert.SerializeObject(Globals.Config)}");
+#endif
 
             // ===================
             // Check config values
@@ -52,7 +59,7 @@ namespace vactrak
             // Default profile
             if (String.IsNullOrWhiteSpace(Globals.Config.defaultProfile))
             {
-                MessageBox.Show("A blank default profile is an invalid parameter. This parameter has been set back to default", "Config error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid defaultprofile parameter. this parameter value has been set back to default", "Config warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Globals.Config.defaultProfile = "default";
                 shouldResave = true;
             }
@@ -60,25 +67,31 @@ namespace vactrak
             // Steam Path
             if (!Directory.Exists(Globals.Config.steamPath))
             {
-                MessageBox.Show("The path: \"" + Globals.Config.steamPath + "\" is an invalid steam path.\n\nPlease point VACTrak to the correct steam directory.", "Config error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                using (FolderBrowserDialog _fbd = new FolderBrowserDialog())
-                {
-                    while (!File.Exists(_fbd.SelectedPath + "\\Steam.exe"))
-                        if (_fbd.ShowDialog() == DialogResult.Cancel) return;
+                MessageBox.Show($"Steam folder: \"{Globals.Config.steamPath}\" doesnt exist.\n\nPlease select a correct Steam directory.", "Config warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    Globals.Config.steamPath = _fbd.SelectedPath.Replace('\\', '/');
+                using (var fbd = new FolderBrowserDialog())
+                {
+                    while (!File.Exists(Path.Combine(fbd.SelectedPath, "\\Steam.exe")))
+                    {
+                        if (fbd.ShowDialog() == DialogResult.Cancel)
+                            return;
+                    }
+
+                    Globals.Config.steamPath = fbd.SelectedPath.Replace('\\', '/');
                     shouldResave = true;
                 }
             }
 
             // Resave the config if it was automatically modified due to user errors
-            if (shouldResave) if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) return;
+            if (shouldResave)
+            {
+                if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath))
+                    return;
+            }
 
-            #if DEBUG
-                Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
-            #endif
-
-            Application.Run(Globals.hFormMain = new FormMain());
+#if DEBUG
+            Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
+#endif
         }
     }
 }
