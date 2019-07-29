@@ -16,14 +16,15 @@ namespace vactrak
         [STAThread]
         static void Main()
         {
-            Initialize();
+            if (!Initialize())
+                return;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Globals.hFormMain = new FormMain());
         }
 
-        static void Initialize()
+        static bool Initialize()
         {
             bool shouldResave = false;
 
@@ -45,7 +46,7 @@ namespace vactrak
             if (Globals.Config == null)
             {
                 MessageBox.Show("Error: Config was unsuccessfully loaded.", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
 #if DEBUG
@@ -74,7 +75,7 @@ namespace vactrak
                     while (!File.Exists(Path.Combine(fbd.SelectedPath, "\\Steam.exe")))
                     {
                         if (fbd.ShowDialog() == DialogResult.Cancel)
-                            return;
+                            return false;
                     }
 
                     Globals.Config.steamPath = fbd.SelectedPath.Replace('\\', '/');
@@ -86,12 +87,14 @@ namespace vactrak
             if (shouldResave)
             {
                 if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath))
-                    return;
+                    return false;
             }
 
 #if DEBUG
             Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
 #endif
+
+            return true;
         }
     }
 }
