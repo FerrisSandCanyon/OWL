@@ -571,17 +571,12 @@ namespace vactrak
                     break;
 
                 case "cb_cpyURL":
-                    Clipboard.SetText(relay = ClipFormat(
-                        new string[] { _vta.SteamURL },
-                        new string[] { "Steam URL" }
-                        ) ?? "");
+                    //Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Steam URL: " : "") + "https://steamcommunity.com/" + _vta.SteamURL ?? "null"));
+                    Clipboard.SetText(relay = "https://steamcommunity.com/" + _vta.SteamURL ?? "null");
                     break;
 
                 case "cb_cpyNotes":
-                    Clipboard.SetText(relay = ClipFormat(
-                        new string[] { _vta.Note }, 
-                        new string[] { "Note" }
-                        ) ?? "");
+                    Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Notes: " : "") + _vta.Note ?? "null"));
                     break;
 
                 case "cb_cpyAll":
