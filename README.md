@@ -15,7 +15,7 @@ A multipurpose tool for managing Steam accounts
 ## (Planned) Features
 * Multiple Loadable Profiles for different set of accounts. ✓
 * Auto-Login ✓
-* Cooldown Tracker
+* Cooldown Tracker ✓
 * Profile Editor
 * Protection of information (Encryption/Obfuscation + Hashing)
 * Easily import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a>
