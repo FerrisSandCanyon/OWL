@@ -9,7 +9,7 @@ namespace vactrak.Forms
         ListView        lvData = null;
 
         // References to our account for editing accounts
-        Class.VTAccount vta    = null;
+        Class.CAccount vta    = null;
 
         // Mode / usage of this form instance
         // false = Add account
@@ -24,7 +24,7 @@ namespace vactrak.Forms
             InitializeComponent();
         }
 
-        public FormAccount(ref Class.VTAccount _vta)
+        public FormAccount(ref Class.CAccount _vta)
         {
             vta    = _vta;
             mode   = true;
@@ -125,7 +125,7 @@ namespace vactrak.Forms
                 } while (Globals.CurrentProfile.ContainsKey(uniqueId));
 
                 // Create the new account
-                Class.VTAccount _vta = new Class.VTAccount(DateTime.MinValue, tbURL.Text, "", tbUser.Text, tbPass.Text, tbNote.Text, false);
+                Class.CAccount _vta = new Class.CAccount(DateTime.MinValue, tbURL.Text, "", tbUser.Text, tbPass.Text, tbNote.Text, false);
 
                 // Add it
                 Globals.CurrentProfile.Add(uniqueId, _vta);

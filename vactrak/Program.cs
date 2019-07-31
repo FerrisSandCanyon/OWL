@@ -39,7 +39,7 @@ namespace vactrak
             else
             {
                 MessageBox.Show("VACTrak couldn't find any existing config. default config will be generated and used in this session", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Globals.Config = new Class.VTConfig();
+                Globals.Config = new Class.CConfig();
                 shouldResave = true;
             }
 
