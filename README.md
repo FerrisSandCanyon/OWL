@@ -1,4 +1,4 @@
-# OWL (Overwatch Whitelist)
+# <img width=34 src="owl/icon.ico" /> OWL (Overwatch Whitelist)
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Dev</td></tr>
