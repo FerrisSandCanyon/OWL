@@ -36,7 +36,9 @@
             this.ddAccountRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.ddAccountImport = new System.Windows.Forms.ToolStripMenuItem();
             this.ddAccountImportSAC = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddAccountSAG = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddAccountImportSAG = new System.Windows.Forms.ToolStripMenuItem();
+            this.firefoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.googleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ddManage = new System.Windows.Forms.ToolStripDropDownButton();
             this.ddManageObtain = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +59,6 @@
             this.ddManageClipboardURL = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageClipboardNotes = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageClipboardAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.ddManageClipboardOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageCooldown = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageCooldown7days = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageCooldown1day = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,8 +137,7 @@
             this.ddAccountAdd,
             this.ddAccountEdit,
             this.ddAccountRemove,
-            this.ddAccountImport,
-            this.ddAccountSAG});
+            this.ddAccountImport});
             this.ddAccount.ForeColor = System.Drawing.Color.Black;
             this.ddAccount.Image = ((System.Drawing.Image)(resources.GetObject("ddAccount.Image")));
             this.ddAccount.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -149,7 +149,7 @@
             // 
             this.ddAccountAdd.Image = global::vactrak.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
-            this.ddAccountAdd.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountAdd.Size = new System.Drawing.Size(117, 22);
             this.ddAccountAdd.Text = "Add";
             this.ddAccountAdd.Click += new System.EventHandler(this.DdAccountAdd_Click);
             // 
@@ -157,7 +157,7 @@
             // 
             this.ddAccountEdit.Image = global::vactrak.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
-            this.ddAccountEdit.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountEdit.Size = new System.Drawing.Size(117, 22);
             this.ddAccountEdit.Text = "Edit";
             this.ddAccountEdit.Click += new System.EventHandler(this.DdAccountEdit_Click);
             // 
@@ -165,31 +165,47 @@
             // 
             this.ddAccountRemove.Image = global::vactrak.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
-            this.ddAccountRemove.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountRemove.Size = new System.Drawing.Size(117, 22);
             this.ddAccountRemove.Text = "Remove";
             this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
             // ddAccountImport
             // 
             this.ddAccountImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ddAccountImportSAC});
+            this.ddAccountImportSAC,
+            this.ddAccountImportSAG});
             this.ddAccountImport.Name = "ddAccountImport";
-            this.ddAccountImport.Size = new System.Drawing.Size(146, 22);
+            this.ddAccountImport.Size = new System.Drawing.Size(117, 22);
             this.ddAccountImport.Text = "Import";
             // 
             // ddAccountImportSAC
             // 
             this.ddAccountImportSAC.Image = global::vactrak.Properties.Resources.steam_logo;
             this.ddAccountImportSAC.Name = "ddAccountImportSAC";
-            this.ddAccountImportSAC.Size = new System.Drawing.Size(150, 22);
+            this.ddAccountImportSAC.Size = new System.Drawing.Size(170, 22);
             this.ddAccountImportSAC.Text = "EarsKilla\'s SAC";
             // 
-            // ddAccountSAG
+            // ddAccountImportSAG
             // 
-            this.ddAccountSAG.Image = global::vactrak.Properties.Resources.cathook;
-            this.ddAccountSAG.Name = "ddAccountSAG";
-            this.ddAccountSAG.Size = new System.Drawing.Size(146, 22);
-            this.ddAccountSAG.Text = "SAG Generate";
+            this.ddAccountImportSAG.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.firefoxToolStripMenuItem,
+            this.googleChromeToolStripMenuItem});
+            this.ddAccountImportSAG.Image = global::vactrak.Properties.Resources.cathook;
+            this.ddAccountImportSAG.Name = "ddAccountImportSAG";
+            this.ddAccountImportSAG.Size = new System.Drawing.Size(170, 22);
+            this.ddAccountImportSAG.Text = "SAG Local Storage";
+            // 
+            // firefoxToolStripMenuItem
+            // 
+            this.firefoxToolStripMenuItem.Name = "firefoxToolStripMenuItem";
+            this.firefoxToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.firefoxToolStripMenuItem.Text = "Firefox";
+            // 
+            // googleChromeToolStripMenuItem
+            // 
+            this.googleChromeToolStripMenuItem.Name = "googleChromeToolStripMenuItem";
+            this.googleChromeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.googleChromeToolStripMenuItem.Text = "Google Chrome";
             // 
             // toolStripSeparator1
             // 
@@ -313,8 +329,7 @@
             this.ddManageClipboardUserPass,
             this.ddManageClipboardURL,
             this.ddManageClipboardNotes,
-            this.ddManageClipboardAll,
-            this.ddManageClipboardOpen});
+            this.ddManageClipboardAll});
             this.ddManageClipboard.Image = global::vactrak.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
             this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
@@ -322,37 +337,31 @@
             // 
             // ddManageClipboardUserPass
             // 
-            this.ddManageClipboardUserPass.Name = "cb_cpyUserPass";
-            this.ddManageClipboardUserPass.Size = new System.Drawing.Size(216, 22);
+            this.ddManageClipboardUserPass.Name = "ddManageClipboardUserPass";
+            this.ddManageClipboardUserPass.Size = new System.Drawing.Size(203, 22);
             this.ddManageClipboardUserPass.Text = "Username and Password";
             this.ddManageClipboardUserPass.Click += new System.EventHandler(this.Event_CopyToClipboard);
             // 
             // ddManageClipboardURL
             // 
-            this.ddManageClipboardURL.Name = "cb_cpyURL";
-            this.ddManageClipboardURL.Size = new System.Drawing.Size(216, 22);
+            this.ddManageClipboardURL.Name = "ddManageClipboardURL";
+            this.ddManageClipboardURL.Size = new System.Drawing.Size(203, 22);
             this.ddManageClipboardURL.Text = "Steam URL";
             this.ddManageClipboardURL.Click += new System.EventHandler(this.Event_CopyToClipboard);
             // 
             // ddManageClipboardNotes
             // 
-            this.ddManageClipboardNotes.Name = "cb_cpyNotes";
-            this.ddManageClipboardNotes.Size = new System.Drawing.Size(216, 22);
+            this.ddManageClipboardNotes.Name = "ddManageClipboardNotes";
+            this.ddManageClipboardNotes.Size = new System.Drawing.Size(203, 22);
             this.ddManageClipboardNotes.Text = "Notes";
             this.ddManageClipboardNotes.Click += new System.EventHandler(this.Event_CopyToClipboard);
             // 
             // ddManageClipboardAll
             // 
-            this.ddManageClipboardAll.Name = "cb_cpyAll";
-            this.ddManageClipboardAll.Size = new System.Drawing.Size(216, 22);
+            this.ddManageClipboardAll.Name = "ddManageClipboardAll";
+            this.ddManageClipboardAll.Size = new System.Drawing.Size(203, 22);
             this.ddManageClipboardAll.Text = "All";
             this.ddManageClipboardAll.Click += new System.EventHandler(this.Event_CopyToClipboard);
-            // 
-            // ddManageClipboardOpen
-            // 
-            this.ddManageClipboardOpen.Name = "ddManageClipboardOpen";
-            this.ddManageClipboardOpen.Size = new System.Drawing.Size(216, 22);
-            this.ddManageClipboardOpen.Text = "[Open Clipboard Manager]";
             // 
             // ddManageCooldown
             // 
@@ -375,56 +384,56 @@
             // ddManageCooldown7days
             // 
             this.ddManageCooldown7days.Name = "ddManageCooldown7days";
-            this.ddManageCooldown7days.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown7days.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown7days.Text = "7 Days";
             this.ddManageCooldown7days.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1day
             // 
             this.ddManageCooldown1day.Name = "ddManageCooldown1day";
-            this.ddManageCooldown1day.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown1day.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown1day.Text = "1 Day";
             this.ddManageCooldown1day.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown22hours
             // 
             this.ddManageCooldown22hours.Name = "ddManageCooldown22hours";
-            this.ddManageCooldown22hours.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown22hours.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown22hours.Text = "22 Hours";
             this.ddManageCooldown22hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown21hours
             // 
             this.ddManageCooldown21hours.Name = "ddManageCooldown21hours";
-            this.ddManageCooldown21hours.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown21hours.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown21hours.Text = "21 Hours";
             this.ddManageCooldown21hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown2hours
             // 
             this.ddManageCooldown2hours.Name = "ddManageCooldown2hours";
-            this.ddManageCooldown2hours.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown2hours.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown2hours.Text = "2 Hours";
             this.ddManageCooldown2hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1hour
             // 
             this.ddManageCooldown1hour.Name = "ddManageCooldown1hour";
-            this.ddManageCooldown1hour.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown1hour.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown1hour.Text = "1 Hour";
             this.ddManageCooldown1hour.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown30min
             // 
             this.ddManageCooldown30min.Name = "ddManageCooldown30min";
-            this.ddManageCooldown30min.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown30min.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown30min.Text = "30 Minutes";
             this.ddManageCooldown30min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown15min
             // 
             this.ddManageCooldown15min.Name = "ddManageCooldown15min";
-            this.ddManageCooldown15min.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown15min.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown15min.Text = "15 Minutes";
             this.ddManageCooldown15min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
@@ -432,7 +441,7 @@
             // 
             this.ddManageCooldownRemove.Image = global::vactrak.Properties.Resources.minus;
             this.ddManageCooldownRemove.Name = "ddManageCooldownRemove";
-            this.ddManageCooldownRemove.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldownRemove.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldownRemove.Text = "Remove";
             this.ddManageCooldownRemove.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
@@ -441,7 +450,7 @@
             this.ddManageCooldownCustom.BackColor = System.Drawing.SystemColors.Control;
             this.ddManageCooldownCustom.Image = global::vactrak.Properties.Resources.plus;
             this.ddManageCooldownCustom.Name = "ddManageCooldownCustom";
-            this.ddManageCooldownCustom.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldownCustom.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldownCustom.Text = "Custom";
             // 
             // toolStripSeparator2
@@ -774,7 +783,6 @@
         private System.Windows.Forms.ToolStripMenuItem ddAccountRemove;
         private System.Windows.Forms.ToolStripMenuItem ddAccountImport;
         private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAC;
-        private System.Windows.Forms.ToolStripMenuItem ddAccountSAG;
         private System.Windows.Forms.ToolStripDropDownButton ddManage;
         private System.Windows.Forms.ToolStripMenuItem ddManageObtain;
         private System.Windows.Forms.ToolStripMenuItem ddManageObtainStart;
@@ -786,7 +794,6 @@
         private System.Windows.Forms.ToolStripMenuItem ddManageClipboardURL;
         private System.Windows.Forms.ToolStripMenuItem ddManageClipboardNotes;
         private System.Windows.Forms.ToolStripMenuItem ddManageClipboardAll;
-        private System.Windows.Forms.ToolStripMenuItem ddManageClipboardOpen;
         private System.Windows.Forms.ToolStripMenuItem ddManageCooldown;
         private System.Windows.Forms.ToolStripMenuItem ddManageCooldown7days;
         private System.Windows.Forms.ToolStripMenuItem ddManageCooldown1day;
@@ -830,6 +837,9 @@
         private System.Windows.Forms.ToolStripMenuItem ddManageObtainQueueAbort;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         public System.Windows.Forms.TextBox tbNote;
+        private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAG;
+        private System.Windows.Forms.ToolStripMenuItem firefoxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem googleChromeToolStripMenuItem;
     }
 }
 

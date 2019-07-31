@@ -51,3 +51,4 @@ You can configure VACTrak# through the options form or manually through the <i>c
 ### Prerequisite
 * <a href="https://www.newtonsoft.com/json">Json.NET</a> Framework for handling the Json format. (<a href="https://www.nuget.org/packages/Newtonsoft.Json/">NuGet</a>)
 * <a href="https://github.com/GeReV/NSoup">NSoup</a> for parsing HTML (<a href="https://www.nuget.org/packages/NSoup/">NuGet</a>)
+* <a href="https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki">System.Data.SQLite</a> for parsing firefox local storage (<a href="https://www.nuget.org/packages/System.Data.SQLite/">NuGet</a>)

@@ -36,10 +36,10 @@ namespace vactrak
             // Cooldown tracker thread
             new Thread(new ThreadStart(() =>
             {
-                Func<bool> IsAlive = () =>
+                bool IsAlive()
                 {
                     return Globals.hMainThread != null && Globals.hMainThread.IsAlive;
-                };
+                }
 
                 while (IsAlive())
                 {
@@ -57,9 +57,9 @@ namespace vactrak
             )).Start();
         }
 
-        public void FormMain_SetTitle(string _title = null)
+        public void FormMain_SetTitle(string _status = null)
         {
-            this.Text = _title == null ? Globals.Cache.TitleFallback : Globals.Cache.TitleFallback + " - " + _title;
+            this.Text = _status == null ? Globals.Cache.TitleFallback : Globals.Cache.TitleFallback + " - " + _status;
         }
 
         private void LvData_SelectedIndexChanged(object sender, EventArgs e)
@@ -349,7 +349,7 @@ namespace vactrak
                 // Thread handling
                 Globals.ParserQueue = new Thread(new ThreadStart(() =>
                 {
-                    Func<ListViewItem, bool> RunParserThread = (ListViewItem _lvi) =>
+                    void RunParserThread(ListViewItem _lvi)
                     {
                         // Hold the thread if we exceed max thread limit defined by the config
                         while (Globals.RunningThreads >= Globals.Config.maxThreads) Thread.Sleep(500);
@@ -358,12 +358,12 @@ namespace vactrak
                         if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                         {
                            _vta.SetText("Reference error!");
-                            return false;
+                            return;
                         }
 
                         _vta.Parse();
-                        return true;
-                    };
+                        return;
+                    }
 
                     foreach (ListViewItem _lvi in _tmp_acc_list)
                         RunParserThread(_lvi);
@@ -479,7 +479,7 @@ namespace vactrak
             }
 
             FormMain_SetTitle("Logging in...");
-            if (!_vta.Login()) FormMain_SetTitle();
+            if (!_vta.Login(force)) FormMain_SetTitle();
         }
 
         #endregion
@@ -505,14 +505,14 @@ namespace vactrak
 
                 switch (((ToolStripMenuItem)sender).Name)
                 {
-                    case "7days":   _vta.CooldownDelta = DateTime.Now.AddDays(7)           ; break;
-                    case "1day":    _vta.CooldownDelta = DateTime.Now.AddDays(1)           ; break;
-                    case "22hours": _vta.CooldownDelta = DateTime.Now.AddHours(22)         ; break;
-                    case "21hours": _vta.CooldownDelta = DateTime.Now.AddHours(21)         ; break;
-                    case "2hours":  _vta.CooldownDelta = DateTime.Now.AddHours(2)          ; break;
-                    case "1hour":   _vta.CooldownDelta = DateTime.Now.AddHours(1)          ; break;
-                    case "30min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(30)       ; break;
-                    case "15min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(15)       ; break;
+                    case "ddManageCooldown7days":   _vta.CooldownDelta = DateTime.Now.AddDays(7)           ; break;
+                    case "ddManageCooldown1day":    _vta.CooldownDelta = DateTime.Now.AddDays(1)           ; break;
+                    case "ddManageCooldown22hours": _vta.CooldownDelta = DateTime.Now.AddHours(22)         ; break;
+                    case "ddManageCooldown21hours": _vta.CooldownDelta = DateTime.Now.AddHours(21)         ; break;
+                    case "ddManageCooldown2hours":  _vta.CooldownDelta = DateTime.Now.AddHours(2)          ; break;
+                    case "ddManageCooldown1hour":   _vta.CooldownDelta = DateTime.Now.AddHours(1)          ; break;
+                    case "ddManageCooldown30min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(30)       ; break;
+                    case "ddManageCooldown15min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(15)       ; break;
 
                     case "remove":
                     default:
@@ -563,23 +563,23 @@ namespace vactrak
 
             switch(((ToolStripMenuItem)sender).Name)
             {
-                case "cb_cpyUserPass":
+                case "ddManageClipboardUserPass":
                     Clipboard.SetText(relay = ClipFormat(
                         new string[]{ _vta.Username, _vta.Password },
                         new string[]{ "Username",    "Password"    }
                         ) ?? "");
                     break;
 
-                case "cb_cpyURL":
+                case "ddManageClipboardURL":
                     //Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Steam URL: " : "") + "https://steamcommunity.com/" + _vta.SteamURL ?? "null"));
                     Clipboard.SetText(relay = "https://steamcommunity.com/" + _vta.SteamURL ?? "null");
                     break;
 
-                case "cb_cpyNotes":
+                case "ddManageClipboardNotes":
                     Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Notes: " : "") + _vta.Note ?? "null"));
                     break;
 
-                case "cb_cpyAll":
+                case "ddManageClipboardAll":
                     Clipboard.SetText(relay = ClipFormat(
                         new string[] { "https://steamcommunity.com/" + _vta.SteamURL, _vta.Username, _vta.Password, _vta.Name, _vta.Banned.ToString(), _vta.Note },
                         new string[] {                                     "Steam URL",   "Username",    "Password",    "Name",    "Banned",               "Note"}
