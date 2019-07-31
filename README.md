@@ -1,4 +1,4 @@
-# VACTrak#
+# OWL (Overwatch Whitelist)
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Dev</td></tr>
@@ -19,17 +19,23 @@ A multipurpose tool for managing Steam accounts
 * Profile Editor
 * Protection of information (Encryption/Obfuscation + Hashing)
 * Easily import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a>
-* Directly generate accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>
+* Directly import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage
 
-## Configuring VACTrak#
-You can configure VACTrak# through the options form or manually through the <i>config.json</i> file located at the base of VACTrak#.
+## Configuring OWL
+You can configure OWL through the options form or manually through the <i>config.json</i> file located at the base of OWL.
+<p style="color: red;">Warning: Do not manually modify the hashedKey Value</p>
 
 ```json
 {
     "steamPath":"C:/Program Files (x86)/Steam",
     "defaultProfile":"default",
+    "hashedKey":"",
+    "steamParam":"",
     "cooldownRefresh":500,
-    "forceStatus":false
+    "maxThreads":8,
+    "forceStatus":false,
+    "maskPassword":false,
+    "clipboardDetail":true
 }
 ```
 

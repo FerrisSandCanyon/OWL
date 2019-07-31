@@ -55,7 +55,7 @@ namespace vactrak.Forms
             Globals.Config.maskPassword    = cbMask.Checked;
             Globals.Config.clipboardDetail = clipmode;
 
-            if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath))
+            if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath))
             {
                 MessageBox.Show("Failed to save settings!", "Settings", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

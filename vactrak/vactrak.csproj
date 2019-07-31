@@ -73,37 +73,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\VTAccount.cs" />
-    <Compile Include="Class\VTConfig.cs" />
-    <Compile Include="Forms\FormAccount.cs">
+    <Compile Include="Class\Account.cs" />
+    <Compile Include="Class\Config.cs" />
+    <Compile Include="Forms\Account.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAccount.Designer.cs">
-      <DependentUpon>FormAccount.cs</DependentUpon>
+    <Compile Include="Forms\Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormMain.cs">
+    <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <Compile Include="Forms\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSettings.cs">
+    <Compile Include="Forms\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSettings.Designer.cs">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FormAccount.resx">
-      <DependentUpon>FormAccount.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSettings.resx">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -221,6 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\owl.png" />
     <None Include="Resources\edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
