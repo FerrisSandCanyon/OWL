@@ -12,15 +12,15 @@ using System.Windows.Forms;
 
 namespace vactrak.Class
 {
-    public class VTAccount
+    public class Account
     {
 
         // ==============
         // Initialization
         // ==============
 
-        public VTAccount() { }
-        public VTAccount(DateTime _CooldownDelta, string _SteamURL = null, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false)
+        public Account() { }
+        public Account(DateTime _CooldownDelta, string _SteamURL = null, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false)
         {
             SteamURL      = _SteamURL;
             Name          = _Name;
@@ -236,9 +236,9 @@ namespace vactrak.Class
 
 namespace vactrak.Utils
 {
-    public class VTAccount
+    public class Account
     {
-        public static bool Save(ref Dictionary<string, Class.VTAccount> _accountList, string _profilePath)
+        public static bool Save(ref Dictionary<string, Class.Account> _accountList, string _profilePath)
         {
             try
             {
@@ -256,7 +256,7 @@ namespace vactrak.Utils
             }
         }
 
-        public static Dictionary<string, Class.VTAccount> Load(string _profilePath)
+        public static Dictionary<string, Class.Account> Load(string _profilePath)
         {
             try
             {
@@ -266,7 +266,7 @@ namespace vactrak.Utils
                     content = _sr.ReadToEnd();
                     _sr.Close();
                 }
-                return JsonConvert.DeserializeObject<Dictionary<string, Class.VTAccount>>((content));
+                return JsonConvert.DeserializeObject<Dictionary<string, Class.Account>>((content));
             }
             catch (Exception ex)
             {
@@ -275,7 +275,7 @@ namespace vactrak.Utils
             }
         }
 
-        public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.VTAccount _vta)
+        public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.Account _vta)
         {
             _vta.LVI = (new ListViewItem(_uniqueID));
             _vta.LVI.SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note, "" });

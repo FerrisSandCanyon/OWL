@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace vactrak.Class
 {
-    public class CConfig
+    public class Config
     {
         public string steamPath        = "C:/Program Files (x86)/Steam",   // Path to steam directory
                       defaultProfile   = "default",                        // Default profile to be loaded
@@ -23,9 +23,9 @@ namespace vactrak.Class
 
 namespace vactrak.Utils
 {
-    public class VTConfig
+    public class Config
     {
-        public static bool Save(ref Class.CConfig _configClass, string _configPath)
+        public static bool Save(ref Class.Config _configClass, string _configPath)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace vactrak.Utils
             }
         }
 
-        public static Class.CConfig Load(string _configPath)
+        public static Class.Config Load(string _configPath)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace vactrak.Utils
                     content = _sr.ReadToEnd();
                     _sr.Close();
                 }
-                return JsonConvert.DeserializeObject<Class.CConfig>((content));
+                return JsonConvert.DeserializeObject<Class.Config>((content));
             }
             catch (Exception ex)
             {

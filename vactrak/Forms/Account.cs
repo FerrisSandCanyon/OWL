@@ -3,20 +3,20 @@ using System.Windows.Forms;
 
 namespace vactrak.Forms
 {
-    public partial class FormAccount : Form
+    public partial class Account : Form
     {
         // References to our data list view for adding new accounts
         ListView        lvData = null;
 
         // References to our account for editing accounts
-        Class.CAccount vta    = null;
+        Class.Account vta    = null;
 
         // Mode / usage of this form instance
         // false = Add account
         // true  = Edit account
         bool         mode   = false;
 
-        public FormAccount(ref ListView _lvData)
+        public Account(ref ListView _lvData)
         {
             lvData = _lvData;
             mode   = false;
@@ -24,7 +24,7 @@ namespace vactrak.Forms
             InitializeComponent();
         }
 
-        public FormAccount(ref Class.CAccount _vta)
+        public Account(ref Class.Account _vta)
         {
             vta    = _vta;
             mode   = true;
@@ -125,11 +125,11 @@ namespace vactrak.Forms
                 } while (Globals.CurrentProfile.ContainsKey(uniqueId));
 
                 // Create the new account
-                Class.CAccount _vta = new Class.CAccount(DateTime.MinValue, tbURL.Text, "", tbUser.Text, tbPass.Text, tbNote.Text, false);
+                Class.Account _vta = new Class.Account(DateTime.MinValue, tbURL.Text, "", tbUser.Text, tbPass.Text, tbNote.Text, false);
 
                 // Add it
                 Globals.CurrentProfile.Add(uniqueId, _vta);
-                Utils.VTAccount.AddToTable(ref lvData, uniqueId, ref _vta);
+                Utils.Account.AddToTable(ref lvData, uniqueId, ref _vta);
 
                 // Finish
                 Globals.Cache.AddAnotherFlag = true;

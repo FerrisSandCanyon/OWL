@@ -34,12 +34,12 @@ namespace vactrak
             // Initialize config
             if (File.Exists(Globals.Info.cfgPath))
             {
-                Globals.Config = Utils.VTConfig.Load(Globals.Info.cfgPath);
+                Globals.Config = Utils.Config.Load(Globals.Info.cfgPath);
             }
             else
             {
                 MessageBox.Show("VACTrak couldn't find any existing config. default config will be generated and used in this session", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Globals.Config = new Class.CConfig();
+                Globals.Config = new Class.Config();
                 shouldResave = true;
             }
 
@@ -86,7 +86,7 @@ namespace vactrak
             // Resave the config if it was automatically modified due to user errors
             if (shouldResave)
             {
-                if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath))
+                if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath))
                     return false;
             }
 

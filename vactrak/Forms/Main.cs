@@ -10,7 +10,7 @@ namespace vactrak
     public partial class FormMain : Form
     {
 
-        public Class.CAccount VTASelectedAccount = null; // Reference to the currently selected account in lvData
+        public Class.Account VTASelectedAccount = null; // Reference to the currently selected account in lvData
 
         public FormMain()
         {
@@ -47,7 +47,7 @@ namespace vactrak
 
                     if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0) continue;
 
-                    foreach (KeyValuePair<string, Class.CAccount> _account in Globals.CurrentProfile)
+                    foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile)
                     {
                         if (!IsAlive()) break;
                         _account.Value.DisplayCooldown();
@@ -84,7 +84,7 @@ namespace vactrak
 
         private void BtnSettings_Click(object sender, EventArgs e)
         {
-            using (Forms.FormSettings _fs = new Forms.FormSettings())
+            using (Forms.Settings _fs = new Forms.Settings())
             {
                 _fs.ShowDialog();
                 _fs.Dispose();
@@ -108,16 +108,16 @@ namespace vactrak
             }
 
             // Load the profile
-            Globals.CurrentProfile = Utils.VTAccount.Load(_profilePath);
+            Globals.CurrentProfile = Utils.Account.Load(_profilePath);
             if (Globals.CurrentProfile == null) Application.Exit();
 
             lvData.Items.Clear();
 
             // Load all the accounts to our table
-            foreach (KeyValuePair<string, Class.CAccount> _data in Globals.CurrentProfile)
+            foreach (KeyValuePair<string, Class.Account> _data in Globals.CurrentProfile)
             {
-                Class.CAccount _vta = _data.Value;
-                Utils.VTAccount.AddToTable(ref lvData, _data.Key, ref _vta);
+                Class.Account _vta = _data.Value;
+                Utils.Account.AddToTable(ref lvData, _data.Key, ref _vta);
             }
         }
 
@@ -147,8 +147,8 @@ namespace vactrak
             // Create a default profile if there's no profile
             else
             {
-                Globals.CurrentProfile = new Dictionary<string, Class.CAccount> { };
-                if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
+                Globals.CurrentProfile = new Dictionary<string, Class.Account> { };
+                if (!Utils.Account.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
                 CbProfile_LoadProfileDirectory(); // just do recursion cause lazyyy
             }
         }
@@ -187,8 +187,8 @@ namespace vactrak
             CbProfile_LoadProfileDirectory();
 
             // Create the actual profile
-            Globals.CurrentProfile = new Dictionary<string, Class.CAccount> { };
-            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, profilePath)) Application.Exit();
+            Globals.CurrentProfile = new Dictionary<string, Class.Account> { };
+            if (!Utils.Account.Save(ref Globals.CurrentProfile, profilePath)) Application.Exit();
 
             // Load and set the newly created profile to our current one
             int profileIndex = cbProfile.FindStringExact(profileName);
@@ -230,7 +230,7 @@ namespace vactrak
         private void BtnProfileSave_Click(object sender, EventArgs e)
         {
             if (cbProfile.Items.Count < 1) return;
-            if (!Utils.VTAccount.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json")) Application.Exit();
+            if (!Utils.Account.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json")) Application.Exit();
             MessageBox.Show("Profile has been saved!", "Save profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -238,7 +238,7 @@ namespace vactrak
         private void SetAsDefaultProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Globals.Config.defaultProfile = cbProfile.Items[cbProfile.SelectedIndex].ToString();
-            if (!Utils.VTConfig.Save(ref Globals.Config, Globals.Info.cfgPath)) Application.Exit();
+            if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath)) Application.Exit();
             MessageBox.Show("Current profile has been set as the default profile!", "Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -251,7 +251,7 @@ namespace vactrak
         {
             do
             {
-                using (Forms.FormAccount _fad = new Forms.FormAccount(ref lvData))
+                using (Forms.Account _fad = new Forms.Account(ref lvData))
                 {
                     _fad.ShowDialog();
                     _fad.Dispose();
@@ -271,7 +271,7 @@ namespace vactrak
             foreach (ListViewItem _lvi in lvData.SelectedItems)
             {
                 // Find the account in our profile dictionary
-                Class.CAccount _vta;
+                Class.Account _vta;
                 if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                 {
                     MessageBox.Show("Failed to obtain account data for steam url: " + _lvi.SubItems[1].Text + " with a unique id: " + _lvi.SubItems[0].Text + ". \n\nThis account has been skipped.", "Edit account", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -284,7 +284,7 @@ namespace vactrak
                     continue;
                 }
 
-                using (Forms.FormAccount _fad = new Forms.FormAccount(ref _vta))
+                using (Forms.Account _fad = new Forms.Account(ref _vta))
                 {
                     _fad.ShowDialog();
                     _fad.Dispose();
@@ -307,7 +307,7 @@ namespace vactrak
                     Debug.WriteLine("Deleting account id: " + _lvi.SubItems[0].Text);
                 #endif
 
-                Class.CAccount _vta;
+                Class.Account _vta;
                 if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                 {
                     MessageBox.Show("Failed to obtain account data for unique id: " + _lvi.SubItems[0].Text + ". \n\nThis account has been skipped.", "Remove account", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -354,7 +354,7 @@ namespace vactrak
                         // Hold the thread if we exceed max thread limit defined by the config
                         while (Globals.RunningThreads >= Globals.Config.maxThreads) Thread.Sleep(500);
 
-                        Class.CAccount _vta;
+                        Class.Account _vta;
                         if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                         {
                            _vta.SetText("Reference error!");
@@ -388,7 +388,7 @@ namespace vactrak
 
             Func<ListViewItem, bool> AbortParserThread = (ListViewItem _lvi) =>
             {
-                Class.CAccount _vta;
+                Class.Account _vta;
                 if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                 {
                     _lvi.SubItems[7].Text = "Reference error!";
@@ -471,7 +471,7 @@ namespace vactrak
                 return;
             }
 
-            Class.CAccount _vta;
+            Class.Account _vta;
             if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
             {
                 MessageBox.Show("Reference error!", "Login Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -496,7 +496,7 @@ namespace vactrak
 
             foreach (ListViewItem _lvi in lvData.SelectedItems)
             {
-                Class.CAccount _vta;
+                Class.Account _vta;
                 if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
                 {
                     MessageBox.Show("Reference error!", "Add Cooldown", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -552,7 +552,7 @@ namespace vactrak
                 return result;
             };
 
-            Class.CAccount _vta;
+            Class.Account _vta;
             if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
             {
                 MessageBox.Show("Reference error!", "Copy to clipboard", MessageBoxButtons.OK, MessageBoxIcon.Error);

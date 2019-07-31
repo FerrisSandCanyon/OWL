@@ -4,12 +4,12 @@ using System.Windows.Forms;
 
 namespace vactrak.Forms
 {
-    public partial class FormSettings : Form
+    public partial class Settings : Form
     {
 
         private bool clipmode = false;
 
-        public FormSettings()
+        public Settings()
         {
             InitializeComponent();
         }

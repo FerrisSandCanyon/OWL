@@ -5,8 +5,8 @@ namespace vactrak
 {
     public static class Globals
     {
-        public static Class.CConfig                       Config            = null; // Global VTConfig class
-        public static Dictionary<string, Class.CAccount>  CurrentProfile    = null; // Global Dictionary of all the account instances <special id, account class>
+        public static Class.Config                        Config            = null; // Global VTConfig class
+        public static Dictionary<string, Class.Account>   CurrentProfile    = null; // Global Dictionary of all the account instances <special id, account class>
         public static FormMain                            hFormMain         = null; // Handle to our main form for access and invoking
         public static Thread                              ParserQueue       = null; // Handle to the parser queue thread that manages all the running parser threads
         public static Thread                              hMainThread       = null; // Handle to the main Thread
