@@ -4,7 +4,7 @@ using System.IO;
 using System.Diagnostics;
 using Newtonsoft.Json;
 
-namespace vactrak
+namespace owl
 {
     static class Program
     {
@@ -38,7 +38,7 @@ namespace vactrak
             }
             else
             {
-                MessageBox.Show("VACTrak couldn't find any existing config. default config will be generated and used in this session", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("OWL couldn't find any existing config. default config will be generated and used in this session", "Config initialization", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Globals.Config = new Class.Config();
                 shouldResave = true;
             }

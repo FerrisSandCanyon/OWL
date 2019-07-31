@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{141AF9BE-6B9C-46D7-86BE-7155EEB205C8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>vactrak</RootNamespace>
-    <AssemblyName>vactrak</AssemblyName>
+    <RootNamespace>owl</RootNamespace>
+    <AssemblyName>owl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -161,9 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\exclamation-mark16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\info.png" />

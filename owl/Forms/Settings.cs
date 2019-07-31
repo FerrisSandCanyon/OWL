@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace vactrak.Forms
+namespace owl.Forms
 {
     public partial class Settings : Form
     {

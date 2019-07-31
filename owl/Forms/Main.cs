@@ -5,7 +5,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 
-namespace vactrak
+namespace owl
 {
     public partial class FormMain : Form
     {
@@ -430,7 +430,7 @@ namespace vactrak
             MessageBox.Show(
                 "Normal Parsing uses simple HttpClient to obtain the HTML of the account's steam page then parses for the information it needs, This is done because its faster since the information that is needed is already public.\n\n" +
                 "Full Parsing on the other hand utilizes steam api and sometimes an actual login since some information aren't displayed publicly, therefore slower."
-               , "VACTrak# Account Parsing", MessageBoxButtons.OK, MessageBoxIcon.Information
+               , "OWL Account Parsing", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
         }
 
@@ -438,14 +438,13 @@ namespace vactrak
         {
             MessageBox.Show(
 
-                "VACTrak# version " + Globals.Info.verStr + "\n" +
+                "OWL version " + Globals.Info.verStr + "\n" +
                 "A multipurpose tool for managing Steam accounts.\n\n" +
-                "Developed by: FerrisSandCanyon\n\n" +
-                "https://github.com/FerrisSandCanyon/vactrak\n\n" +
+                "https://github.com/FerrisSandCanyon/OWL\n\n" +
                 "* You can paste contents to the textbox in the accounts form using double click.\n" +
                 "* Steam URL's are automatically sanitized."
 
-               , "VACTrak#", MessageBoxButtons.OK, MessageBoxIcon.Information
+               , "OWL (Overwatch Whitelist)", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
         }
 

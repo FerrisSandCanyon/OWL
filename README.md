@@ -23,7 +23,7 @@ A multipurpose tool for managing Steam accounts
 
 ## Configuring OWL
 You can configure OWL through the options form or manually through the <i>config.json</i> file located at the base of OWL.
-<p style="color: red;">Warning: Do not manually modify the hashedKey Value</p>
+<font color="red"><b>Warning: Do not manually modify the hashedKey Value</b></font>
 
 ```json
 {

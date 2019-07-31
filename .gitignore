@@ -1,4 +1,6 @@
 .vs/
-vactrak/bin/
-vactrak/obj/
+owl/bin/
+owl/obj/
+*.json
+*.exe
 packages/

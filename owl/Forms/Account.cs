@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace vactrak.Forms
+namespace owl.Forms
 {
     public partial class Account : Form
     {
@@ -33,7 +33,7 @@ namespace vactrak.Forms
 
         private void FormAddAccount_Load(object sender, EventArgs e)
         {
-            this.btnApply.BackgroundImage = mode ? global::vactrak.Properties.Resources.edit : global::vactrak.Properties.Resources.plus;
+            this.btnApply.BackgroundImage = mode ? global::owl.Properties.Resources.edit : global::owl.Properties.Resources.plus;
             this.Text                     = mode ? "Edit Account" : "Add Account";
             this.TopMost                  = cbTop.Checked = Globals.Cache.OnTop;
             cbAdd.Enabled                 = !mode;

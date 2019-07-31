@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace vactrak.Class
+namespace owl.Class
 {
     public class Account
     {
@@ -112,7 +112,7 @@ namespace vactrak.Class
             Process[] _temp_proc_list;
             while ((_temp_proc_list = Process.GetProcessesByName("Steam")).Count() > 0)
             {
-                if (forceKill || MessageBox.Show("VACTrak# has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (forceKill || MessageBox.Show("OWL has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     foreach (Process steam in _temp_proc_list) steam.Kill();
                 else
                     return false;
@@ -234,7 +234,7 @@ namespace vactrak.Class
     }
 }
 
-namespace vactrak.Utils
+namespace owl.Utils
 {
     public class Account
     {

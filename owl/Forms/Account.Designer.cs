@@ -1,4 +1,4 @@
-﻿namespace vactrak.Forms
+﻿namespace owl.Forms
 {
     partial class Account
     {
@@ -146,7 +146,7 @@
             // 
             // btnApply
             // 
-            this.btnApply.BackgroundImage = global::vactrak.Properties.Resources.plus;
+            this.btnApply.BackgroundImage = global::owl.Properties.Resources.plus;
             this.btnApply.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnApply.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnApply.FlatAppearance.BorderSize = 0;

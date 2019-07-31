@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace vactrak.Class
+namespace owl.Class
 {
     public class Config
     {
@@ -21,7 +21,7 @@ namespace vactrak.Class
     }
 }
 
-namespace vactrak.Utils
+namespace owl.Utils
 {
     public class Config
     {

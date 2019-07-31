@@ -1,4 +1,4 @@
-﻿namespace vactrak
+﻿namespace owl
 {
     partial class FormMain
     {
@@ -273,7 +273,7 @@
             // 
             // ddAccountAdd
             // 
-            this.ddAccountAdd.Image = global::vactrak.Properties.Resources.plus;
+            this.ddAccountAdd.Image = global::owl.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
             this.ddAccountAdd.Size = new System.Drawing.Size(117, 22);
             this.ddAccountAdd.Text = "Add";
@@ -281,7 +281,7 @@
             // 
             // ddAccountEdit
             // 
-            this.ddAccountEdit.Image = global::vactrak.Properties.Resources.edit;
+            this.ddAccountEdit.Image = global::owl.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
             this.ddAccountEdit.Size = new System.Drawing.Size(117, 22);
             this.ddAccountEdit.Text = "Edit";
@@ -289,7 +289,7 @@
             // 
             // ddAccountRemove
             // 
-            this.ddAccountRemove.Image = global::vactrak.Properties.Resources.minus;
+            this.ddAccountRemove.Image = global::owl.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
             this.ddAccountRemove.Size = new System.Drawing.Size(117, 22);
             this.ddAccountRemove.Text = "Remove";
@@ -306,7 +306,7 @@
             // 
             // ddAccountImportSAC
             // 
-            this.ddAccountImportSAC.Image = global::vactrak.Properties.Resources.steam_logo;
+            this.ddAccountImportSAC.Image = global::owl.Properties.Resources.steam_logo;
             this.ddAccountImportSAC.Name = "ddAccountImportSAC";
             this.ddAccountImportSAC.Size = new System.Drawing.Size(170, 22);
             this.ddAccountImportSAC.Text = "EarsKilla\'s SAC";
@@ -316,7 +316,7 @@
             this.ddAccountImportSAG.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.firefoxToolStripMenuItem,
             this.googleChromeToolStripMenuItem});
-            this.ddAccountImportSAG.Image = global::vactrak.Properties.Resources.cathook;
+            this.ddAccountImportSAG.Image = global::owl.Properties.Resources.cathook;
             this.ddAccountImportSAG.Name = "ddAccountImportSAG";
             this.ddAccountImportSAG.Size = new System.Drawing.Size(170, 22);
             this.ddAccountImportSAG.Text = "SAG Local Storage";
@@ -360,7 +360,7 @@
             this.ddManageObtainQueueAbort,
             this.toolStripSeparator9,
             this.ddManageObtainInfo});
-            this.ddManageObtain.Image = global::vactrak.Properties.Resources.refresh;
+            this.ddManageObtain.Image = global::owl.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
             this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
             this.ddManageObtain.Text = "Obtain Info";
@@ -425,7 +425,7 @@
             this.ddManageLogin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddManageLoginNormal,
             this.ddManageLoginForce});
-            this.ddManageLogin.Image = global::vactrak.Properties.Resources.keyboard;
+            this.ddManageLogin.Image = global::owl.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
             this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
             this.ddManageLogin.Text = "Login";
@@ -451,7 +451,7 @@
             this.ddManageClipboardURL,
             this.ddManageClipboardNotes,
             this.ddManageClipboardAll});
-            this.ddManageClipboard.Image = global::vactrak.Properties.Resources.clipboard;
+            this.ddManageClipboard.Image = global::owl.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
             this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
             this.ddManageClipboard.Text = "Clipboard";
@@ -497,7 +497,7 @@
             this.ddManageCooldown15min,
             this.ddManageCooldownRemove,
             this.ddManageCooldownCustom});
-            this.ddManageCooldown.Image = global::vactrak.Properties.Resources.alarm_clock;
+            this.ddManageCooldown.Image = global::owl.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
             this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
             this.ddManageCooldown.Text = "Cooldown";
@@ -560,7 +560,7 @@
             // 
             // ddManageCooldownRemove
             // 
-            this.ddManageCooldownRemove.Image = global::vactrak.Properties.Resources.minus;
+            this.ddManageCooldownRemove.Image = global::owl.Properties.Resources.minus;
             this.ddManageCooldownRemove.Name = "ddManageCooldownRemove";
             this.ddManageCooldownRemove.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldownRemove.Text = "Remove";
@@ -569,7 +569,7 @@
             // ddManageCooldownCustom
             // 
             this.ddManageCooldownCustom.BackColor = System.Drawing.SystemColors.Control;
-            this.ddManageCooldownCustom.Image = global::vactrak.Properties.Resources.plus;
+            this.ddManageCooldownCustom.Image = global::owl.Properties.Resources.plus;
             this.ddManageCooldownCustom.Name = "ddManageCooldownCustom";
             this.ddManageCooldownCustom.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldownCustom.Text = "Custom";
@@ -595,7 +595,7 @@
             // 
             // addProfileToolStripMenuItem
             // 
-            this.addProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.plus;
+            this.addProfileToolStripMenuItem.Image = global::owl.Properties.Resources.plus;
             this.addProfileToolStripMenuItem.Name = "addProfileToolStripMenuItem";
             this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.addProfileToolStripMenuItem.Text = "Add Profile";
@@ -603,7 +603,7 @@
             // 
             // removeProfileToolStripMenuItem
             // 
-            this.removeProfileToolStripMenuItem.Image = global::vactrak.Properties.Resources.minus;
+            this.removeProfileToolStripMenuItem.Image = global::owl.Properties.Resources.minus;
             this.removeProfileToolStripMenuItem.Name = "removeProfileToolStripMenuItem";
             this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.removeProfileToolStripMenuItem.Text = "Remove Profile";
@@ -642,7 +642,7 @@
             // btnProfileSave
             // 
             this.btnProfileSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnProfileSave.Image = global::vactrak.Properties.Resources.save;
+            this.btnProfileSave.Image = global::owl.Properties.Resources.save;
             this.btnProfileSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnProfileSave.Name = "btnProfileSave";
             this.btnProfileSave.Size = new System.Drawing.Size(23, 22);
@@ -656,7 +656,7 @@
             this.ddUtilsDump,
             this.ddProtect});
             this.ddUtils.ForeColor = System.Drawing.Color.Black;
-            this.ddUtils.Image = global::vactrak.Properties.Resources.tools;
+            this.ddUtils.Image = global::owl.Properties.Resources.tools;
             this.ddUtils.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddUtils.Name = "ddUtils";
             this.ddUtils.Size = new System.Drawing.Size(59, 22);
@@ -720,7 +720,7 @@
             // btnSettings
             // 
             this.btnSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSettings.Image = global::vactrak.Properties.Resources.settings;
+            this.btnSettings.Image = global::owl.Properties.Resources.settings;
             this.btnSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(23, 22);
@@ -730,7 +730,7 @@
             // btnAbout
             // 
             this.btnAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAbout.Image = global::vactrak.Properties.Resources.info;
+            this.btnAbout.Image = global::owl.Properties.Resources.info;
             this.btnAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(23, 22);

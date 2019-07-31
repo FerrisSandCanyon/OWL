@@ -1,4 +1,4 @@
-﻿namespace vactrak.Forms
+﻿namespace owl.Forms
 {
     partial class Settings
     {
@@ -170,7 +170,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.BackgroundImage = global::vactrak.Properties.Resources.save;
+            this.btnSave.BackgroundImage = global::owl.Properties.Resources.save;
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatAppearance.BorderSize = 0;
