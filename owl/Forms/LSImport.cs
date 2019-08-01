@@ -13,7 +13,7 @@ namespace owl.Forms
 {
     public partial class LSImport : Form
     {
-        // SAG Account class template for serialization
+        // SAG Account class template for de/serialization
         public class SAGAccount
         {
             public string login, password, email, steamid;
@@ -53,7 +53,7 @@ namespace owl.Forms
                     {
                         import_ff_dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Mozilla\Firefox\Profiles");
 
-                        // Check if it import_ff_dir is pointing to a valid directory
+                        // Check if import_ff_dir is pointing to a valid directory
                         if (!Directory.Exists(import_ff_dir))
                         {
                             MessageBox.Show($"Firefox profile folder not found!\nPath: {import_ff_dir}\n\nPlease browse for the correct Firefox profile directory.", "Local Storage Import", MessageBoxButtons.OK, MessageBoxIcon.Error);
