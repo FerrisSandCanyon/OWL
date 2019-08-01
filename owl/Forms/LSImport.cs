@@ -89,6 +89,8 @@ namespace owl.Forms
                                 _lvi.SubItems.AddRange(new string[] { _account.login, _account.password });
                                 lvImports.Items.Add(_lvi);
                             }
+
+                            _sql_conn.Close();
                         }
 
                         break;
