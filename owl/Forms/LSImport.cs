@@ -79,11 +79,11 @@ namespace owl.Forms
                             _sql_conn.Open();
 
                             // Read and parse
-                            SQLiteDataReader reader = (new SQLiteCommand("SELECT * FROM 'webappsstore2' WHERE key = 'genned_account'", _sql_conn).ExecuteReader());
-                            reader.Read();
-                            string _account_json = reader["value"].ToString();
+                            SQLiteDataReader _reader = (new SQLiteCommand("SELECT * FROM 'webappsstore2' WHERE key = 'genned_account'", _sql_conn).ExecuteReader());
+                            _reader.Read();
 
-                            foreach (SAGAccount _account in JsonConvert.DeserializeObject<List<SAGAccount>>(_account_json))
+                            // Add it to the table
+                            foreach (SAGAccount _account in JsonConvert.DeserializeObject<List<SAGAccount>>(_reader["value"].ToString()))
                             {
                                 ListViewItem _lvi = new ListViewItem("profile/" + _account.steamid);
                                 _lvi.SubItems.AddRange(new string[] { _account.login, _account.password });
