@@ -70,7 +70,7 @@ namespace owl
             {
                 MessageBox.Show($"Steam folder: \"{Globals.Config.steamPath}\" doesnt exist.\n\nPlease select a correct Steam directory.", "Config warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                using (var fbd = new FolderBrowserDialog())
+                using (FolderBrowserDialog fbd = new FolderBrowserDialog())
                 {
                     while (!File.Exists(Path.Combine(fbd.SelectedPath, "\\Steam.exe")))
                     {

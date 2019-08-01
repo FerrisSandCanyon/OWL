@@ -592,6 +592,15 @@ namespace owl
             MessageBox.Show(relay, "Copied to clipboard!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void Event_LSImport(object sender, EventArgs e)
+        {
+            using (Forms.LSImport _lsi = new Forms.LSImport(((ToolStripMenuItem)sender).Name))
+            {
+                _lsi.ShowDialog();
+                _lsi.Dispose();
+            }
+        }
+
         #endregion
     }
 }

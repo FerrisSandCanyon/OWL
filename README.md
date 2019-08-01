@@ -22,8 +22,8 @@ A multipurpose tool for managing Steam accounts
 * Directly import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage
 
 ## Configuring OWL
-You can configure OWL through the options form or manually through the <i>config.json</i> file located at the base of OWL.
-<font color="red"><b>Warning: Do not manually modify the hashedKey Value</b></font>
+You can configure OWL through the settings form or manually through the <i>config.json</i> file located at the base of OWL.
+<b>Warning: Do not manually modify the hashedKey Value</b>
 
 ```json
 {
