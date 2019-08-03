@@ -279,5 +279,20 @@ namespace owl.Utils
             _lv.Items.Add(_vta.LVI);
         }
 
+        public static string MakeUniqueKey(uint length = 10)
+        {
+            // Generate a unique id for the json
+            Random _rnd = new Random();
+            string uniqueId = "";
+
+            do
+            {
+                uniqueId = "";
+                for (int x = 1; x < length; x++) uniqueId += Globals.Charset[_rnd.Next(0, Globals.Charset.Length - 1)];
+            } while (Globals.CurrentProfile.ContainsKey(uniqueId));
+
+            return uniqueId;
+        }
+
     }
 }

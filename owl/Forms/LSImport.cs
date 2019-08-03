@@ -22,10 +22,13 @@ namespace owl.Forms
         // Dictates the import source
         // 0 = Firefox
         // 1 = Google Chrome
-        private int    import_mode    = -1;
-        private string  import_ff_dir = null;
+        private int      import_mode   = -1;
+        private string   import_ff_dir = null;
 
-        public LSImport(string sender_name)
+        // Reference to the main list view on the main form
+        private ListView lvRef         = null;
+
+        public LSImport(string sender_name, ref ListView _lvRef)
         {
             switch (sender_name)
             {
@@ -38,6 +41,8 @@ namespace owl.Forms
                     return;
             }
 
+            lvRef = _lvRef;
+
             InitializeComponent();
         }
 
@@ -47,6 +52,32 @@ namespace owl.Forms
             // Initialization
             // ==============
 
+            Import_ProperCall();
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            Import_ProperCall();
+        }
+
+        private void BtnImport_Click(object sender, EventArgs e)
+        {
+            Class.Account _acc;
+            foreach (ListViewItem _lvi in lvImports.CheckedItems)
+            {
+                string uniqueId = Utils.Account.MakeUniqueKey();
+                _acc = new Class.Account(DateTime.MinValue, _lvi.SubItems[0].Text, "", _lvi.SubItems[1].Text, _lvi.SubItems[2].Text, "", false);
+                Globals.CurrentProfile.Add(uniqueId, _acc);
+                Utils.Account.AddToTable(ref lvRef, uniqueId, ref _acc);
+            }
+
+            this.Close();
+        }
+
+        #region Browser Local Storage Import
+
+        private void Import_ProperCall()
+        {
             switch (import_mode)
             {
                 case 0: // Firefox
@@ -57,13 +88,6 @@ namespace owl.Forms
                     break;
             }
         }
-
-        private void BtnRefresh_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        #region Browser Local Storage Import
 
         private void Import_FireFox()
         {
@@ -106,7 +130,7 @@ namespace owl.Forms
                     // Check if we already imported that account | LINQ is slow but who cares? not like this software requires fast performance
                     if (Globals.CurrentProfile.Values.FirstOrDefault(x => x.Username == _account.login) != null) continue;
 
-                    ListViewItem _lvi = new ListViewItem("profile/" + _account.steamid);
+                    ListViewItem _lvi = new ListViewItem("profiles/" + _account.steamid);
                     _lvi.SubItems.AddRange(new string[] { _account.login, _account.password });
                     lvImports.Items.Add(_lvi);
                 }

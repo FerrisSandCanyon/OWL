@@ -115,14 +115,7 @@ namespace owl.Forms
             // Add account
             else
             {
-                // Generate a unique id for the json
-                Random _rnd = new Random();
-                string uniqueId = "";
-                do
-                {
-                    uniqueId = "";
-                    for (int x = 1; x < 11; x++) uniqueId += Globals.Charset[_rnd.Next(0, Globals.Charset.Length - 1)];
-                } while (Globals.CurrentProfile.ContainsKey(uniqueId));
+                string uniqueId = Utils.Account.MakeUniqueKey();
 
                 // Create the new account
                 Class.Account _vta = new Class.Account(DateTime.MinValue, tbURL.Text, "", tbUser.Text, tbPass.Text, tbNote.Text, false);

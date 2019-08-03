@@ -594,7 +594,7 @@ namespace owl
 
         private void Event_LSImport(object sender, EventArgs e)
         {
-            using (Forms.LSImport _lsi = new Forms.LSImport(((ToolStripMenuItem)sender).Name))
+            using (Forms.LSImport _lsi = new Forms.LSImport(((ToolStripMenuItem)sender).Name, ref lvData))
             {
                 _lsi.ShowDialog();
                 _lsi.Dispose();
