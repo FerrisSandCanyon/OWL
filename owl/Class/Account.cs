@@ -204,30 +204,28 @@ namespace owl.Class
         // Defaults to 7 to set status text
         public bool SetText(string status, int index = 7)
         {
-            if (this.LVI == null) return false;
-
-            if (this.LVI.ListView.InvokeRequired)
+            try
             {
-                if (Globals.hMainThread == null && !Globals.hMainThread.IsAlive) return false;
+                if (this.LVI == null) return false;
 
-                try
+                if (this.LVI.ListView.InvokeRequired)
                 {
+                    if (Globals.hMainThread == null && !Globals.hMainThread.IsAlive) return false;
                     this.LVI.ListView.Invoke(new Action(() => { this.LVI.SubItems[index].Text = status; }));
                     return true;
                 }
-                catch(Exception ex)
+                else
                 {
-                    #if DEBUG
-                        Debug.WriteLine("STI Exception: " + ex + "\nMain Thread alive? (Obv not): " + Globals.hMainThread.IsAlive.ToString());
-                    #endif
-
-                    return false;
+                    this.LVI.SubItems[index].Text = status;
+                    return true;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                this.LVI.SubItems[index].Text = status;
-                return true;
+                #if DEBUG
+                Debug.WriteLine("STI Exception: " + ex + "\nMain Thread alive? (Obv not): " + Globals.hMainThread.IsAlive.ToString());
+                #endif
+                return false;
             }
         }
     }

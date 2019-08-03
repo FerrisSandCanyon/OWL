@@ -93,7 +93,7 @@ namespace owl.Forms
                             foreach (SAGAccount _account in JsonConvert.DeserializeObject<List<SAGAccount>>(_reader["value"].ToString()))
                             {
                                 // Check if we already imported that account | LINQ is slow but who cares? not like this software requires fast performance
-                                if (Globals.CurrentProfile.Values.Where(x => x.Username == _account.login).Count() != 0) continue;
+                                if (Globals.CurrentProfile.Values.FirstOrDefault(x => x.Username == _account.login) != null) continue;
 
                                 ListViewItem _lvi = new ListViewItem("profile/" + _account.steamid);
                                 _lvi.SubItems.AddRange(new string[] { _account.login, _account.password });
