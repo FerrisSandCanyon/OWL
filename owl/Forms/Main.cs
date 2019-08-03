@@ -45,13 +45,17 @@ namespace owl
                 {
                     Thread.Sleep(Globals.Config.cooldownRefresh);
 
-                    if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0) continue;
-
-                    foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile)
+                    try
                     {
-                        if (!IsAlive()) break;
-                        _account.Value.DisplayCooldown();
+                        if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0) continue;
+
+                        foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile)
+                        {
+                            if (!IsAlive()) break;
+                            _account.Value.DisplayCooldown();
+                        }
                     }
+                    catch { }
                 }
             }
             )).Start();
