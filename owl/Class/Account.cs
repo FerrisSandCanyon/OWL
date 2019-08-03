@@ -119,10 +119,9 @@ namespace owl.Class
 
                 Thread.Sleep(800); // lazy
             }
-
+            
             new Thread(new ThreadStart(() =>
             {
-                // TODO: Add user option to add custom steam parameters
                 Process.Start(Globals.Config.steamPath + "/Steam.exe", $"-login \"{this.Username}\" \"{this.Password}\" {Globals.Config.steamParam}");
                 Globals.hFormMain.Invoke(new Action(() => { Globals.hFormMain.FormMain_SetTitle(); }));
             }

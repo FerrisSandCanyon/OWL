@@ -423,7 +423,7 @@ namespace owl
 
         #endregion
 
-        #region User Information
+        #region Info Pop-Up
 
         private void DdManageObtainInfo_Click(object sender, EventArgs e)
         {

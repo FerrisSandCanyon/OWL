@@ -25,6 +25,9 @@ namespace owl.Forms
         private int    import_mode    = -1;
         private string  import_ff_dir = null;
 
+        // Cached list of existing username for efficiency
+        private List<string> CachedExistingUser = new List<string> { };
+
         public LSImport(string sender_name)
         {
             switch (sender_name)
@@ -37,6 +40,10 @@ namespace owl.Forms
                     this.Close();
                     return;
             }
+
+            // Initialize the list of existing user
+            foreach (KeyValuePair<string, Class.Account> _value in Globals.CurrentProfile)
+                CachedExistingUser.Add(_value.Value.Username);
 
             InitializeComponent();
         }
@@ -85,10 +92,15 @@ namespace owl.Forms
                             // Add it to the table
                             foreach (SAGAccount _account in JsonConvert.DeserializeObject<List<SAGAccount>>(_reader["value"].ToString()))
                             {
+                                // Check if we already imported that account | LINQ is slow but who cares? not like this software requires fast performance
+                                if (Globals.CurrentProfile.Values.Where(x => x.Username == _account.login).Count() != 0) continue;
+
                                 ListViewItem _lvi = new ListViewItem("profile/" + _account.steamid);
                                 _lvi.SubItems.AddRange(new string[] { _account.login, _account.password });
                                 lvImports.Items.Add(_lvi);
                             }
+
+                            
 
                             _sql_conn.Close();
                         }
