@@ -72,7 +72,7 @@ namespace owl
 
                 using (FolderBrowserDialog fbd = new FolderBrowserDialog())
                 {
-                    while (!File.Exists(Path.Combine(fbd.SelectedPath, "\\Steam.exe")))
+                    while (!File.Exists(Path.Combine(fbd.SelectedPath, "Steam.exe")))
                     {
                         if (fbd.ShowDialog() == DialogResult.Cancel)
                             return false;
