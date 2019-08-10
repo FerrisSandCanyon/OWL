@@ -122,13 +122,16 @@ namespace owl.Forms
 
                 // Read and parse
                 SQLiteDataReader _reader = (new SQLiteCommand("SELECT * FROM 'webappsstore2' WHERE key = 'genned_account'", _sql_conn).ExecuteReader());
-                _reader.Read();
+
+                if (!_reader.Read())
+                    continue;
 
                 // Add it to the table
                 foreach (SAGAccount _account in JsonConvert.DeserializeObject<List<SAGAccount>>(_reader["value"].ToString()))
                 {
                     // Check if we already imported that account | LINQ is slow but who cares? not like this software requires fast performance
-                    if (Globals.CurrentProfile.Values.FirstOrDefault(x => x.Username == _account.login) != null) continue;
+                    if (Globals.CurrentProfile.Values.FirstOrDefault(x => x.Username == _account.login) != null)
+                        continue;
 
                     ListViewItem _lvi = new ListViewItem("profiles/" + _account.steamid);
                     _lvi.SubItems.AddRange(new string[] { _account.login, _account.password });
