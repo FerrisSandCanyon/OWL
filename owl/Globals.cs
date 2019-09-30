@@ -17,7 +17,21 @@ namespace owl
         
         public const  string                              Charset           = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // Predefined charset
 
-        public static uint                                RunningThreads    = 0;    // Number of parser threads that are running
+        public static int RunningThreads
+        {
+            get
+            {
+                return RunningThreadsCount;
+            }
+
+            set
+            {
+                if (!(RunningThreads < 0))
+                    RunningThreadsCount = RunningThreads;
+            }
+        }
+
+        private static int RunningThreadsCount = 0; // Number of parser threads that are running
 
         // Global constant information
         public static class Info

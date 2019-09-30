@@ -36,6 +36,7 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnSelAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvImports
@@ -111,12 +112,26 @@
             this.btnReset.Text = "Reset Source";
             this.btnReset.UseVisualStyleBackColor = true;
             // 
+            // btnSelAll
+            // 
+            this.btnSelAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnSelAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelAll.Location = new System.Drawing.Point(12, 232);
+            this.btnSelAll.Name = "btnSelAll";
+            this.btnSelAll.Size = new System.Drawing.Size(76, 23);
+            this.btnSelAll.TabIndex = 4;
+            this.btnSelAll.Text = "Select All";
+            this.btnSelAll.UseVisualStyleBackColor = true;
+            this.btnSelAll.Click += new System.EventHandler(this.BtnSelAll_Click);
+            // 
             // LSImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
             this.ClientSize = new System.Drawing.Size(709, 264);
+            this.Controls.Add(this.btnSelAll);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnImport);
@@ -141,5 +156,6 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnSelAll;
     }
 }

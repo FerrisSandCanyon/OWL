@@ -35,8 +35,13 @@ namespace owl.Class
         // Values
         // ======
 
-        public string    SteamURL = null, Name = null, Username = null, Password = null, Note = null;
-        public bool      Banned = false;
+        public string    SteamURL      = null,
+                         Name          = null,
+                         Username      = null,
+                         Password      = null,
+                         Note          = null;
+
+        public bool      Banned        = false;
         public DateTime  CooldownDelta = DateTime.MinValue;
 
         // =================
@@ -53,8 +58,11 @@ namespace owl.Class
         // Initializes the parser
         public bool Parse()
         {
-            if (this.LVI == null) return false;
-            if (this.hThread != null && this.hThread.IsAlive) return false;
+            if (this.LVI == null)
+                return false;
+
+            if (this.hThread != null && this.hThread.IsAlive)
+                return false;
 
             // Check if this instance has a URL
             if (string.IsNullOrWhiteSpace(this.SteamURL))
@@ -113,7 +121,8 @@ namespace owl.Class
             while ((_temp_proc_list = Process.GetProcessesByName("Steam")).Count() > 0)
             {
                 if (forceKill || MessageBox.Show("OWL has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                    foreach (Process steam in _temp_proc_list) steam.Kill();
+                    foreach (Process steam in _temp_proc_list)
+                        steam.Kill();
                 else
                     return false;
 
@@ -190,8 +199,7 @@ namespace owl.Class
                 return;
             }
 
-            bool _temp_isbanned = this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty;
-            this.SetText(_temp_isbanned.ToString(), 4);
+            this.SetText((this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty).ToString(), 4);
 
             Globals.RunningThreads--;
             this.SetText("Finished!");
@@ -288,7 +296,10 @@ namespace owl.Utils
             do
             {
                 uniqueId = "";
-                for (int x = 1; x < length; x++) uniqueId += Globals.Charset[_rnd.Next(0, Globals.Charset.Length - 1)];
+
+                for (int x = 1; x < length; x++)
+                    uniqueId += Globals.Charset[_rnd.Next(0, Globals.Charset.Length - 1)];
+
             } while (Globals.CurrentProfile.ContainsKey(uniqueId));
 
             return uniqueId;

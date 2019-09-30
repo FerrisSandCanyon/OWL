@@ -46,6 +46,14 @@ namespace owl.Forms
             InitializeComponent();
         }
 
+        private void BtnSelAll_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem _lvi in lvRef.Items)
+            {
+                _lvi.Checked = true;
+            }
+        }
+
         private void LSImport_Load(object sender, EventArgs e)
         {
             // ==============
@@ -148,6 +156,5 @@ namespace owl.Forms
         }
 
         #endregion
-
     }
 }
