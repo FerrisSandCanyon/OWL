@@ -95,6 +95,21 @@ namespace owl
             }
         }
 
+        private void DdAccountImportSAC_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog _ofd = new OpenFileDialog())
+            {
+                _ofd.FileName = "account.txt";
+                _ofd.Filter = "Text Files (*.txt) | *.txt";
+                _ofd.ShowDialog();
+
+                if (File.Exists(_ofd.FileName))
+                    new Forms.Import(_ofd.FileName, 1, ref lvData).ShowDialog();
+
+                _ofd.Dispose();
+            }
+        }
+
         #region Profile
 
         // Loads the selected profile.
@@ -598,7 +613,7 @@ namespace owl
 
         private void Event_LSImport(object sender, EventArgs e)
         {
-            using (Forms.LSImport _lsi = new Forms.LSImport(((ToolStripMenuItem)sender).Name, ref lvData))
+            using (Forms.Import _lsi = new Forms.Import(((ToolStripMenuItem)sender).Name, 0, ref lvData))
             {
                 _lsi.ShowDialog();
                 _lsi.Dispose();

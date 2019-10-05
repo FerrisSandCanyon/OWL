@@ -1,6 +1,6 @@
 ﻿namespace owl.Forms
 {
-    partial class LSImport
+    partial class Import
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LSImport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Import));
             this.lvImports = new System.Windows.Forms.ListView();
             this.chURL = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chUsr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,6 +52,7 @@
             this.chPass});
             this.lvImports.ForeColor = System.Drawing.Color.White;
             this.lvImports.FullRowSelect = true;
+            this.lvImports.HideSelection = false;
             this.lvImports.Location = new System.Drawing.Point(-2, -2);
             this.lvImports.Name = "lvImports";
             this.lvImports.Size = new System.Drawing.Size(713, 228);
@@ -125,7 +126,7 @@
             this.btnSelAll.UseVisualStyleBackColor = true;
             this.btnSelAll.Click += new System.EventHandler(this.BtnSelAll_Click);
             // 
-            // LSImport
+            // Import
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -139,10 +140,10 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "LSImport";
+            this.Name = "Import";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Local Storage Import";
-            this.Load += new System.EventHandler(this.LSImport_Load);
+            this.Text = "Import | ";
+            this.Load += new System.EventHandler(this.Import_Load);
             this.ResumeLayout(false);
 
         }

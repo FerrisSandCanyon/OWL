@@ -236,6 +236,27 @@ namespace owl.Class
                 return false;
             }
         }
+
+        // =====================
+        // HTTP Client Utilities
+        // =====================
+
+        public bool HttpLogin()
+        {
+            return false;
+        }
+
+        public bool HttpDestroy()
+        {
+            return false;
+        }
+
+        public int HttpEdit(string name, string realName, string summary, string id, string[] groups, 
+                            int myProfile, int gameDetails, int friendList, int inventory, int profileComments,
+                            BufferedStream profile = null)
+        {
+            return 0;
+        }
     }
 }
 
@@ -243,6 +264,11 @@ namespace owl.Utils
 {
     public class Account
     {
+        public static bool AccountExists(string username)
+        {
+            return Globals.CurrentProfile.Values.FirstOrDefault(x => x.Username == username) != null;
+        }
+
         public static bool Save(ref Dictionary<string, Class.Account> _accountList, string _profilePath)
         {
             try
@@ -303,6 +329,11 @@ namespace owl.Utils
             } while (Globals.CurrentProfile.ContainsKey(uniqueId));
 
             return uniqueId;
+        }
+
+        public static bool HttpGenerate()
+        {
+            return false;
         }
 
     }

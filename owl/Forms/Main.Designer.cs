@@ -184,6 +184,7 @@
             this.ddAccountImportSAC.Name = "ddAccountImportSAC";
             this.ddAccountImportSAC.Size = new System.Drawing.Size(180, 22);
             this.ddAccountImportSAC.Text = "EarsKilla\'s SAC";
+            this.ddAccountImportSAC.Click += new System.EventHandler(this.DdAccountImportSAC_Click);
             // 
             // ddAccountImportSAG
             // 
@@ -198,14 +199,14 @@
             // ddAccountImportSAGFF
             // 
             this.ddAccountImportSAGFF.Name = "ddAccountImportSAGFF";
-            this.ddAccountImportSAGFF.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAGFF.Size = new System.Drawing.Size(158, 22);
             this.ddAccountImportSAGFF.Text = "Firefox";
             this.ddAccountImportSAGFF.Click += new System.EventHandler(this.Event_LSImport);
             // 
             // ddAccountImportSAGGC
             // 
             this.ddAccountImportSAGGC.Name = "ddAccountImportSAGGC";
-            this.ddAccountImportSAGGC.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAGGC.Size = new System.Drawing.Size(158, 22);
             this.ddAccountImportSAGGC.Text = "Google Chrome";
             this.ddAccountImportSAGGC.Click += new System.EventHandler(this.Event_LSImport);
             // 
@@ -243,7 +244,7 @@
             this.ddManageObtainInfo});
             this.ddManageObtain.Image = global::owl.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainStart
@@ -308,7 +309,7 @@
             this.ddManageLoginForce});
             this.ddManageLogin.Image = global::owl.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -334,7 +335,7 @@
             this.ddManageClipboardAll});
             this.ddManageClipboard.Image = global::owl.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
@@ -380,62 +381,62 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::owl.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
             this.ddManageCooldown.Text = "Cooldown";
             // 
             // ddManageCooldown7days
             // 
             this.ddManageCooldown7days.Name = "ddManageCooldown7days";
-            this.ddManageCooldown7days.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown7days.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown7days.Text = "7 Days";
             this.ddManageCooldown7days.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1day
             // 
             this.ddManageCooldown1day.Name = "ddManageCooldown1day";
-            this.ddManageCooldown1day.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown1day.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown1day.Text = "1 Day";
             this.ddManageCooldown1day.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown22hours
             // 
             this.ddManageCooldown22hours.Name = "ddManageCooldown22hours";
-            this.ddManageCooldown22hours.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown22hours.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown22hours.Text = "22 Hours";
             this.ddManageCooldown22hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown21hours
             // 
             this.ddManageCooldown21hours.Name = "ddManageCooldown21hours";
-            this.ddManageCooldown21hours.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown21hours.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown21hours.Text = "21 Hours";
             this.ddManageCooldown21hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown2hours
             // 
             this.ddManageCooldown2hours.Name = "ddManageCooldown2hours";
-            this.ddManageCooldown2hours.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown2hours.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown2hours.Text = "2 Hours";
             this.ddManageCooldown2hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1hour
             // 
             this.ddManageCooldown1hour.Name = "ddManageCooldown1hour";
-            this.ddManageCooldown1hour.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown1hour.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown1hour.Text = "1 Hour";
             this.ddManageCooldown1hour.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown30min
             // 
             this.ddManageCooldown30min.Name = "ddManageCooldown30min";
-            this.ddManageCooldown30min.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown30min.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown30min.Text = "30 Minutes";
             this.ddManageCooldown30min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown15min
             // 
             this.ddManageCooldown15min.Name = "ddManageCooldown15min";
-            this.ddManageCooldown15min.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown15min.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldown15min.Text = "15 Minutes";
             this.ddManageCooldown15min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
@@ -443,7 +444,7 @@
             // 
             this.ddManageCooldownRemove.Image = global::owl.Properties.Resources.minus;
             this.ddManageCooldownRemove.Name = "ddManageCooldownRemove";
-            this.ddManageCooldownRemove.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldownRemove.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldownRemove.Text = "Remove";
             this.ddManageCooldownRemove.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
@@ -452,7 +453,7 @@
             this.ddManageCooldownCustom.BackColor = System.Drawing.SystemColors.Control;
             this.ddManageCooldownCustom.Image = global::owl.Properties.Resources.plus;
             this.ddManageCooldownCustom.Name = "ddManageCooldownCustom";
-            this.ddManageCooldownCustom.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldownCustom.Size = new System.Drawing.Size(132, 22);
             this.ddManageCooldownCustom.Text = "Custom";
             // 
             // toolStripSeparator2
@@ -668,6 +669,7 @@
             this.lvData.ForeColor = System.Drawing.Color.White;
             this.lvData.FullRowSelect = true;
             this.lvData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvData.HideSelection = false;
             this.lvData.Location = new System.Drawing.Point(0, 25);
             this.lvData.Name = "lvData";
             this.lvData.Size = new System.Drawing.Size(855, 334);

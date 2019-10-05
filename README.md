@@ -19,7 +19,7 @@ A multipurpose tool for managing Steam accounts
 * Profile Editor
 * Protection of information (Encryption/Obfuscation + Hashing)
 * Easily import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a>
-* Directly import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage
+* Directly import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage (Firefox ✓)
 
 ## Configuring OWL
 You can configure OWL through the settings form or manually through the <i>config.json</i> file located at the base of OWL.
@@ -49,8 +49,6 @@ You can configure OWL through the settings form or manually through the <i>confi
 <img src="ss2.png"/>
 
 ## Licenses / Built with / Credits
-* Json .NET (<a href="https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md">MIT License</a>)
-* StatTrak Logo - Valve
 * Flat Icons + Graphics - <a href="https://www.flaticon.com/">FlatIcon</a> (Creative Commons)
 
 ## Development
