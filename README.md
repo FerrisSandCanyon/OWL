@@ -18,7 +18,7 @@ A multipurpose tool for managing Steam accounts
 * Cooldown Tracker ✓
 * Profile Editor
 * Protection of information (Encryption/Obfuscation + Hashing)
-* Easily import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a>
+* Easily import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a> ✓
 * Directly import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage (Firefox ✓)
 
 ## Configuring OWL
