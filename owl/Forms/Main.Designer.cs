@@ -106,6 +106,9 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.steamUserDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,7 +152,7 @@
             // 
             this.ddAccountAdd.Image = global::owl.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
-            this.ddAccountAdd.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountAdd.Size = new System.Drawing.Size(117, 22);
             this.ddAccountAdd.Text = "Add";
             this.ddAccountAdd.Click += new System.EventHandler(this.DdAccountAdd_Click);
             // 
@@ -157,7 +160,7 @@
             // 
             this.ddAccountEdit.Image = global::owl.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
-            this.ddAccountEdit.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountEdit.Size = new System.Drawing.Size(117, 22);
             this.ddAccountEdit.Text = "Edit";
             this.ddAccountEdit.Click += new System.EventHandler(this.DdAccountEdit_Click);
             // 
@@ -165,7 +168,7 @@
             // 
             this.ddAccountRemove.Image = global::owl.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
-            this.ddAccountRemove.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountRemove.Size = new System.Drawing.Size(117, 22);
             this.ddAccountRemove.Text = "Remove";
             this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
@@ -175,14 +178,14 @@
             this.ddAccountImportSAC,
             this.ddAccountImportSAG});
             this.ddAccountImport.Name = "ddAccountImport";
-            this.ddAccountImport.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImport.Size = new System.Drawing.Size(117, 22);
             this.ddAccountImport.Text = "Import";
             // 
             // ddAccountImportSAC
             // 
             this.ddAccountImportSAC.Image = global::owl.Properties.Resources.steam_logo;
             this.ddAccountImportSAC.Name = "ddAccountImportSAC";
-            this.ddAccountImportSAC.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAC.Size = new System.Drawing.Size(170, 22);
             this.ddAccountImportSAC.Text = "EarsKilla\'s SAC";
             this.ddAccountImportSAC.Click += new System.EventHandler(this.DdAccountImportSAC_Click);
             // 
@@ -193,7 +196,7 @@
             this.ddAccountImportSAGGC});
             this.ddAccountImportSAG.Image = global::owl.Properties.Resources.cathook;
             this.ddAccountImportSAG.Name = "ddAccountImportSAG";
-            this.ddAccountImportSAG.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAG.Size = new System.Drawing.Size(170, 22);
             this.ddAccountImportSAG.Text = "SAG Local Storage";
             // 
             // ddAccountImportSAGFF
@@ -222,7 +225,8 @@
             this.ddManageObtain,
             this.ddManageLogin,
             this.ddManageClipboard,
-            this.ddManageCooldown});
+            this.ddManageCooldown,
+            this.steamUserDataToolStripMenuItem});
             this.ddManage.ForeColor = System.Drawing.Color.Black;
             this.ddManage.Image = ((System.Drawing.Image)(resources.GetObject("ddManage.Image")));
             this.ddManage.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -381,8 +385,9 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::owl.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(134, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown.Text = "Cooldown";
+            this.ddManageCooldown.Click += new System.EventHandler(this.ddManageCooldown_Click);
             // 
             // ddManageCooldown7days
             // 
@@ -647,7 +652,7 @@
             this.lblBuildInfo.ForeColor = System.Drawing.Color.Black;
             this.lblBuildInfo.Name = "lblBuildInfo";
             this.lblBuildInfo.Size = new System.Drawing.Size(37, 22);
-            this.lblBuildInfo.Text = "v0.1.0";
+            this.lblBuildInfo.Text = "v0.0.0";
             // 
             // lvData
             // 
@@ -740,6 +745,30 @@
             this.tbNote.Size = new System.Drawing.Size(798, 22);
             this.tbNote.TabIndex = 11;
             this.tbNote.TextChanged += new System.EventHandler(this.TbNote_TextChanged);
+            // 
+            // steamUserDataToolStripMenuItem
+            // 
+            this.steamUserDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.duplicateToToolStripMenuItem});
+            this.steamUserDataToolStripMenuItem.Image = global::owl.Properties.Resources.steam_logo16;
+            this.steamUserDataToolStripMenuItem.Name = "steamUserDataToolStripMenuItem";
+            this.steamUserDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.steamUserDataToolStripMenuItem.Text = "Steam User Data";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::owl.Properties.Resources.minus16;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // duplicateToToolStripMenuItem
+            // 
+            this.duplicateToToolStripMenuItem.Image = global::owl.Properties.Resources.clipboard16;
+            this.duplicateToToolStripMenuItem.Name = "duplicateToToolStripMenuItem";
+            this.duplicateToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.duplicateToToolStripMenuItem.Text = "Duplicate";
             // 
             // FormMain
             // 
@@ -844,6 +873,9 @@
         private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAG;
         private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAGFF;
         private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAGGC;
+        private System.Windows.Forms.ToolStripMenuItem steamUserDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateToToolStripMenuItem;
     }
 }
 

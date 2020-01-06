@@ -33,6 +33,8 @@ namespace owl
             Globals.hMainThread = Thread.CurrentThread;
             CbProfile_LoadProfileDirectory();
 
+            lblBuildInfo.Text = "v" + Globals.Info.verStr;
+
             // Cooldown tracker thread
             new Thread(new ThreadStart(() =>
             {
@@ -125,6 +127,13 @@ namespace owl
 
                 _ofd.Dispose();
             }
+        }
+
+        private void ddManageCooldown_Click(object sender, EventArgs e)
+        {
+            // By default, the parent drop down will add 21 hours by sending the button for adding 21 hours cooldown to the event listener
+            Event_AddCooldown(ddManageCooldown21hours, null);
+            ddManage.HideDropDown();
         }
 
         #region Profile
@@ -478,7 +487,8 @@ namespace owl
                 "A multipurpose tool for managing Steam accounts.\n\n" +
                 "https://github.com/FerrisSandCanyon/OWL\n\n" +
                 "* You can paste contents to the textbox in the accounts form using double click.\n" +
-                "* Steam URL's are automatically sanitized."
+                "* Steam URL's are automatically sanitized.\n" +
+                "* Clicking on the Cooldown dropdown will by default add 21 hours to the selected account."
 
                , "OWL (Overwatch Whitelist)", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
@@ -532,7 +542,7 @@ namespace owl
             foreach (ListViewItem _lvi in lvData.SelectedItems)
             {
                 Class.Account _vta;
-                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
+                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
                 {
                     MessageBox.Show("Reference error!", "Add Cooldown", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;

@@ -2,7 +2,7 @@
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Dev</td></tr>
-    <tr><td><b>Version</b></td><td>0.1.0</td></tr>
+    <tr><td><b>Version</b></td><td>0.2.1</td></tr>
     <tr><td><b>Latest Release</b></td><td>N/A</td></tr>
     <tr><td><b>License</b></td><td>???</td></tr>
 </table>

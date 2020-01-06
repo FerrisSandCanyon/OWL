@@ -40,7 +40,7 @@ namespace owl
                                 vMinor       = 1,
                                 vPatch       = 0;
 
-            public const string verStr       = "0.1.0",
+            public const string verStr       = "0.2.1",
                                 cfgPath      = "./config.json",
                                 profilesPath = "./profiles";
         }
