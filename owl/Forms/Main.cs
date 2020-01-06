@@ -10,7 +10,7 @@ namespace owl
     public partial class FormMain : Form
     {
 
-        public Class.Account VTASelectedAccount = null; // Reference to the currently selected account in lvData
+        public Class.Account VTASelectedAccount = null; // Reference to the first selected account in lvData
 
         public FormMain()
         {
@@ -76,7 +76,7 @@ namespace owl
             }
             else
             {
-                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount) && lvData.SelectedItems.Count > 1)
+                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount) || lvData.SelectedItems.Count > 1)
                     return;
 
                 tbNote.Text = VTASelectedAccount.Note;
@@ -89,6 +89,18 @@ namespace owl
                 return;
 
             VTASelectedAccount.LVI.SubItems[6].Text = VTASelectedAccount.Note = tbNote.Text;
+
+            if (lvData.SelectedItems.Count > 1)
+            {
+                Class.Account _currAccount = null;
+                for (int x = 1; x < lvData.SelectedItems.Count; x++)
+                {
+                    if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[x].SubItems[0].Text, out _currAccount))
+                        continue;
+
+                    _currAccount.LVI.SubItems[6].Text = _currAccount.Note = tbNote.Text;
+                }
+            }
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)
