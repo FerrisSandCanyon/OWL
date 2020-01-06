@@ -47,7 +47,8 @@ namespace owl
 
                     try
                     {
-                        if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0) continue;
+                        if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0)
+                            continue;
 
                         foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile)
                         {
@@ -75,14 +76,18 @@ namespace owl
             }
             else
             {
-                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount)) return;
+                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount) && lvData.SelectedItems.Count > 1)
+                    return;
+
                 tbNote.Text = VTASelectedAccount.Note;
             }
         }
 
         private void TbNote_TextChanged(object sender, EventArgs e)
         {
-            if (lvData.SelectedItems.Count == 0 || VTASelectedAccount == null || VTASelectedAccount.LVI == null) return;
+            if (lvData.SelectedItems.Count == 0 || VTASelectedAccount == null || VTASelectedAccount.LVI == null)
+                return;
+
             VTASelectedAccount.LVI.SubItems[6].Text = VTASelectedAccount.Note = tbNote.Text;
         }
 
