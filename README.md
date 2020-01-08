@@ -1,7 +1,7 @@
-# <img width=34 src="owl/icon.ico" /> OWL (Overwatch Whitelist)
+# <img width=34 src="owl/icon.ico" /> OWL
 A multipurpose tool for managing Steam accounts
 <table>
-    <tr><td><b>State</b></td><td>Dev</td></tr>
+    <tr><td><b>State</b></td><td>Alpha</td></tr>
     <tr><td><b>Version</b></td><td>0.2.1</td></tr>
     <tr><td><b>Latest Release</b></td><td>N/A</td></tr>
     <tr><td><b>License</b></td><td>???</td></tr>
@@ -12,14 +12,21 @@ A multipurpose tool for managing Steam accounts
 ## Requirements
 * <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework</a> (4.5 or <b>Higher</b>)
 
-## (Planned) Features
+## Features
 * Multiple Loadable Profiles for different set of accounts. ✓
 * Auto-Login ✓
 * Cooldown Tracker ✓
 * Profile Editor
 * Protection of information (Encryption/Obfuscation + Hashing)
-* Easily import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a> ✓
-* Directly import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage (Firefox ✓)
+* Import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a> ✓
+* Import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage (Firefox ✓)
+* Steam User Data Management
+* Steam Account Editor
+* Steam Hour Booster
+
+## To Do
+* Applying cooldown should be handled by the account class
+* Local Storage import for Chrome
 
 ## Configuring OWL
 You can configure OWL through the settings form or manually through the <i>config.json</i> file located at the base of OWL.

@@ -490,7 +490,7 @@ namespace owl
                 "* Steam URL's are automatically sanitized.\n" +
                 "* Clicking on the Cooldown dropdown will by default add 21 hours to the selected account."
 
-               , "OWL (Overwatch Whitelist)", MessageBoxButtons.OK, MessageBoxIcon.Information
+               , "OWL", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
         }
 

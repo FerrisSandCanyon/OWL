@@ -37,8 +37,8 @@ namespace owl
         public static class Info
         {
             public const int    vMajor       = 0,
-                                vMinor       = 1,
-                                vPatch       = 0;
+                                vMinor       = 2,
+                                vPatch       = 1;
 
             public const string verStr       = "0.2.1",
                                 cfgPath      = "./config.json",
