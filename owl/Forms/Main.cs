@@ -10,7 +10,13 @@ namespace owl
     public partial class FormMain : Form
     {
 
-        public Class.Account VTASelectedAccount = null; // Reference to the first selected account in lvData
+        public Class.Account SelectedAccount = null; // Reference to the first selected account in lvData
+
+        // Form title tracking
+        public bool   title_isLoggingIn = false,
+                      title_justSaved   = false;
+        public string title_status      = null,
+                      title_fallback    = null;
 
         public FormMain()
         {
@@ -27,9 +33,17 @@ namespace owl
 
             #if DEBUG
                 this.Text += " (DEBUG MODE)";
+            #else // Release
+                // Disable Unfinished features
+                ddUtils.Visible = false;
+                copyAccountsToolStripMenuItem.Visible = false;
+                moveAccountsToolStripMenuItem.Visible = false;
+                refreshListToolStripMenuItem.Visible = false;
+                ddSteamUserData.Visible = false;
+                
             #endif
 
-            Globals.Cache.TitleFallback = this.Text;
+            this.title_fallback = this.Text;
             Globals.hMainThread = Thread.CurrentThread;
             CbProfile_LoadProfileDirectory();
 
@@ -49,10 +63,10 @@ namespace owl
 
                     try
                     {
-                        if (Globals.CurrentProfile == null || Globals.CurrentProfile.Count == 0)
+                        if (Globals.CurrentProfile == null || Globals.CurrentProfile.Profiles == null || Globals.CurrentProfile.Profiles.Count == 0)
                             continue;
 
-                        foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile)
+                        foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile.Profiles)
                         {
                             if (!IsAlive()) break;
                             _account.Value.DisplayCooldown();
@@ -64,9 +78,16 @@ namespace owl
             )).Start();
         }
 
+        // Legacy 
         public void FormMain_SetTitle(string _status = null)
         {
-            this.Text = _status == null ? Globals.Cache.TitleFallback : Globals.Cache.TitleFallback + " - " + _status;
+            this.Text = this.title_fallback + (_status == null ? "" : " - " + _status);
+        }
+
+        public void FormMain_UpdateTitle()
+        {
+            this.Text = this.title_fallback +
+                        $"";
         }
 
         private void LvData_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,30 +95,30 @@ namespace owl
             if (lvData.SelectedItems.Count == 0)
             {
                 tbNote.Text = "";
-                VTASelectedAccount = null;
+                SelectedAccount = null;
             }
             else
             {
-                if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out VTASelectedAccount) || lvData.SelectedItems.Count > 1)
+                if (!Globals.CurrentProfile.Profiles.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out SelectedAccount) || lvData.SelectedItems.Count > 1)
                     return;
 
-                tbNote.Text = VTASelectedAccount.Note;
+                tbNote.Text = SelectedAccount.Note;
             }
         }
 
         private void TbNote_TextChanged(object sender, EventArgs e)
         {
-            if (lvData.SelectedItems.Count == 0 || VTASelectedAccount == null || VTASelectedAccount.LVI == null)
+            if (lvData.SelectedItems.Count == 0 || SelectedAccount == null || SelectedAccount.LVI == null)
                 return;
 
-            VTASelectedAccount.LVI.SubItems[6].Text = VTASelectedAccount.Note = tbNote.Text;
+            SelectedAccount.LVI.SubItems[6].Text = SelectedAccount.Note = tbNote.Text;
 
             if (lvData.SelectedItems.Count > 1)
             {
                 Class.Account _currAccount = null;
                 for (int x = 1; x < lvData.SelectedItems.Count; x++)
                 {
-                    if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[x].SubItems[0].Text, out _currAccount))
+                    if (!Globals.CurrentProfile.Profiles.TryGetValue(lvData.SelectedItems[x].SubItems[0].Text, out _currAccount))
                         continue;
 
                     _currAccount.LVI.SubItems[6].Text = _currAccount.Note = tbNote.Text;
@@ -136,6 +157,11 @@ namespace owl
             ddManage.HideDropDown();
         }
 
+        private void importConvertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new Forms.ProfileJSONImport()).ShowDialog();
+        }
+
         #region Profile
 
         // Loads the selected profile.
@@ -154,16 +180,24 @@ namespace owl
 
             // Load the profile
             Globals.CurrentProfile = Utils.Account.Load(_profilePath);
-            if (Globals.CurrentProfile == null) Application.Exit();
+            if (Globals.CurrentProfile == null)
+                Application.Exit();
 
             lvData.Items.Clear();
 
-            // Load all the accounts to our table
-            foreach (KeyValuePair<string, Class.Account> _data in Globals.CurrentProfile)
+            if (Globals.CurrentProfile.vProfileFormat < Globals.Info.vProfileFormat)
             {
-                Class.Account _vta = _data.Value;
-                Utils.Account.AddToTable(ref lvData, _data.Key, ref _vta);
+                MessageBox.Show($"Invalid/Incompatible Profile JSON format version!\nLoaded JSON format version: {Globals.CurrentProfile.vProfileFormat}\nCurrent JSON format version: {Globals.Info.vProfileFormat}", "Load JSON", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            // Load all the accounts to our table
+            if (Globals.CurrentProfile.Profiles != null)
+                foreach (KeyValuePair<string, Class.Account> _data in Globals.CurrentProfile.Profiles)
+                {
+                    Class.Account _account = _data.Value;
+                    Utils.Account.AddToTable(ref lvData, _data.Key, ref _account);
+                }
         }
 
         // Searches the profile directory for profile jsons
@@ -192,7 +226,7 @@ namespace owl
             // Create a default profile if there's no profile
             else
             {
-                Globals.CurrentProfile = new Dictionary<string, Class.Account> { };
+                Globals.CurrentProfile = new Class.ProfileInfo();
                 if (!Utils.Account.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + Globals.Config.defaultProfile + ".json")) Application.Exit();
                 CbProfile_LoadProfileDirectory(); // just do recursion cause lazyyy
             }
@@ -232,7 +266,7 @@ namespace owl
             CbProfile_LoadProfileDirectory();
 
             // Create the actual profile
-            Globals.CurrentProfile = new Dictionary<string, Class.Account> { };
+            Globals.CurrentProfile = new Class.ProfileInfo();
             if (!Utils.Account.Save(ref Globals.CurrentProfile, profilePath)) Application.Exit();
 
             // Load and set the newly created profile to our current one
@@ -296,12 +330,12 @@ namespace owl
         {
             do
             {
-                using (Forms.Account _fad = new Forms.Account(ref lvData))
+                using (Forms.AccountInfo _fad = new Forms.AccountInfo(ref lvData))
                 {
                     _fad.ShowDialog();
                     _fad.Dispose();
                 }
-            } while (Globals.Cache.AddAnother && Globals.Cache.AddAnotherFlag);
+            } while (Forms.AccountInfo.cache_addAnother && Forms.AccountInfo.cache_addAnotherFlag);
         }
 
         // Edit an account
@@ -316,20 +350,20 @@ namespace owl
             foreach (ListViewItem _lvi in lvData.SelectedItems)
             {
                 // Find the account in our profile dictionary
-                Class.Account _vta;
-                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                Class.Account _account;
+                if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
                 {
                     MessageBox.Show("Failed to obtain account data for steam url: " + _lvi.SubItems[1].Text + " with a unique id: " + _lvi.SubItems[0].Text + ". \n\nThis account has been skipped.", "Edit account", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
                 }
 
-                if (_vta.hThread != null && _vta.hThread.IsAlive)
+                if (_account.hThread != null && _account.hThread.IsAlive)
                 {
                     MessageBox.Show("You cannot edit an account that is actively parsing!", "Edit account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     continue;
                 }
 
-                using (Forms.Account _fad = new Forms.Account(ref _vta))
+                using (Forms.AccountInfo _fad = new Forms.AccountInfo(ref _account))
                 {
                     _fad.ShowDialog();
                     _fad.Dispose();
@@ -352,20 +386,20 @@ namespace owl
                     Debug.WriteLine("Deleting account id: " + _lvi.SubItems[0].Text);
                 #endif
 
-                Class.Account _vta;
-                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                Class.Account _account;
+                if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
                 {
                     MessageBox.Show("Failed to obtain account data for unique id: " + _lvi.SubItems[0].Text + ". \n\nThis account has been skipped.", "Remove account", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
                 }
 
-                if (_vta.hThread != null && _vta.hThread.IsAlive)
+                if (_account.hThread != null && _account.hThread.IsAlive)
                 {
                     MessageBox.Show("You cannot remove an account that is actively parsing!", "Remove account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     continue;
                 }
 
-                Globals.CurrentProfile.Remove(_lvi.SubItems[0].Text);
+                Globals.CurrentProfile.Profiles.Remove(_lvi.SubItems[0].Text);
                 _lvi.Remove();
             }
         }
@@ -399,14 +433,14 @@ namespace owl
                         // Hold the thread if we exceed max thread limit defined by the config
                         while (Globals.RunningThreads >= Globals.Config.maxThreads) Thread.Sleep(500);
 
-                        Class.Account _vta;
-                        if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                        Class.Account _account;
+                        if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
                         {
-                           _vta.SetText("Reference error!");
+                           _account.SetText("Reference error!");
                             return;
                         }
 
-                        _vta.Parse();
+                        _account.Parse();
                         return;
                     }
 
@@ -433,17 +467,17 @@ namespace owl
 
             Func<ListViewItem, bool> AbortParserThread = (ListViewItem _lvi) =>
             {
-                Class.Account _vta;
-                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                Class.Account _account;
+                if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
                 {
                     _lvi.SubItems[7].Text = "Reference error!";
                     return false;
                 }
 
                 // Abort it if it the instance has a running thread
-                if (_vta.hThread != null && _vta.hThread.IsAlive)
+                if (_account.hThread != null && _account.hThread.IsAlive)
                 {
-                    _vta.SafeAbort();
+                    _account.SafeAbort();
                     _lvi.SubItems[7].Text = "Parse Aborted!";
                     return true;
                 }
@@ -481,17 +515,19 @@ namespace owl
 
         private void BtnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-
+            if ( MessageBox.Show(
                 "OWL version " + Globals.Info.verStr + "\n" +
                 "A multipurpose tool for managing Steam accounts.\n\n" +
                 "https://github.com/FerrisSandCanyon/OWL\n\n" +
                 "* You can paste contents to the textbox in the accounts form using double click.\n" +
                 "* Steam URL's are automatically sanitized.\n" +
-                "* Clicking on the Cooldown dropdown will by default add 21 hours to the selected account."
+                "* Clicking on the Cooldown dropdown will by default add 21 hours to the selected account." +
+                "\n\nWould you like to open the project's Github?"
 
-               , "OWL", MessageBoxButtons.OK, MessageBoxIcon.Information
-            );
+               , "OWL", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                Process.Start("https://github.com/FerrisSandCanyon/OWL");
+            }
         }
 
         #endregion
@@ -516,15 +552,15 @@ namespace owl
                 return;
             }
 
-            Class.Account _vta;
-            if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
+            Class.Account _account;
+            if (!Globals.CurrentProfile.Profiles.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _account))
             {
                 MessageBox.Show("Reference error!", "Login Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             FormMain_SetTitle("Logging in...");
-            if (!_vta.Login(force)) FormMain_SetTitle();
+            if (!_account.Login(force)) FormMain_SetTitle();
         }
 
         #endregion
@@ -541,8 +577,8 @@ namespace owl
 
             foreach (ListViewItem _lvi in lvData.SelectedItems)
             {
-                Class.Account _vta;
-                if (!Globals.CurrentProfile.TryGetValue(_lvi.SubItems[0].Text, out _vta))
+                Class.Account _account;
+                if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
                 {
                     MessageBox.Show("Reference error!", "Add Cooldown", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
@@ -550,18 +586,18 @@ namespace owl
 
                 switch (((ToolStripMenuItem)sender).Name)
                 {
-                    case "ddManageCooldown7days":   _vta.CooldownDelta = DateTime.Now.AddDays(7)           ; break;
-                    case "ddManageCooldown1day":    _vta.CooldownDelta = DateTime.Now.AddDays(1)           ; break;
-                    case "ddManageCooldown22hours": _vta.CooldownDelta = DateTime.Now.AddHours(22)         ; break;
-                    case "ddManageCooldown21hours": _vta.CooldownDelta = DateTime.Now.AddHours(21)         ; break;
-                    case "ddManageCooldown2hours":  _vta.CooldownDelta = DateTime.Now.AddHours(2)          ; break;
-                    case "ddManageCooldown1hour":   _vta.CooldownDelta = DateTime.Now.AddHours(1)          ; break;
-                    case "ddManageCooldown30min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(30)       ; break;
-                    case "ddManageCooldown15min":   _vta.CooldownDelta = DateTime.Now.AddMinutes(15)       ; break;
+                    case "ddManageCooldown7days":   _account.CooldownDelta = DateTime.Now.AddDays(7)           ; break;
+                    case "ddManageCooldown1day":    _account.CooldownDelta = DateTime.Now.AddDays(1)           ; break;
+                    case "ddManageCooldown22hours": _account.CooldownDelta = DateTime.Now.AddHours(22)         ; break;
+                    case "ddManageCooldown21hours": _account.CooldownDelta = DateTime.Now.AddHours(21)         ; break;
+                    case "ddManageCooldown2hours":  _account.CooldownDelta = DateTime.Now.AddHours(2)          ; break;
+                    case "ddManageCooldown1hour":   _account.CooldownDelta = DateTime.Now.AddHours(1)          ; break;
+                    case "ddManageCooldown30min":   _account.CooldownDelta = DateTime.Now.AddMinutes(30)       ; break;
+                    case "ddManageCooldown15min":   _account.CooldownDelta = DateTime.Now.AddMinutes(15)       ; break;
 
                     case "remove":
                     default:
-                        _vta.CooldownDelta = DateTime.MinValue;
+                        _account.CooldownDelta = DateTime.MinValue;
                         break;
                 }
 
@@ -597,8 +633,8 @@ namespace owl
                 return result;
             };
 
-            Class.Account _vta;
-            if (!Globals.CurrentProfile.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _vta))
+            Class.Account _account;
+            if (!Globals.CurrentProfile.Profiles.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out _account))
             {
                 MessageBox.Show("Reference error!", "Copy to clipboard", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -610,24 +646,24 @@ namespace owl
             {
                 case "ddManageClipboardUserPass":
                     Clipboard.SetText(relay = ClipFormat(
-                        new string[]{ _vta.Username, _vta.Password },
-                        new string[]{ "Username",    "Password"    }
+                        new string[]{ _account.Username, _account.Password },
+                        new string[]{         "Username",        "Password"    }
                         ) ?? "");
                     break;
 
                 case "ddManageClipboardURL":
-                    //Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Steam URL: " : "") + "https://steamcommunity.com/" + _vta.SteamURL ?? "null"));
-                    Clipboard.SetText(relay = "https://steamcommunity.com/" + _vta.SteamURL ?? "null");
+                    //Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Steam URL: " : "") + "https://steamcommunity.com/" + _account.SteamURL ?? "null"));
+                    Clipboard.SetText(relay = "https://steamcommunity.com/" + _account.SteamURL ?? "null");
                     break;
 
                 case "ddManageClipboardNotes":
-                    Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Notes: " : "") + _vta.Note ?? "null"));
+                    Clipboard.SetText(relay = ((Globals.Config.clipboardDetail ? "Notes: " : "") + _account.Note ?? "null"));
                     break;
 
                 case "ddManageClipboardAll":
                     Clipboard.SetText(relay = ClipFormat(
-                        new string[] { "https://steamcommunity.com/" + _vta.SteamURL, _vta.Username, _vta.Password, _vta.Name, _vta.Banned.ToString(), _vta.Note },
-                        new string[] {                                     "Steam URL",   "Username",    "Password",    "Name",    "Banned",               "Note"}
+                        new string[] { "https://steamcommunity.com/" + _account.SteamURL, _account.Username, _account.Password, _account.Name, _account.Banned.ToString(), _account.Note },
+                        new string[] {                                         "Steam URL",       "Username",        "Password",        "Name",        "Banned",                   "Note"}
                         ) ?? "");
                     break;
 

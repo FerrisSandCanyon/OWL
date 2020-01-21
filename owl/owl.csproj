@@ -75,11 +75,12 @@
   <ItemGroup>
     <Compile Include="Class\Account.cs" />
     <Compile Include="Class\Config.cs" />
-    <Compile Include="Forms\Account.cs">
+    <Compile Include="Class\ProfileInfo.cs" />
+    <Compile Include="Forms\AccountInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Account.Designer.cs">
-      <DependentUpon>Account.cs</DependentUpon>
+    <Compile Include="Forms\AccountInfo.Designer.cs">
+      <DependentUpon>AccountInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Import.cs">
       <SubType>Form</SubType>
@@ -93,6 +94,12 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProfileJSONImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileJSONImport.Designer.cs">
+      <DependentUpon>ProfileJSONImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,14 +109,17 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Account.resx">
-      <DependentUpon>Account.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AccountInfo.resx">
+      <DependentUpon>AccountInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Import.resx">
       <DependentUpon>Import.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileJSONImport.resx">
+      <DependentUpon>ProfileJSONImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>

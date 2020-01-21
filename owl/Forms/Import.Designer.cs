@@ -68,12 +68,12 @@
             // chUsr
             // 
             this.chUsr.Text = "Username";
-            this.chUsr.Width = 190;
+            this.chUsr.Width = 333;
             // 
             // chPass
             // 
             this.chPass.Text = "Password";
-            this.chPass.Width = 181;
+            this.chPass.Width = 34;
             // 
             // btnImport
             // 

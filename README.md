@@ -2,7 +2,7 @@
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Alpha</td></tr>
-    <tr><td><b>Version</b></td><td>0.2.1</td></tr>
+    <tr><td><b>Version</b></td><td>0.3.0</td></tr>
     <tr><td><b>Latest Release</b></td><td>N/A</td></tr>
     <tr><td><b>License</b></td><td>???</td></tr>
 </table>
@@ -25,7 +25,6 @@ A multipurpose tool for managing Steam accounts
 * Steam Hour Booster
 
 ## To Do
-* Applying cooldown should be handled by the account class
 * Local Storage import for Chrome
 
 ## Configuring OWL

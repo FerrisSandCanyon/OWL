@@ -93,9 +93,9 @@ namespace owl
                     return false;
             }
 
-#if DEBUG
-            Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
-#endif
+            #if DEBUG
+                Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
+            #endif
 
             return true;
         }

@@ -28,8 +28,8 @@ namespace owl.Forms
         // 2 = SAC Text File
         private int      import_mode    = -1;
 
-        private string   import_ff_dir  = null;
-        private string   import_sac_txt = null;
+        private string   import_ff_dir  = null,
+                         import_sac_txt = null;
 
         // Reference to the main list view on the main form
         private ListView lvRef         = null;
@@ -100,8 +100,8 @@ namespace owl.Forms
             foreach (ListViewItem _lvi in lvImports.CheckedItems)
             {
                 string uniqueId = Utils.Account.MakeUniqueKey();
-                _acc = new Class.Account(DateTime.MinValue, _lvi.SubItems[0].Text, "", _lvi.SubItems[1].Text, _lvi.SubItems[2].Text, "", false);
-                Globals.CurrentProfile.Add(uniqueId, _acc);
+                _acc = new Class.Account(DateTime.MinValue, uniqueId, _lvi.SubItems[0].Text, "", _lvi.SubItems[1].Text, _lvi.SubItems[2].Text, "", false);
+                Globals.CurrentProfile.Profiles.Add(uniqueId, _acc);
                 Utils.Account.AddToTable(ref lvRef, uniqueId, ref _acc);
             }
 

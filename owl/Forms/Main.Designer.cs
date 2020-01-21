@@ -70,6 +70,9 @@
             this.ddManageCooldown15min = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageCooldownRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageCooldownCustom = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddSteamUserData = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ddProfile = new System.Windows.Forms.ToolStripDropDownButton();
             this.addProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +82,8 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.copyAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.importConvertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbProfile = new System.Windows.Forms.ToolStripComboBox();
             this.btnProfileSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -106,9 +111,7 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
-            this.steamUserDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.duplicateToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -226,7 +229,7 @@
             this.ddManageLogin,
             this.ddManageClipboard,
             this.ddManageCooldown,
-            this.steamUserDataToolStripMenuItem});
+            this.ddSteamUserData});
             this.ddManage.ForeColor = System.Drawing.Color.Black;
             this.ddManage.Image = ((System.Drawing.Image)(resources.GetObject("ddManage.Image")));
             this.ddManage.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -248,7 +251,7 @@
             this.ddManageObtainInfo});
             this.ddManageObtain.Image = global::owl.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(134, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainStart
@@ -313,7 +316,7 @@
             this.ddManageLoginForce});
             this.ddManageLogin.Image = global::owl.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(134, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -339,7 +342,7 @@
             this.ddManageClipboardAll});
             this.ddManageClipboard.Image = global::owl.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(134, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
@@ -392,56 +395,56 @@
             // ddManageCooldown7days
             // 
             this.ddManageCooldown7days.Name = "ddManageCooldown7days";
-            this.ddManageCooldown7days.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown7days.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown7days.Text = "7 Days";
             this.ddManageCooldown7days.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1day
             // 
             this.ddManageCooldown1day.Name = "ddManageCooldown1day";
-            this.ddManageCooldown1day.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown1day.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown1day.Text = "1 Day";
             this.ddManageCooldown1day.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown22hours
             // 
             this.ddManageCooldown22hours.Name = "ddManageCooldown22hours";
-            this.ddManageCooldown22hours.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown22hours.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown22hours.Text = "22 Hours";
             this.ddManageCooldown22hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown21hours
             // 
             this.ddManageCooldown21hours.Name = "ddManageCooldown21hours";
-            this.ddManageCooldown21hours.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown21hours.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown21hours.Text = "21 Hours";
             this.ddManageCooldown21hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown2hours
             // 
             this.ddManageCooldown2hours.Name = "ddManageCooldown2hours";
-            this.ddManageCooldown2hours.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown2hours.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown2hours.Text = "2 Hours";
             this.ddManageCooldown2hours.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown1hour
             // 
             this.ddManageCooldown1hour.Name = "ddManageCooldown1hour";
-            this.ddManageCooldown1hour.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown1hour.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown1hour.Text = "1 Hour";
             this.ddManageCooldown1hour.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown30min
             // 
             this.ddManageCooldown30min.Name = "ddManageCooldown30min";
-            this.ddManageCooldown30min.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown30min.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown30min.Text = "30 Minutes";
             this.ddManageCooldown30min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
             // ddManageCooldown15min
             // 
             this.ddManageCooldown15min.Name = "ddManageCooldown15min";
-            this.ddManageCooldown15min.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldown15min.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldown15min.Text = "15 Minutes";
             this.ddManageCooldown15min.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
@@ -449,7 +452,7 @@
             // 
             this.ddManageCooldownRemove.Image = global::owl.Properties.Resources.minus;
             this.ddManageCooldownRemove.Name = "ddManageCooldownRemove";
-            this.ddManageCooldownRemove.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldownRemove.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldownRemove.Text = "Remove";
             this.ddManageCooldownRemove.Click += new System.EventHandler(this.Event_AddCooldown);
             // 
@@ -458,8 +461,32 @@
             this.ddManageCooldownCustom.BackColor = System.Drawing.SystemColors.Control;
             this.ddManageCooldownCustom.Image = global::owl.Properties.Resources.plus;
             this.ddManageCooldownCustom.Name = "ddManageCooldownCustom";
-            this.ddManageCooldownCustom.Size = new System.Drawing.Size(132, 22);
+            this.ddManageCooldownCustom.Size = new System.Drawing.Size(180, 22);
             this.ddManageCooldownCustom.Text = "Custom";
+            // 
+            // ddSteamUserData
+            // 
+            this.ddSteamUserData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.duplicateToToolStripMenuItem});
+            this.ddSteamUserData.Image = global::owl.Properties.Resources.steam_logo16;
+            this.ddSteamUserData.Name = "ddSteamUserData";
+            this.ddSteamUserData.Size = new System.Drawing.Size(180, 22);
+            this.ddSteamUserData.Text = "Steam User Data";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::owl.Properties.Resources.minus16;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // duplicateToToolStripMenuItem
+            // 
+            this.duplicateToToolStripMenuItem.Image = global::owl.Properties.Resources.clipboard16;
+            this.duplicateToToolStripMenuItem.Name = "duplicateToToolStripMenuItem";
+            this.duplicateToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.duplicateToToolStripMenuItem.Text = "Duplicate";
             // 
             // toolStripSeparator2
             // 
@@ -476,7 +503,10 @@
             this.setAsDefaultProfileToolStripMenuItem,
             this.toolStripSeparator5,
             this.copyAccountsToolStripMenuItem,
-            this.moveAccountsToolStripMenuItem});
+            this.moveAccountsToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.importConvertToolStripMenuItem,
+            this.refreshListToolStripMenuItem});
             this.ddProfile.ForeColor = System.Drawing.Color.Black;
             this.ddProfile.Image = ((System.Drawing.Image)(resources.GetObject("ddProfile.Image")));
             this.ddProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -531,6 +561,18 @@
             this.moveAccountsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.moveAccountsToolStripMenuItem.Text = "Move Accounts";
             // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(178, 6);
+            // 
+            // importConvertToolStripMenuItem
+            // 
+            this.importConvertToolStripMenuItem.Name = "importConvertToolStripMenuItem";
+            this.importConvertToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.importConvertToolStripMenuItem.Text = "Import / Convert";
+            this.importConvertToolStripMenuItem.Click += new System.EventHandler(this.importConvertToolStripMenuItem_Click);
+            // 
             // cbProfile
             // 
             this.cbProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -570,7 +612,7 @@
             // ddUtilsEditor
             // 
             this.ddUtilsEditor.Name = "ddUtilsEditor";
-            this.ddUtilsEditor.Size = new System.Drawing.Size(178, 22);
+            this.ddUtilsEditor.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsEditor.Text = "Steam Profile Editor";
             // 
             // ddUtilsDump
@@ -580,7 +622,7 @@
             this.ddUtilsDumpProfile,
             this.ddUtilsDumpAll});
             this.ddUtilsDump.Name = "ddUtilsDump";
-            this.ddUtilsDump.Size = new System.Drawing.Size(178, 22);
+            this.ddUtilsDump.Size = new System.Drawing.Size(180, 22);
             this.ddUtilsDump.Text = "Dump to text";
             // 
             // ddUtilsDumpSelected
@@ -607,7 +649,7 @@
             this.ddProtectAdd,
             this.ddProtectRemove});
             this.ddProtect.Name = "ddProtect";
-            this.ddProtect.Size = new System.Drawing.Size(178, 22);
+            this.ddProtect.Size = new System.Drawing.Size(180, 22);
             this.ddProtect.Text = "Password Protect";
             // 
             // ddProtectAdd
@@ -746,29 +788,11 @@
             this.tbNote.TabIndex = 11;
             this.tbNote.TextChanged += new System.EventHandler(this.TbNote_TextChanged);
             // 
-            // steamUserDataToolStripMenuItem
+            // refreshListToolStripMenuItem
             // 
-            this.steamUserDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem,
-            this.duplicateToToolStripMenuItem});
-            this.steamUserDataToolStripMenuItem.Image = global::owl.Properties.Resources.steam_logo16;
-            this.steamUserDataToolStripMenuItem.Name = "steamUserDataToolStripMenuItem";
-            this.steamUserDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.steamUserDataToolStripMenuItem.Text = "Steam User Data";
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::owl.Properties.Resources.minus16;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // duplicateToToolStripMenuItem
-            // 
-            this.duplicateToToolStripMenuItem.Image = global::owl.Properties.Resources.clipboard16;
-            this.duplicateToToolStripMenuItem.Name = "duplicateToToolStripMenuItem";
-            this.duplicateToToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.duplicateToToolStripMenuItem.Text = "Duplicate";
+            this.refreshListToolStripMenuItem.Name = "refreshListToolStripMenuItem";
+            this.refreshListToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.refreshListToolStripMenuItem.Text = "Refresh List";
             // 
             // FormMain
             // 
@@ -873,9 +897,12 @@
         private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAG;
         private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAGFF;
         private System.Windows.Forms.ToolStripMenuItem ddAccountImportSAGGC;
-        private System.Windows.Forms.ToolStripMenuItem steamUserDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ddSteamUserData;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem importConvertToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshListToolStripMenuItem;
     }
 }
 

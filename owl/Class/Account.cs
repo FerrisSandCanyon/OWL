@@ -1,13 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace owl.Class
@@ -20,8 +16,9 @@ namespace owl.Class
         // ==============
 
         public Account() { }
-        public Account(DateTime _CooldownDelta, string _SteamURL = null, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false)
+        public Account(DateTime _CooldownDelta, string _ClassObjectID = null, string _SteamURL = null, string _Name = null, string _Username = null, string _Password = null, string _Note = null, bool _Banned = false)
         {
+            ClassObjectID = _ClassObjectID;
             SteamURL      = _SteamURL;
             Name          = _Name;
             Username      = _Username;
@@ -39,10 +36,13 @@ namespace owl.Class
                          Name          = null,
                          Username      = null,
                          Password      = null,
-                         Note          = null;
+                         Note          = null,
+                         ClassObjectID = null;
 
         public bool      Banned        = false;
-        public DateTime  CooldownDelta = DateTime.MinValue;
+
+        public DateTime  CooldownDelta  = DateTime.MinValue,
+                         LastInfoUpdate = DateTime.MinValue;
 
         // =================
         // Instance handling
@@ -84,7 +84,7 @@ namespace owl.Class
             try
             {
                 this.hThread = new Thread(new ThreadStart(this.ParserThread));
-                this.hThread.Name = "vt_parser";
+                this.hThread.Name = "parserThread";
                 this.hThread.Start();
                 this.SetText("Parsing...");
                 return true;
@@ -136,15 +136,19 @@ namespace owl.Class
             }
             )).Start();
 
+            // TODO: auto highlight last account logged in to
+
             return true;
         }
 
         // Obtains the cooldown
         public bool DisplayCooldown()
         {
-            if (this.LVI == null) return false;
+            if (this.LVI == null)
+                return false;
 
-            if (this.CooldownDelta == DateTime.MinValue) this.SetText("No Cooldown!", 5);
+            if (this.CooldownDelta == DateTime.MinValue)
+                this.SetText("No Cooldown!", 5);
             else
             {
                 TimeSpan _time = this.CooldownDelta - DateTime.Now;
@@ -231,7 +235,7 @@ namespace owl.Class
             catch (Exception ex)
             {
                 #if DEBUG
-                Debug.WriteLine("STI Exception: " + ex + "\nMain Thread alive? (Obv not): " + Globals.hMainThread.IsAlive.ToString());
+                    Debug.WriteLine("STI Exception: " + ex + "\nMain Thread alive? (Obv not): " + Globals.hMainThread.IsAlive.ToString());
                 #endif
                 return false;
             }
@@ -266,16 +270,18 @@ namespace owl.Utils
     {
         public static bool AccountExists(string username)
         {
-            return Globals.CurrentProfile.Values.FirstOrDefault(x => x.Username == username) != null;
+            return Globals.CurrentProfile.Profiles.Values.FirstOrDefault(x => x.Username == username) != null;
         }
 
-        public static bool Save(ref Dictionary<string, Class.Account> _accountList, string _profilePath)
+        public static bool Save(ref Class.ProfileInfo _profileInfo, string _profilePath)
         {
             try
             {
+                _profileInfo.LastSaved = DateTime.Now; // Update last saved info
+                _profileInfo.vProfileFormat = Globals.Info.vProfileFormat; // Update the saved profile JSON format version
                 using (StreamWriter _sw = new StreamWriter(_profilePath, false, System.Text.Encoding.UTF8))
                 {
-                    _sw.WriteLine(JsonConvert.SerializeObject(_accountList));
+                    _sw.WriteLine(JsonConvert.SerializeObject(_profileInfo));
                     _sw.Close();
                 }
                 return true;
@@ -287,7 +293,7 @@ namespace owl.Utils
             }
         }
 
-        public static Dictionary<string, Class.Account> Load(string _profilePath)
+        public static Class.ProfileInfo Load(string _profilePath)
         {
             try
             {
@@ -297,7 +303,7 @@ namespace owl.Utils
                     content = _sr.ReadToEnd();
                     _sr.Close();
                 }
-                return JsonConvert.DeserializeObject<Dictionary<string, Class.Account>>((content));
+                return JsonConvert.DeserializeObject<Class.ProfileInfo>((content));
             }
             catch (Exception ex)
             {
@@ -306,11 +312,11 @@ namespace owl.Utils
             }
         }
 
-        public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.Account _vta)
+        public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.Account _account)
         {
-            _vta.LVI = (new ListViewItem(_uniqueID));
-            _vta.LVI.SubItems.AddRange(new String[] { _vta.SteamURL, _vta.Name, _vta.Username, _vta.Banned.ToString(), "", _vta.Note, "" });
-            _lv.Items.Add(_vta.LVI);
+            _account.LVI = (new ListViewItem(_uniqueID));
+            _account.LVI.SubItems.AddRange(new String[] { _account.SteamURL, _account.Name, _account.Username, _account.Banned.ToString(), "", _account.Note, "" });
+            _lv.Items.Add(_account.LVI);
         }
 
         public static string MakeUniqueKey(uint length = 10)
@@ -326,9 +332,14 @@ namespace owl.Utils
                 for (int x = 1; x < length; x++)
                     uniqueId += Globals.Charset[_rnd.Next(0, Globals.Charset.Length - 1)];
 
-            } while (Globals.CurrentProfile.ContainsKey(uniqueId));
+            } while (Globals.CurrentProfile.Profiles.ContainsKey(uniqueId));
 
             return uniqueId;
+        }
+
+        public void AddWrapper()
+        {
+
         }
 
         public static bool HttpGenerate()
