@@ -36,11 +36,11 @@ namespace owl
             #else // Release
                 // Disable Unfinished features
                 ddUtils.Visible = false;
+                toolStripSeparator5.Visible = false;
                 copyAccountsToolStripMenuItem.Visible = false;
                 moveAccountsToolStripMenuItem.Visible = false;
                 refreshListToolStripMenuItem.Visible = false;
                 ddSteamUserData.Visible = false;
-                
             #endif
 
             this.title_fallback = this.Text;
@@ -308,8 +308,12 @@ namespace owl
         // Save profile
         private void BtnProfileSave_Click(object sender, EventArgs e)
         {
-            if (cbProfile.Items.Count < 1) return;
-            if (!Utils.Account.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json")) Application.Exit();
+            if (cbProfile.Items.Count < 1)
+                return;
+
+            if (!Utils.Account.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json"))
+                Application.Exit();
+
             MessageBox.Show("Profile has been saved!", "Save profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -566,6 +570,57 @@ namespace owl
         #endregion
 
         #region Events
+
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        {
+            switch (keyData)
+            {
+                // Save Profile
+                case Keys.Control | Keys.S:
+                    BtnProfileSave_Click(null, null);
+                    break;
+
+                // Delete Account
+                case Keys.Delete:
+                    DdAccountRemove_Click(null, null);
+                    break;
+
+                // Add Cooldown to account
+                case Keys.Control | Keys.D:
+                    Event_AddCooldown(ddManageCooldown21hours, null);
+                    break;
+
+                // Force Login
+                case Keys.Control | Keys.F:
+                    AccountLogin(true);
+                    break;
+
+                // Add New Account
+                case Keys.Control | Keys.N:
+                    DdAccountAdd_Click(null, null);
+                    break;
+
+                // Edit Account
+                case Keys.Control | Keys.E:
+                    DdAccountEdit_Click(null, null);
+                    break;
+
+                // Copy all info to clipboard
+                case Keys.Control | Keys.C:
+                    Event_CopyToClipboard(ddManageClipboardAll, null);
+                    break;
+
+                // Obtain Account Info
+                case Keys.Control | Keys.A:
+                    DdManageObtainStart_Click(null, null);
+                    break;
+
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
+
+            return true;
+        }
 
         private void Event_AddCooldown(object sender, EventArgs e)
         {

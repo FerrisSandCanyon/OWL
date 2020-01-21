@@ -2,7 +2,6 @@
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Alpha</td></tr>
-    <tr><td><b>Version</b></td><td>0.3.0</td></tr>
     <tr><td><b>Latest Release</b></td><td>N/A</td></tr>
     <tr><td><b>License</b></td><td>???</td></tr>
 </table>
@@ -16,7 +15,6 @@ A multipurpose tool for managing Steam accounts
 * Multiple Loadable Profiles for different set of accounts. ✓
 * Auto-Login ✓
 * Cooldown Tracker ✓
-* Profile Editor
 * Protection of information (Encryption/Obfuscation + Hashing)
 * Import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a> ✓
 * Import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage (Firefox ✓)
@@ -24,8 +22,17 @@ A multipurpose tool for managing Steam accounts
 * Steam Account Editor
 * Steam Hour Booster
 
-## To Do
-* Local Storage import for Chrome
+## Shortcut Keys
+<table>
+    <tr><td><b>Save Profile</b></td><td>Ctrl + S</td></tr>
+    <tr><td><b>Remove Account</b></td><td>Delete</td></tr>
+    <tr><td><b>Add 21 Hour Cooldown</b></td><td>Ctrl + D</td></tr>
+    <tr><td><b>Force Login</b></td><td>Ctrl + F</td></tr>
+    <tr><td><b>Add New Account</b></td><td>Ctrl + N</td></tr>
+    <tr><td><b>Edit Account</b></td><td>Ctrl + E</td></tr>
+    <tr><td><b>Clipboard (All Info)</b></td><td>Ctrl + E</td></tr>
+    <tr><td><b>Obtain Info</b></td><td>Ctrl + A</td></tr>
+</table>
 
 ## Configuring OWL
 You can configure OWL through the settings form or manually through the <i>config.json</i> file located at the base of OWL.
@@ -62,3 +69,6 @@ You can configure OWL through the settings form or manually through the <i>confi
 * <a href="https://www.newtonsoft.com/json">Json.NET</a> Framework for handling the Json format. (<a href="https://www.nuget.org/packages/Newtonsoft.Json/">NuGet</a>)
 * <a href="https://github.com/GeReV/NSoup">NSoup</a> for parsing HTML (<a href="https://www.nuget.org/packages/NSoup/">NuGet</a>)
 * <a href="https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki">System.Data.SQLite</a> for parsing firefox local storage (<a href="https://www.nuget.org/packages/System.Data.SQLite/">NuGet</a>)
+
+## To Do
+* Local Storage import for Chrome

@@ -37,7 +37,7 @@ namespace owl
         public static class Info
         {
             public const int    vMajor         = 0,
-                                vMinor         = 3,
+                                vMinor         = 4,
                                 vPatch         = 0,
                                 vProfileFormat = 1;
 
