@@ -63,7 +63,7 @@ namespace owl
 
                         foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile.Profiles)
                         {
-                            if (Globals.hMainThread.IsAlive)
+                            if (!Globals.hMainThread.IsAlive)
                                 break;
                             _account.Value.DisplayCooldown();
                         }
