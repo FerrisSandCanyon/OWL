@@ -13,8 +13,7 @@ namespace owl
         public Class.Account SelectedAccount = null; // Reference to the first selected account in lvData
 
         // Form title tracking
-        public bool   title_isLoggingIn = false,
-                      title_justSaved   = false;
+        public bool   title_isLoggingIn = false;
         public string title_status      = null,
                       title_fallback    = null;
 
@@ -32,15 +31,16 @@ namespace owl
             // ==============
 
             #if DEBUG
-                this.Text += " (DEBUG MODE)";
+                this.Text += " [DEBUG MODE]";
             #else // Release
                 // Disable Unfinished features
-                ddUtils.Visible = false;
                 toolStripSeparator5.Visible = false;
                 copyAccountsToolStripMenuItem.Visible = false;
                 moveAccountsToolStripMenuItem.Visible = false;
-                refreshListToolStripMenuItem.Visible = false;
+
+                ddUtils.Visible = false;
                 ddSteamUserData.Visible = false;
+                btnUpdate.Visible = false;
             #endif
 
             this.title_fallback = this.Text;
@@ -52,12 +52,7 @@ namespace owl
             // Cooldown tracker thread
             new Thread(new ThreadStart(() =>
             {
-                bool IsAlive()
-                {
-                    return Globals.hMainThread != null && Globals.hMainThread.IsAlive;
-                }
-
-                while (IsAlive())
+                while (Globals.hMainThread != null && Globals.hMainThread.IsAlive)
                 {
                     Thread.Sleep(Globals.Config.cooldownRefresh);
 
@@ -68,7 +63,8 @@ namespace owl
 
                         foreach (KeyValuePair<string, Class.Account> _account in Globals.CurrentProfile.Profiles)
                         {
-                            if (!IsAlive()) break;
+                            if (Globals.hMainThread.IsAlive)
+                                break;
                             _account.Value.DisplayCooldown();
                         }
                     }
@@ -76,18 +72,24 @@ namespace owl
                 }
             }
             )).Start();
+
+            FormMain_UpdateTitle();
+
         }
 
         // Legacy 
         public void FormMain_SetTitle(string _status = null)
         {
-            this.Text = this.title_fallback + (_status == null ? "" : " - " + _status);
+            this.title_status = _status;
+            FormMain_UpdateTitle();
         }
 
         public void FormMain_UpdateTitle()
         {
             this.Text = this.title_fallback +
-                        $"";
+                       (Globals.CurrentProfile != null && Globals.CurrentProfile.LastSaved != DateTime.MinValue ? $" | Last Save: {Globals.CurrentProfile.LastSaved}" : "") +
+                       (this.title_isLoggingIn ? " | Logging in..." : "") +
+                       (string.IsNullOrWhiteSpace(this.title_status) ? "" : $" | {this.title_status}");
         }
 
         private void LvData_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,6 +126,11 @@ namespace owl
                     _currAccount.LVI.SubItems[6].Text = _currAccount.Note = tbNote.Text;
                 }
             }
+        }
+
+        private void refreshListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CbProfile_LoadProfileDirectory();
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)
@@ -167,8 +174,12 @@ namespace owl
         // Loads the selected profile.
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbProfile.Items.Count < 1) return;
-            string _profilePath    = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
+            FormMain_UpdateTitle();
+
+            if (cbProfile.Items.Count < 1)
+                return;
+
+            string _profilePath = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
 
             // Make sure it exists
             if (!File.Exists(_profilePath))
@@ -314,7 +325,7 @@ namespace owl
             if (!Utils.Account.Save(ref Globals.CurrentProfile, Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json"))
                 Application.Exit();
 
-            MessageBox.Show("Profile has been saved!", "Save profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FormMain_UpdateTitle();
         }
 
         // Set as default profile
@@ -563,8 +574,7 @@ namespace owl
                 return;
             }
 
-            FormMain_SetTitle("Logging in...");
-            if (!_account.Login(force)) FormMain_SetTitle();
+            _account.Login(force);
         }
 
         #endregion

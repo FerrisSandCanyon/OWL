@@ -128,11 +128,20 @@ namespace owl.Class
 
                 Thread.Sleep(800); // lazy
             }
-            
+
+            Globals.hFormMain.title_isLoggingIn = true;
+            Globals.hFormMain.FormMain_UpdateTitle();
+
+            Globals.LastAccountLogin = this;
+
             new Thread(new ThreadStart(() =>
             {
                 Process.Start(Globals.Config.steamPath + "/Steam.exe", $"-login \"{this.Username}\" \"{this.Password}\" {Globals.Config.steamParam}");
-                Globals.hFormMain.Invoke(new Action(() => { Globals.hFormMain.FormMain_SetTitle(); }));
+                Globals.hFormMain.Invoke(new Action(() =>
+                {
+                    Globals.hFormMain.title_isLoggingIn = false;
+                    Globals.hFormMain.FormMain_UpdateTitle();
+                }));
             }
             )).Start();
 
@@ -206,6 +215,7 @@ namespace owl.Class
             this.SetText((this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty).ToString(), 4);
 
             Globals.RunningThreads--;
+            this.LastInfoUpdate = DateTime.Now;
             this.SetText("Finished!");
         }
 

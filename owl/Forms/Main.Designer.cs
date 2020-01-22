@@ -98,6 +98,7 @@
             this.ddProtectAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.ddProtectRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSettings = new System.Windows.Forms.ToolStripButton();
+            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.btnAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.lblBuildInfo = new System.Windows.Forms.ToolStripLabel();
@@ -128,6 +129,7 @@
             this.toolStripSeparator3,
             this.ddUtils,
             this.btnSettings,
+            this.btnUpdate,
             this.btnAbout,
             this.toolStripSeparator4,
             this.lblBuildInfo});
@@ -578,6 +580,7 @@
             this.refreshListToolStripMenuItem.Name = "refreshListToolStripMenuItem";
             this.refreshListToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.refreshListToolStripMenuItem.Text = "Refresh List";
+            this.refreshListToolStripMenuItem.Click += new System.EventHandler(this.refreshListToolStripMenuItem_Click);
             // 
             // cbProfile
             // 
@@ -679,6 +682,15 @@
             this.btnSettings.Size = new System.Drawing.Size(23, 22);
             this.btnSettings.Text = "Settings";
             this.btnSettings.Click += new System.EventHandler(this.BtnSettings_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnUpdate.Image = global::owl.Properties.Resources.download16;
+            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(23, 22);
+            this.btnUpdate.Text = "Update";
             // 
             // btnAbout
             // 
@@ -903,6 +915,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem importConvertToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refreshListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton btnUpdate;
     }
 }
 
