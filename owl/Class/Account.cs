@@ -132,7 +132,11 @@ namespace owl.Class
             Globals.hFormMain.title_isLoggingIn = true;
             Globals.hFormMain.FormMain_UpdateTitle();
 
+            if (Globals.LastAccountLogin != null)
+                Globals.LastAccountLogin.LVI.BackColor = System.Drawing.Color.FromArgb(255, 42, 42, 42);
+
             Globals.LastAccountLogin = this;
+            this.LVI.BackColor = System.Drawing.Color.FromArgb(255, 20, 20, 20);
 
             new Thread(new ThreadStart(() =>
             {
@@ -345,11 +349,6 @@ namespace owl.Utils
             } while (Globals.CurrentProfile.Profiles.ContainsKey(uniqueId));
 
             return uniqueId;
-        }
-
-        public void AddWrapper()
-        {
-
         }
 
         public static bool HttpGenerate()

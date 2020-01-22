@@ -2,7 +2,7 @@
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Alpha</td></tr>
-    <tr><td><b>Latest Release</b></td><td>N/A</td></tr>
+    <tr><td><b>Latest Release</b></td><td>0.3.0</td></tr>
     <tr><td><b>License</b></td><td>???</td></tr>
 </table>
 
@@ -30,7 +30,7 @@ A multipurpose tool for managing Steam accounts
     <tr><td><b>Force Login</b></td><td>Ctrl + F</td></tr>
     <tr><td><b>Add New Account</b></td><td>Ctrl + N</td></tr>
     <tr><td><b>Edit Account</b></td><td>Ctrl + E</td></tr>
-    <tr><td><b>Clipboard (All Info)</b></td><td>Ctrl + E</td></tr>
+    <tr><td><b>Clipboard (All Info)</b></td><td>Ctrl + C</td></tr>
     <tr><td><b>Obtain Info</b></td><td>Ctrl + A</td></tr>
 </table>
 
