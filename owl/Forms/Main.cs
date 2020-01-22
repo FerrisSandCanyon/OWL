@@ -174,10 +174,11 @@ namespace owl
         // Loads the selected profile.
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FormMain_UpdateTitle();
-
             if (cbProfile.Items.Count < 1)
+            {
+                FormMain_UpdateTitle();
                 return;
+            }
 
             string _profilePath = Globals.Info.profilesPath + "/" + cbProfile.Items[cbProfile.SelectedIndex].ToString() + ".json";
 
@@ -209,6 +210,7 @@ namespace owl
                     Class.Account _account = _data.Value;
                     Utils.Account.AddToTable(ref lvData, _data.Key, ref _account);
                 }
+            FormMain_UpdateTitle();
         }
 
         // Searches the profile directory for profile jsons
