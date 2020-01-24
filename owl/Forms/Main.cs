@@ -162,6 +162,7 @@ namespace owl
             // By default, the parent drop down will add 21 hours by sending the button for adding 21 hours cooldown to the event listener
             Event_AddCooldown(ddManageCooldown21hours, null);
             ddManage.HideDropDown();
+            ddManageCooldown.HideDropDown();
         }
 
         private void importConvertToolStripMenuItem_Click(object sender, EventArgs e)
