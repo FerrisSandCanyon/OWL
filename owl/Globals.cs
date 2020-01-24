@@ -9,6 +9,7 @@ namespace owl
         public static Class.ProfileInfo CurrentProfile   = null; // Global ProfileInfo of all the account instances and extra information about the profile
         public static Class.Config      Config           = null; // Global Config class
         public static Class.Account     LastAccountLogin = null; // Stores the account class of the last account logged in to
+        public static Class.AppUpdate   AppUpdateInfo    = new Class.AppUpdate();
 
         public static FormMain hFormMain = null; // Handle to our main form for access and invoking
 
@@ -42,9 +43,10 @@ namespace owl
                                 vPatch         = 0,
                                 vProfileFormat = 1;
 
-            public const string verStr       = "0.4.0",
-                                cfgPath      = "./config.json",
-                                profilesPath = "./profiles";
+            public const string verStr         = "0.4.0",
+                                cfgPath        = "./config.json",
+                                profilesPath   = "./profiles",
+                                updateInfoLink = "https://raw.githubusercontent.com/FerrisSandCanyon/OWL/master/update_info.json";
         }
     }
 }

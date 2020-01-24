@@ -40,7 +40,6 @@ namespace owl
 
                 ddUtils.Visible = false;
                 ddSteamUserData.Visible = false;
-                btnUpdate.Visible = false;
             #endif
 
             this.title_fallback = this.Text;
@@ -75,6 +74,10 @@ namespace owl
 
             FormMain_UpdateTitle();
 
+            #if !DEBUG
+            if (Globals.Config.startupUpdateChk)
+                Utils.AppUpdate.CheckUpdateWrapper(true);
+            #endif
         }
 
         // Legacy 
@@ -170,7 +173,12 @@ namespace owl
             (new Forms.ProfileJSONImport()).ShowDialog();
         }
 
-        #region Profile
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Utils.AppUpdate.CheckUpdateWrapper();
+        }
+
+#region Profile
 
         // Loads the selected profile.
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)
@@ -219,17 +227,17 @@ namespace owl
         {
             cbProfile.Items.Clear();
 
-            #if DEBUG
+#if DEBUG
                 foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
                 {
                     string _profilename = Path.GetFileNameWithoutExtension(_profile);
                     cbProfile.Items.Add(_profilename);
                     Debug.WriteLine(String.Format("Profile: {0}\nProfile Name:[{1}]", _profile, _profilename));
                 } 
-            #else
+#else
                 foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
                     cbProfile.Items.Add(Path.GetFileNameWithoutExtension(_profile));
-            #endif
+#endif
 
             if (cbProfile.Items.Count != 0)
             {
@@ -339,9 +347,9 @@ namespace owl
             MessageBox.Show("Current profile has been set as the default profile!", "Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        #endregion
+#endregion
 
-        #region Account
+#region Account
 
         // Add an account
         private void DdAccountAdd_Click(object sender, EventArgs e)
@@ -400,9 +408,9 @@ namespace owl
 
             foreach (ListViewItem _lvi in lvData.SelectedItems)
             {
-                #if DEBUG
+#if DEBUG
                     Debug.WriteLine("Deleting account id: " + _lvi.SubItems[0].Text);
-                #endif
+#endif
 
                 Class.Account _account;
                 if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
@@ -518,9 +526,9 @@ namespace owl
             Globals.ParserQueue.Abort();
         }
 
-        #endregion
+#endregion
 
-        #region Info Pop-Up
+#region Info Pop-Up
 
         private void DdManageObtainInfo_Click(object sender, EventArgs e)
         {
@@ -548,9 +556,9 @@ namespace owl
             }
         }
 
-        #endregion
+#endregion
 
-        #region Account Login
+#region Account Login
 
         private void DdManageLoginNormal_Click(object sender, EventArgs e)
         {
@@ -580,9 +588,9 @@ namespace owl
             _account.Login(force);
         }
 
-        #endregion
+#endregion
 
-        #region Events
+#region Events
 
         protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
         {
@@ -751,6 +759,6 @@ namespace owl
             }
         }
 
-        #endregion
+#endregion
     }
 }

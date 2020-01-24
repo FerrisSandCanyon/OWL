@@ -43,6 +43,7 @@
             this.btnBrowse = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClip = new System.Windows.Forms.Button();
+            this.cbUpdate = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -119,7 +120,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(221, 70);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.Size = new System.Drawing.Size(75, 13);
             this.label5.TabIndex = 18;
             this.label5.Text = "Max Threads:";
             // 
@@ -195,12 +196,23 @@
             this.btnClip.UseVisualStyleBackColor = false;
             this.btnClip.Click += new System.EventHandler(this.BtnClip_Click);
             // 
+            // cbUpdate
+            // 
+            this.cbUpdate.AutoSize = true;
+            this.cbUpdate.Location = new System.Drawing.Point(142, 141);
+            this.cbUpdate.Name = "cbUpdate";
+            this.cbUpdate.Size = new System.Drawing.Size(154, 17);
+            this.cbUpdate.TabIndex = 25;
+            this.cbUpdate.Text = "Check update on startup";
+            this.cbUpdate.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(429, 147);
+            this.ClientSize = new System.Drawing.Size(429, 160);
+            this.Controls.Add(this.cbUpdate);
             this.Controls.Add(this.btnClip);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnBrowse);
@@ -245,5 +257,6 @@
         private System.Windows.Forms.LinkLabel btnBrowse;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClip;
+        private System.Windows.Forms.CheckBox cbUpdate;
     }
 }

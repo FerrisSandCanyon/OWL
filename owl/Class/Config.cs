@@ -17,7 +17,8 @@ namespace owl.Class
 
         public bool   forceStatus      = false,                            // Forces status check on accounts with Bans
                       maskPassword     = true,                             // Display the password in plain text or mask it with • on the accounts form
-                      clipboardDetail  = false;                            // Dictates clipboard mode whether to use a single line (false) or detailed (true) format
+                      clipboardDetail  = false,                            // Dictates clipboard mode whether to use a single line (false) or detailed (true) format
+                      startupUpdateChk = true;                             // Checks for updates at startup
     }
 }
 

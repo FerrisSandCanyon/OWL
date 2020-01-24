@@ -16,13 +16,14 @@ namespace owl.Forms
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-            tbPath.Text     = Globals.Config.steamPath ?? "";
-            tbParam.Text    = Globals.Config.steamParam ?? "";
-            tbCD.Text       = Globals.Config.cooldownRefresh.ToString() ?? "800";
-            tbThread.Text   = Globals.Config.maxThreads.ToString() ?? "4";
-            cbForce.Checked = Globals.Config.forceStatus;
-            cbMask.Checked  = Globals.Config.maskPassword;
-            clipmode        = Globals.Config.clipboardDetail;
+            tbPath.Text      = Globals.Config.steamPath ?? "";
+            tbParam.Text     = Globals.Config.steamParam ?? "";
+            tbCD.Text        = Globals.Config.cooldownRefresh.ToString() ?? "800";
+            tbThread.Text    = Globals.Config.maxThreads.ToString() ?? "4";
+            cbForce.Checked  = Globals.Config.forceStatus;
+            cbMask.Checked   = Globals.Config.maskPassword;
+            clipmode         = Globals.Config.clipboardDetail;
+            cbUpdate.Checked = Globals.Config.startupUpdateChk;
 
             BtnClip_SetTxt();
         }
@@ -47,13 +48,14 @@ namespace owl.Forms
                 return;
             }
 
-            Globals.Config.steamPath       = tbPath.Text;
-            Globals.Config.steamParam      = tbParam.Text;
-            Globals.Config.cooldownRefresh = newcd;
-            Globals.Config.maxThreads      = newmax;
-            Globals.Config.forceStatus     = cbForce.Checked;
-            Globals.Config.maskPassword    = cbMask.Checked;
-            Globals.Config.clipboardDetail = clipmode;
+            Globals.Config.steamPath        = tbPath.Text;
+            Globals.Config.steamParam       = tbParam.Text;
+            Globals.Config.cooldownRefresh  = newcd;
+            Globals.Config.maxThreads       = newmax;
+            Globals.Config.forceStatus      = cbForce.Checked;
+            Globals.Config.maskPassword     = cbMask.Checked;
+            Globals.Config.clipboardDetail  = clipmode;
+            Globals.Config.startupUpdateChk = cbUpdate.Checked;
 
             if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath))
             {
