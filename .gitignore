@@ -1,6 +1,5 @@
 .vs/
 owl/bin/
 owl/obj/
-*.json
 *.exe
 packages/

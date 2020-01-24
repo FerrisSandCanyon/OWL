@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Account.cs" />
+    <Compile Include="Class\AppUpdate.cs" />
     <Compile Include="Class\Config.cs" />
     <Compile Include="Class\ProfileInfo.cs" />
     <Compile Include="Forms\AccountInfo.cs">
