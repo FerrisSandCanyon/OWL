@@ -76,6 +76,10 @@
     <Compile Include="Class\Account.cs" />
     <Compile Include="Class\AppUpdate.cs" />
     <Compile Include="Class\Config.cs" />
+    <Compile Include="Class\ListViewAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Class\LVIAccount.cs" />
     <Compile Include="Class\ProfileInfo.cs" />
     <Compile Include="Forms\AccountInfo.cs">
       <SubType>Form</SubType>

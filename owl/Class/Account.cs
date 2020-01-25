@@ -72,7 +72,7 @@ namespace owl.Class
             }
 
             // Check if its already banned, if it is skip it unless the config is set to force the account status
-            if (this.LVI.SubItems[4].Text == "True" && !Globals.Config.forceStatus)
+            if (this.Banned && !Globals.Config.forceStatus)
             {
                 this.SetText("Skipped!");
                 return false;
