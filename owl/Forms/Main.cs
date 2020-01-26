@@ -457,7 +457,7 @@ namespace owl
                     void RunParserThread(ListViewItem _lvi)
                     {
                         // Hold the thread if we exceed max thread limit defined by the config
-                        while (Globals.RunningThreads >= Globals.Config.maxThreads) Thread.Sleep(500);
+                        while (Class.Account.RunningParserThreads >= Globals.Config.maxThreads) Thread.Sleep(500);
 
                         Class.Account _account;
                         if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))

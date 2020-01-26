@@ -51,6 +51,9 @@ namespace owl.Class
         [JsonIgnore]
         public ListViewItem LVI = null; // Reference to the list view item of the current account instance
 
+        [JsonIgnore]
+        public static int RunningParserThreads = 0; // Total count of running parser threads
+
         // =======
         // Methods
         // =======
@@ -103,7 +106,7 @@ namespace owl.Class
             if (this.hThread != null && this.hThread.IsAlive)
             {
                 this.hThread.Abort();
-                Globals.RunningThreads--;
+                --RunningParserThreads;
             }
         }
 
@@ -137,6 +140,8 @@ namespace owl.Class
 
             Globals.LastAccountLogin = this;
             this.LVI.BackColor = System.Drawing.Color.FromArgb(255, 20, 20, 20);
+
+            Globals.CurrentProfile.LastAccountLoggedIn = this.LVI.SubItems[0].Text;
 
             new Thread(new ThreadStart(() =>
             {
@@ -186,7 +191,7 @@ namespace owl.Class
 
         private void ParserThread()
         {
-            Globals.RunningThreads++;
+            ++RunningParserThreads;
             NSoup.Nodes.Document _steamPage = null;
             
             try
@@ -195,14 +200,14 @@ namespace owl.Class
             }
             catch
             {
-                Globals.RunningThreads--;
+                --RunningParserThreads;
                 this.SetText("Failed! (HttpClient)");
                 return;
             }
 
             if (_steamPage == null)
             {
-                Globals.RunningThreads--;
+                --RunningParserThreads;
                 this.SetText("Failed! (Null)");
                 return;
             }
@@ -211,16 +216,16 @@ namespace owl.Class
 
             if (String.IsNullOrWhiteSpace(this.Name))
             {
-                Globals.RunningThreads--;
+                --RunningParserThreads;
                 this.SetText("Invalid URL!");
                 return;
             }
 
             this.SetText((this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty).ToString(), 4);
-
-            Globals.RunningThreads--;
             this.LastInfoUpdate = DateTime.Now;
             this.SetText("Finished!");
+
+            --RunningParserThreads;
         }
 
         // =========
@@ -327,10 +332,16 @@ namespace owl.Utils
         }
 
         public static void AddToTable(ref ListView _lv, string _uniqueID, ref Class.Account _account)
-        {
+        {  
             _account.LVI = (new ListViewItem(_uniqueID));
             _account.LVI.SubItems.AddRange(new String[] { _account.SteamURL, _account.Name, _account.Username, _account.Banned.ToString(), "", _account.Note, "" });
             _lv.Items.Add(_account.LVI);
+
+            if (_uniqueID == Globals.CurrentProfile.LastAccountLoggedIn)
+            {
+                Globals.LastAccountLogin = _account;
+                _account.LVI.BackColor = System.Drawing.Color.FromArgb(255, 20, 20, 20);
+            }
         }
 
         public static string MakeUniqueKey(uint length = 10)
