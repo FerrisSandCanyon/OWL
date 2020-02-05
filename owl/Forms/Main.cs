@@ -35,8 +35,7 @@ namespace owl
             #else // Release
                 // Disable Unfinished features
                 toolStripSeparator5.Visible = false;
-                copyAccountsToolStripMenuItem.Visible = false;
-                moveAccountsToolStripMenuItem.Visible = false;
+                transferAccountsToolStripMenuItem.Visible = false;
 
                 ddUtils.Visible = false;
                 ddSteamUserData.Visible = false;
@@ -454,24 +453,21 @@ namespace owl
                 // Thread handling
                 Globals.ParserQueue = new Thread(new ThreadStart(() =>
                 {
-                    void RunParserThread(ListViewItem _lvi)
+                    foreach (ListViewItem _lvi in _tmp_acc_list)
                     {
                         // Hold the thread if we exceed max thread limit defined by the config
-                        while (Class.Account.RunningParserThreads >= Globals.Config.maxThreads) Thread.Sleep(500);
+                        while (Class.Account.RunningParserThreads >= Globals.Config.maxThreads)
+                            Thread.Sleep(500);
 
                         Class.Account _account;
                         if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
                         {
-                           _account.SetText("Reference error!");
-                            return;
+                            _account.SetText("Reference error!");
+                            continue;
                         }
 
                         _account.Parse();
-                        return;
                     }
-
-                    foreach (ListViewItem _lvi in _tmp_acc_list)
-                        RunParserThread(_lvi);
                 }
                 ));
 

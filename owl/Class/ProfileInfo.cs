@@ -16,7 +16,9 @@ namespace owl.Class
 
         public DateTime LastSaved = DateTime.Now;
         public int vProfileFormat = 1;
-        public Dictionary<string, Class.Account> Profiles = null; //new Dictionary<string, Class.Account>();
         public string LastAccountLoggedIn = null;
+
+        public Dictionary<string, Class.Account> Profiles = null; //new Dictionary<string, Class.Account>();
+
     }
 }
