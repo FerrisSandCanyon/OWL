@@ -1,7 +1,7 @@
 {
     "vMajor":0,
-    "vMinor":4,
+    "vMinor":5,
     "vPatch":0,
-    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.4.0",
-    "desc":"Added update notification, Auto highlight last account login, Shortcut keys, Changed aspects of saving"
+    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.5.0",
+    "desc":"Added Transfer account, Added persistent last login indicator, and small improvements."
 }
