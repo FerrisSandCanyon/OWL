@@ -22,6 +22,14 @@ namespace owl
             InitializeComponent();
         }
 
+        public int lvDataSelectedCount
+        {
+            get
+            {
+                return lvData.SelectedItems.Count;
+            }
+        }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             this.Focus();
@@ -33,10 +41,6 @@ namespace owl
             #if DEBUG
                 this.Text += " [DEBUG MODE]";
             #else // Release
-                // Disable Unfinished features
-                toolStripSeparator5.Visible = false;
-                transferAccountsToolStripMenuItem.Visible = false;
-
                 ddUtils.Visible = false;
                 ddSteamUserData.Visible = false;
             #endif
@@ -226,17 +230,17 @@ namespace owl
         {
             cbProfile.Items.Clear();
 
-#if DEBUG
+            #if DEBUG
                 foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
                 {
                     string _profilename = Path.GetFileNameWithoutExtension(_profile);
                     cbProfile.Items.Add(_profilename);
                     Debug.WriteLine(String.Format("Profile: {0}\nProfile Name:[{1}]", _profile, _profilename));
                 } 
-#else
+            #else
                 foreach(string _profile in Directory.GetFiles(Globals.Info.profilesPath, "*.json"))
                     cbProfile.Items.Add(Path.GetFileNameWithoutExtension(_profile));
-#endif
+            #endif
 
             if (cbProfile.Items.Count != 0)
             {
@@ -346,6 +350,36 @@ namespace owl
             MessageBox.Show("Current profile has been set as the default profile!", "Profile", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void transferAccountsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cbProfile.Items.Count < 2)
+            {
+                MessageBox.Show("No profile to transfer to!", "Transfer Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (lvData.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("No account(s) selected to transfer!", "Transfer Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idx = 0;
+            string[] profiles       = new string[cbProfile.Items.Count - 1]; // Stores the profiles except the currently selected
+            string   currentProfile = cbProfile.Items[cbProfile.SelectedIndex].ToString();
+           
+            // Parses the profile list obtained at startup from Globals.Info.profilesPath
+            foreach (string profileName in cbProfile.Items)
+            {
+                if (profileName == currentProfile)
+                    continue;
+
+                profiles[idx++] = profileName;
+            }
+
+            new Forms.AccountTransfer(ref profiles).ShowDialog();
+        }
+
 #endregion
 
 #region Account
@@ -405,27 +439,17 @@ namespace owl
                 return;
             }
 
-            foreach (ListViewItem _lvi in lvData.SelectedItems)
+            foreach (KeyValuePair<string, Class.Account> _account in Utils.ProfileInfo.GetSelectedItems())
             {
-#if DEBUG
-                    Debug.WriteLine("Deleting account id: " + _lvi.SubItems[0].Text);
-#endif
 
-                Class.Account _account;
-                if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
-                {
-                    MessageBox.Show("Failed to obtain account data for unique id: " + _lvi.SubItems[0].Text + ". \n\nThis account has been skipped.", "Remove account", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    continue;
-                }
-
-                if (_account.hThread != null && _account.hThread.IsAlive)
+                if (_account.Value.hThread != null && _account.Value.hThread.IsAlive)
                 {
                     MessageBox.Show("You cannot remove an account that is actively parsing!", "Remove account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     continue;
                 }
 
-                Globals.CurrentProfile.Profiles.Remove(_lvi.SubItems[0].Text);
-                _lvi.Remove();
+                Globals.CurrentProfile.Profiles.Remove(_account.Key);
+                _account.Value.LVI.Remove();
             }
         }
 
@@ -445,28 +469,17 @@ namespace owl
 
             try
             {
-                // Better than invoking 3 delegates that doesn't even work
-                List<ListViewItem> _tmp_acc_list = new List<ListViewItem> { };
-                if (lvData.SelectedItems.Count == 0) foreach (ListViewItem _lvi in lvData.Items)         _tmp_acc_list.Add(_lvi); // Parses all of the items when there's non selected
-                else                                 foreach (ListViewItem _lvi in lvData.SelectedItems) _tmp_acc_list.Add(_lvi); // Parses the selected item
-
+                Dictionary<string, Class.Account> _accounts = lvData.SelectedItems.Count > 0 ? Utils.ProfileInfo.GetSelectedItems() : Globals.CurrentProfile.Profiles;
                 // Thread handling
                 Globals.ParserQueue = new Thread(new ThreadStart(() =>
                 {
-                    foreach (ListViewItem _lvi in _tmp_acc_list)
+                    foreach (KeyValuePair<string, Class.Account> _account in _accounts)
                     {
                         // Hold the thread if we exceed max thread limit defined by the config
                         while (Class.Account.RunningParserThreads >= Globals.Config.maxThreads)
                             Thread.Sleep(500);
 
-                        Class.Account _account;
-                        if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
-                        {
-                            _account.SetText("Reference error!");
-                            continue;
-                        }
-
-                        _account.Parse();
+                        _account.Value.Parse();
                     }
                 }
                 ));
@@ -521,7 +534,6 @@ namespace owl
 
             Globals.ParserQueue.Abort();
         }
-
 #endregion
 
 #region Info Pop-Up
@@ -647,29 +659,22 @@ namespace owl
                 return;
             }
 
-            foreach (ListViewItem _lvi in lvData.SelectedItems)
+            foreach (KeyValuePair<string, Class.Account> _account in Utils.ProfileInfo.GetSelectedItems())
             {
-                Class.Account _account;
-                if (!Globals.CurrentProfile.Profiles.TryGetValue(_lvi.SubItems[0].Text, out _account))
-                {
-                    MessageBox.Show("Reference error!", "Add Cooldown", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    continue;
-                }
-
                 switch (((ToolStripMenuItem)sender).Name)
                 {
-                    case "ddManageCooldown7days":   _account.CooldownDelta = DateTime.Now.AddDays(7)           ; break;
-                    case "ddManageCooldown1day":    _account.CooldownDelta = DateTime.Now.AddDays(1)           ; break;
-                    case "ddManageCooldown22hours": _account.CooldownDelta = DateTime.Now.AddHours(22)         ; break;
-                    case "ddManageCooldown21hours": _account.CooldownDelta = DateTime.Now.AddHours(21)         ; break;
-                    case "ddManageCooldown2hours":  _account.CooldownDelta = DateTime.Now.AddHours(2)          ; break;
-                    case "ddManageCooldown1hour":   _account.CooldownDelta = DateTime.Now.AddHours(1)          ; break;
-                    case "ddManageCooldown30min":   _account.CooldownDelta = DateTime.Now.AddMinutes(30)       ; break;
-                    case "ddManageCooldown15min":   _account.CooldownDelta = DateTime.Now.AddMinutes(15)       ; break;
+                    case "ddManageCooldown7days":   _account.Value.CooldownDelta = DateTime.Now.AddDays(7)           ; break;
+                    case "ddManageCooldown1day":    _account.Value.CooldownDelta = DateTime.Now.AddDays(1)           ; break;
+                    case "ddManageCooldown22hours": _account.Value.CooldownDelta = DateTime.Now.AddHours(22)         ; break;
+                    case "ddManageCooldown21hours": _account.Value.CooldownDelta = DateTime.Now.AddHours(21)         ; break;
+                    case "ddManageCooldown2hours":  _account.Value.CooldownDelta = DateTime.Now.AddHours(2)          ; break;
+                    case "ddManageCooldown1hour":   _account.Value.CooldownDelta = DateTime.Now.AddHours(1)          ; break;
+                    case "ddManageCooldown30min":   _account.Value.CooldownDelta = DateTime.Now.AddMinutes(30)       ; break;
+                    case "ddManageCooldown15min":   _account.Value.CooldownDelta = DateTime.Now.AddMinutes(15)       ; break;
 
-                    case "remove":
+                    case "ddManageCooldownRemove":
                     default:
-                        _account.CooldownDelta = DateTime.MinValue;
+                        _account.Value.CooldownDelta = DateTime.MinValue;
                         break;
                 }
 

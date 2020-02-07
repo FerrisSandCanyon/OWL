@@ -22,3 +22,24 @@ namespace owl.Class
 
     }
 }
+
+namespace owl.Utils
+{
+    public static class ProfileInfo
+    {
+        // Returns a dictionary of all the accounts selected in lvData
+        public static Dictionary<string, Class.Account> GetSelectedItems()
+        {
+            Dictionary<string, Class.Account> _ret_list = new Dictionary<string, Class.Account> { };
+
+            foreach (KeyValuePair<string, Class.Account> _acc in Globals.CurrentProfile.Profiles)
+            {
+                if (_acc.Value.LVI.Selected)
+                    _ret_list.Add(_acc.Key, _acc.Value);
+            }
+
+            return _ret_list;
+        }
+
+    }
+}

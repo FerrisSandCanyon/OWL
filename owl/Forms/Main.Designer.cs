@@ -156,7 +156,7 @@
             // 
             this.ddAccountAdd.Image = global::owl.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
-            this.ddAccountAdd.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountAdd.Size = new System.Drawing.Size(117, 22);
             this.ddAccountAdd.Text = "Add";
             this.ddAccountAdd.Click += new System.EventHandler(this.DdAccountAdd_Click);
             // 
@@ -164,7 +164,7 @@
             // 
             this.ddAccountEdit.Image = global::owl.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
-            this.ddAccountEdit.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountEdit.Size = new System.Drawing.Size(117, 22);
             this.ddAccountEdit.Text = "Edit";
             this.ddAccountEdit.Click += new System.EventHandler(this.DdAccountEdit_Click);
             // 
@@ -172,7 +172,7 @@
             // 
             this.ddAccountRemove.Image = global::owl.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
-            this.ddAccountRemove.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountRemove.Size = new System.Drawing.Size(117, 22);
             this.ddAccountRemove.Text = "Remove";
             this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
@@ -182,7 +182,7 @@
             this.ddAccountImportSAC,
             this.ddAccountImportSAG});
             this.ddAccountImport.Name = "ddAccountImport";
-            this.ddAccountImport.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImport.Size = new System.Drawing.Size(117, 22);
             this.ddAccountImport.Text = "Import";
             // 
             // ddAccountImportSAC
@@ -554,6 +554,7 @@
             this.transferAccountsToolStripMenuItem.Name = "transferAccountsToolStripMenuItem";
             this.transferAccountsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.transferAccountsToolStripMenuItem.Text = "Transfer Accounts";
+            this.transferAccountsToolStripMenuItem.Click += new System.EventHandler(this.transferAccountsToolStripMenuItem_Click);
             // 
             // toolStripSeparator10
             // 
