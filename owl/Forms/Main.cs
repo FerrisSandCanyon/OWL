@@ -107,7 +107,7 @@ namespace owl
             }
             else
             {
-                if (!Globals.CurrentProfile.Profiles.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out SelectedAccount) || lvData.SelectedItems.Count > 1)
+                if (lvData.SelectedItems.Count > 1 || !Globals.CurrentProfile.Profiles.TryGetValue(lvData.SelectedItems[0].SubItems[0].Text, out SelectedAccount))
                     return;
 
                 tbNote.Text = SelectedAccount.Note;

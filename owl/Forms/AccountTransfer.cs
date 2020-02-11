@@ -21,11 +21,6 @@ namespace owl.Forms
             cbDest.SelectedIndex = 0;
         }
 
-        private void AccountTransfer_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnTransfer_Click(object sender, EventArgs e)
         {
             // TODO: use a cached transfered account for cases of failure

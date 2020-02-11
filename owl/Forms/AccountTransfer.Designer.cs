@@ -96,7 +96,6 @@
             this.Name = "AccountTransfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Transfer Account";
-            this.Load += new System.EventHandler(this.AccountTransfer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
