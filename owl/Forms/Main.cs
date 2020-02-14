@@ -123,13 +123,12 @@ namespace owl
 
             if (lvData.SelectedItems.Count > 1)
             {
-                Class.Account _currAccount = null;
-                for (int x = 1; x < lvData.SelectedItems.Count; x++)
+                foreach (KeyValuePair<string, Class.Account> _acc in Utils.ProfileInfo.GetSelectedItems())
                 {
-                    if (!Globals.CurrentProfile.Profiles.TryGetValue(lvData.SelectedItems[x].SubItems[0].Text, out _currAccount))
+                    if (_acc.Value == SelectedAccount)
                         continue;
 
-                    _currAccount.LVI.SubItems[6].Text = _currAccount.Note = tbNote.Text;
+                    _acc.Value.LVI.SubItems[6].Text = _acc.Value.Note = tbNote.Text;
                 }
             }
         }
