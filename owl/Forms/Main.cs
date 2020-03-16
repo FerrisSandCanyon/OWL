@@ -574,10 +574,15 @@ namespace owl
 
         private void DdManageLoginForce_Click(object sender, EventArgs e)
         {
-            AccountLogin(true);
+            AccountLogin(1);
         }
 
-        private void AccountLogin(bool force = false)
+        private void ddManageLoginNormalNoCheck_Click(object sender, EventArgs e)
+        {
+            AccountLogin(2);
+        }
+
+        private void AccountLogin(int mode = 0)
         {
             if (lvData.SelectedItems.Count != 1)
             {
@@ -592,7 +597,7 @@ namespace owl
                 return;
             }
 
-            _account.Login(force);
+            _account.Login(mode);
         }
 
 #endregion
@@ -620,7 +625,12 @@ namespace owl
 
                 // Force Login
                 case Keys.Control | Keys.F:
-                    AccountLogin(true);
+                    AccountLogin(1);
+                    break;
+
+                // Normal Login with no checks
+                case Keys.Control | Keys.G:
+                    AccountLogin(2);
                     break;
 
                 // Add New Account

@@ -24,10 +24,10 @@ namespace owl
         {
             public const int    vMajor         = 0,
                                 vMinor         = 5,
-                                vPatch         = 0,
+                                vPatch         = 1,
                                 vProfileFormat = 1;
 
-            public const string verStr         = "0.5.0",
+            public const string verStr         = "0.5.1",
                                 cfgPath        = "./config.json",
                                 profilesPath   = "./profiles",
                                 updateInfoLink = "https://raw.githubusercontent.com/FerrisSandCanyon/OWL/master/update_info.json";

@@ -111,7 +111,7 @@ namespace owl.Class
         }
 
         // Login the account
-        public bool Login(bool forceKill = false)
+        public bool Login(int mode = 0)
         {
             if (string.IsNullOrWhiteSpace(this.Username) || string.IsNullOrWhiteSpace(this.Password))
             {
@@ -120,16 +120,19 @@ namespace owl.Class
             }
 
             // Make sure steam is closed
-            Process[] _temp_proc_list;
-            while ((_temp_proc_list = Process.GetProcessesByName("Steam")).Count() > 0)
+            if (mode != 2)
             {
-                if (forceKill || MessageBox.Show("OWL has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                    foreach (Process steam in _temp_proc_list)
-                        steam.Kill();
-                else
-                    return false;
+                Process[] _temp_proc_list;
+                while ((_temp_proc_list = Process.GetProcessesByName("Steam")).Count() > 0)
+                {
+                    if (mode == 1 || MessageBox.Show("OWL has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        foreach (Process steam in _temp_proc_list)
+                            steam.Kill();
+                    else
+                        return false;
 
-                Thread.Sleep(800); // lazy
+                    Thread.Sleep(800); // lazy
+                }
             }
 
             Globals.hFormMain.title_isLoggingIn = true;

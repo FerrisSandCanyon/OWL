@@ -2,7 +2,7 @@
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Beta</td></tr>
-    <tr><td><b>Latest Release</b></td><td>0.5.0</td></tr>
+    <tr><td><b>Latest Release</b></td><td>0.5.1</td></tr>
     <tr><td><b>License</b></td><td>???</td></tr>
 </table>
 
@@ -28,6 +28,7 @@ A multipurpose tool for managing Steam accounts
     <tr><td><b>Remove Account</b></td><td>Delete</td></tr>
     <tr><td><b>Add 21 Hour Cooldown</b></td><td>Ctrl + D</td></tr>
     <tr><td><b>Force Login</b></td><td>Ctrl + F</td></tr>
+    <tr><td><b>Normal (No Check)</b></td><td>Ctrl + G</td></tr>
     <tr><td><b>Add New Account</b></td><td>Ctrl + N</td></tr>
     <tr><td><b>Edit Account</b></td><td>Ctrl + E</td></tr>
     <tr><td><b>Clipboard (All Info)</b></td><td>Ctrl + C</td></tr>

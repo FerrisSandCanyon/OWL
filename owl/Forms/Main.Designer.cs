@@ -112,6 +112,7 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.ddManageLoginNormalNoCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -314,7 +315,8 @@
             // 
             this.ddManageLogin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ddManageLoginNormal,
-            this.ddManageLoginForce});
+            this.ddManageLoginForce,
+            this.ddManageLoginNormalNoCheck});
             this.ddManageLogin.Image = global::owl.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
             this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
@@ -323,14 +325,14 @@
             // ddManageLoginNormal
             // 
             this.ddManageLoginNormal.Name = "ddManageLoginNormal";
-            this.ddManageLoginNormal.Size = new System.Drawing.Size(114, 22);
+            this.ddManageLoginNormal.Size = new System.Drawing.Size(180, 22);
             this.ddManageLoginNormal.Text = "Normal";
             this.ddManageLoginNormal.Click += new System.EventHandler(this.DdManageLoginNormal_Click);
             // 
             // ddManageLoginForce
             // 
             this.ddManageLoginForce.Name = "ddManageLoginForce";
-            this.ddManageLoginForce.Size = new System.Drawing.Size(114, 22);
+            this.ddManageLoginForce.Size = new System.Drawing.Size(180, 22);
             this.ddManageLoginForce.Text = "Force";
             this.ddManageLoginForce.Click += new System.EventHandler(this.DdManageLoginForce_Click);
             // 
@@ -800,6 +802,13 @@
             this.tbNote.TabIndex = 11;
             this.tbNote.TextChanged += new System.EventHandler(this.TbNote_TextChanged);
             // 
+            // ddManageLoginNormalNoCheck
+            // 
+            this.ddManageLoginNormalNoCheck.Name = "ddManageLoginNormalNoCheck";
+            this.ddManageLoginNormalNoCheck.Size = new System.Drawing.Size(180, 22);
+            this.ddManageLoginNormalNoCheck.Text = "Normal (No Check)";
+            this.ddManageLoginNormalNoCheck.Click += new System.EventHandler(this.ddManageLoginNormalNoCheck_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -909,6 +918,7 @@
         private System.Windows.Forms.ToolStripMenuItem importConvertToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refreshListToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btnUpdate;
+        private System.Windows.Forms.ToolStripMenuItem ddManageLoginNormalNoCheck;
     }
 }
 
