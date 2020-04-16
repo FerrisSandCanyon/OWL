@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Threading;
+using Microsoft.Win32;
 
 namespace owl
 {
@@ -43,6 +44,14 @@ namespace owl
             #else // Release
                 ddUtils.Visible = false;
                 ddSteamUserData.Visible = false;
+
+                ddManageObtainFullStart.Visible = false;
+                ddManageObtainFullAbort.Visible = false;
+                toolStripSeparator8.Visible = false;
+
+                ddManageCooldownCustom.Visible = false;
+
+                ddAccountImportSAGGC.Visible = false;
             #endif
 
             this.title_fallback = this.Text;
@@ -180,7 +189,13 @@ namespace owl
             Utils.AppUpdate.CheckUpdateWrapper();
         }
 
-#region Profile
+        private void ddManageLoginAutoSteamClear_Click(object sender, EventArgs e)
+        {
+            Registry.SetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "AutoLoginUser", "", RegistryValueKind.String);
+            Registry.SetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "RememberPassword", 0, RegistryValueKind.DWord);
+        }
+
+        #region Profile
 
         // Loads the selected profile.
         private void CbProfile_SelectedIndexChanged(object sender, EventArgs e)

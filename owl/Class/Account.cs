@@ -61,10 +61,8 @@ namespace owl.Class
         // Initializes the parser
         public bool Parse()
         {
-            if (this.LVI == null)
-                return false;
-
-            if (this.hThread != null && this.hThread.IsAlive)
+            if (this.LVI == null
+            ||  this.hThread != null && this.hThread.IsAlive )
                 return false;
 
             // Check if this instance has a URL
@@ -156,8 +154,6 @@ namespace owl.Class
                 }));
             }
             )).Start();
-
-            // TODO: auto highlight last account logged in to
 
             return true;
         }

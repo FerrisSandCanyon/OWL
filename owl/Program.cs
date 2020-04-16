@@ -86,7 +86,7 @@ namespace owl
                 }
             }
 
-            // Resave the config if it was automatically modified due to user errors
+            // Resave the config if it was automatically modified due to errors
             if (shouldResave)
             {
                 if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath))

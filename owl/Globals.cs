@@ -17,20 +17,20 @@ namespace owl
                              hMainThread = null; // Handle to the main Thread
 
         public static string passKey = "";   // Store the passkey. No intention for deep security other than simple obfuscation to steer away from plain text.
-        public const  string Charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // Predefined charset
+        public static readonly string Charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // Predefined charset
 
         // Global constant information
         public static class Info
         {
-            public const int    vMajor         = 0,
-                                vMinor         = 5,
-                                vPatch         = 1,
-                                vProfileFormat = 1;
+            public static readonly int    vMajor         = 0,
+                                          vMinor         = 5,
+                                          vPatch         = 1,
+                                          vProfileFormat = 1;
 
-            public const string verStr         = "0.5.1",
-                                cfgPath        = "./config.json",
-                                profilesPath   = "./profiles",
-                                updateInfoLink = "https://raw.githubusercontent.com/FerrisSandCanyon/OWL/master/update_info.json";
+            public static readonly string verStr         = "0.5.1",
+                                          cfgPath        = "./config.json",
+                                          profilesPath   = "./profiles",
+                                          updateInfoLink = "https://raw.githubusercontent.com/FerrisSandCanyon/OWL/master/update_info.json";
         }
     }
 }
