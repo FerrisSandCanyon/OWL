@@ -55,7 +55,7 @@ namespace owl
 #if DEBUG
             Debug.WriteLine($"Config Content on load ({Globals.Info.cfgPath}): {JsonConvert.SerializeObject(Globals.Config)}");
 #endif
-
+            
             // ===================
             // Check config values
             // ===================
@@ -67,7 +67,7 @@ namespace owl
                 Globals.Config.defaultProfile = "default";
                 shouldResave = true;
             }
-
+            
             // Steam Path
             if (!Directory.Exists(Globals.Config.steamPath))
             {
@@ -92,10 +92,12 @@ namespace owl
                 if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath))
                     return false;
             }
-
+            
             #if DEBUG
                 Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
             #endif
+            
+            Debug.WriteLine("The window was " + (PInvoke.winuser.FindWindow("vguiPopupWindow", "Steam Login") == IntPtr.Zero ? "not" : "") + " found.");
 
             return true;
         }

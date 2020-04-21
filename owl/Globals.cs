@@ -23,11 +23,11 @@ namespace owl
         public static class Info
         {
             public static readonly int    vMajor         = 0,
-                                          vMinor         = 5,
-                                          vPatch         = 1,
+                                          vMinor         = 6,
+                                          vPatch         = 0,
                                           vProfileFormat = 1;
 
-            public static readonly string verStr         = "0.5.1",
+            public static readonly string verStr         = $"{vMajor.ToString()}.{vMinor.ToString()}.{vPatch.ToString()}",
                                           cfgPath        = "./config.json",
                                           profilesPath   = "./profiles",
                                           updateInfoLink = "https://raw.githubusercontent.com/FerrisSandCanyon/OWL/master/update_info.json";
