@@ -13,7 +13,8 @@ namespace owl.Class
                       steamParam       = "";                               // Custom steam startup parameters
 
         public int    cooldownRefresh  = 800,                              // Cooldown refresh rate measured in milliseconds
-                      maxThreads       = 4;                                // Maximum threads that can run at the same time
+                      maxThreads       = 4,                                // Maximum threads that can run at the same time
+                      loginMethod      = 0;                                // Login Method used by the shortcut key
 
         public bool   forceStatus      = false,                            // Forces status check on accounts with Bans
                       maskPassword     = true,                             // Display the password in plain text or mask it with • on the accounts form

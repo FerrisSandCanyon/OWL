@@ -27,13 +27,15 @@ A multipurpose tool for managing Steam accounts
     <tr><td><b>Save Profile</b></td><td>Ctrl + S</td></tr>
     <tr><td><b>Remove Account</b></td><td>Delete</td></tr>
     <tr><td><b>Add 21 Hour Cooldown</b></td><td>Ctrl + D</td></tr>
-    <tr><td><b>Force Login</b></td><td>Ctrl + F</td></tr>
-    <tr><td><b>Normal (No Check)</b></td><td>Ctrl + G</td></tr>
+    <tr><td><b>Login</b></td><td>Ctrl + F</td></tr>
     <tr><td><b>Add New Account</b></td><td>Ctrl + N</td></tr>
     <tr><td><b>Edit Account</b></td><td>Ctrl + E</td></tr>
     <tr><td><b>Clipboard (All Info)</b></td><td>Ctrl + C</td></tr>
     <tr><td><b>Obtain Info</b></td><td>Ctrl + A</td></tr>
+    <tr><td><b>Open URL</b></td><td>Ctrl + O</td></tr>
 </table>
+
+* Setting up the login method for the shortcut key <i>Ctrl + F</i> is available in the settings form.
 
 ## Configuring OWL
 You can configure OWL through the settings form or manually through the <i>config.json</i> file located at the base of OWL.

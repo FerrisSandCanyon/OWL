@@ -55,6 +55,8 @@
             this.ddManageLoginNormal = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageLoginForce = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageLoginNormalNoCheck = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.ddManageLoginAutoSteamClear = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageClipboard = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageClipboardUserPass = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageClipboardURL = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,8 +115,7 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.ddManageLoginAutoSteamClear = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddManageLoginClickCreds = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,7 +160,7 @@
             // 
             this.ddAccountAdd.Image = global::owl.Properties.Resources.plus;
             this.ddAccountAdd.Name = "ddAccountAdd";
-            this.ddAccountAdd.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountAdd.Size = new System.Drawing.Size(117, 22);
             this.ddAccountAdd.Text = "Add";
             this.ddAccountAdd.Click += new System.EventHandler(this.DdAccountAdd_Click);
             // 
@@ -167,7 +168,7 @@
             // 
             this.ddAccountEdit.Image = global::owl.Properties.Resources.edit;
             this.ddAccountEdit.Name = "ddAccountEdit";
-            this.ddAccountEdit.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountEdit.Size = new System.Drawing.Size(117, 22);
             this.ddAccountEdit.Text = "Edit";
             this.ddAccountEdit.Click += new System.EventHandler(this.DdAccountEdit_Click);
             // 
@@ -175,7 +176,7 @@
             // 
             this.ddAccountRemove.Image = global::owl.Properties.Resources.minus;
             this.ddAccountRemove.Name = "ddAccountRemove";
-            this.ddAccountRemove.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountRemove.Size = new System.Drawing.Size(117, 22);
             this.ddAccountRemove.Text = "Remove";
             this.ddAccountRemove.Click += new System.EventHandler(this.DdAccountRemove_Click);
             // 
@@ -185,14 +186,14 @@
             this.ddAccountImportSAC,
             this.ddAccountImportSAG});
             this.ddAccountImport.Name = "ddAccountImport";
-            this.ddAccountImport.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImport.Size = new System.Drawing.Size(117, 22);
             this.ddAccountImport.Text = "Import";
             // 
             // ddAccountImportSAC
             // 
             this.ddAccountImportSAC.Image = global::owl.Properties.Resources.steam_logo;
             this.ddAccountImportSAC.Name = "ddAccountImportSAC";
-            this.ddAccountImportSAC.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAC.Size = new System.Drawing.Size(170, 22);
             this.ddAccountImportSAC.Text = "EarsKilla\'s SAC";
             this.ddAccountImportSAC.Click += new System.EventHandler(this.DdAccountImportSAC_Click);
             // 
@@ -203,20 +204,20 @@
             this.ddAccountImportSAGGC});
             this.ddAccountImportSAG.Image = global::owl.Properties.Resources.cathook;
             this.ddAccountImportSAG.Name = "ddAccountImportSAG";
-            this.ddAccountImportSAG.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAG.Size = new System.Drawing.Size(170, 22);
             this.ddAccountImportSAG.Text = "SAG Local Storage";
             // 
             // ddAccountImportSAGFF
             // 
             this.ddAccountImportSAGFF.Name = "ddAccountImportSAGFF";
-            this.ddAccountImportSAGFF.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAGFF.Size = new System.Drawing.Size(158, 22);
             this.ddAccountImportSAGFF.Text = "Firefox";
             this.ddAccountImportSAGFF.Click += new System.EventHandler(this.Event_LSImport);
             // 
             // ddAccountImportSAGGC
             // 
             this.ddAccountImportSAGGC.Name = "ddAccountImportSAGGC";
-            this.ddAccountImportSAGGC.Size = new System.Drawing.Size(180, 22);
+            this.ddAccountImportSAGGC.Size = new System.Drawing.Size(158, 22);
             this.ddAccountImportSAGGC.Text = "Google Chrome";
             this.ddAccountImportSAGGC.Click += new System.EventHandler(this.Event_LSImport);
             // 
@@ -319,6 +320,7 @@
             this.ddManageLoginNormal,
             this.ddManageLoginForce,
             this.ddManageLoginNormalNoCheck,
+            this.ddManageLoginClickCreds,
             this.toolStripSeparator11,
             this.ddManageLoginAutoSteamClear});
             this.ddManageLogin.Image = global::owl.Properties.Resources.keyboard;
@@ -346,6 +348,18 @@
             this.ddManageLoginNormalNoCheck.Size = new System.Drawing.Size(199, 22);
             this.ddManageLoginNormalNoCheck.Text = "Normal (No Check)";
             this.ddManageLoginNormalNoCheck.Click += new System.EventHandler(this.ddManageLoginNormalNoCheck_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(196, 6);
+            // 
+            // ddManageLoginAutoSteamClear
+            // 
+            this.ddManageLoginAutoSteamClear.Name = "ddManageLoginAutoSteamClear";
+            this.ddManageLoginAutoSteamClear.Size = new System.Drawing.Size(199, 22);
+            this.ddManageLoginAutoSteamClear.Text = "Clear Steam Auto Login";
+            this.ddManageLoginAutoSteamClear.Click += new System.EventHandler(this.ddManageLoginAutoSteamClear_Click);
             // 
             // ddManageClipboard
             // 
@@ -813,17 +827,11 @@
             this.tbNote.TabIndex = 11;
             this.tbNote.TextChanged += new System.EventHandler(this.TbNote_TextChanged);
             // 
-            // toolStripSeparator11
+            // ddManageLoginClickCreds
             // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(196, 6);
-            // 
-            // ddManageLoginAutoSteamClear
-            // 
-            this.ddManageLoginAutoSteamClear.Name = "ddManageLoginAutoSteamClear";
-            this.ddManageLoginAutoSteamClear.Size = new System.Drawing.Size(199, 22);
-            this.ddManageLoginAutoSteamClear.Text = "Clear Steam Auto Login";
-            this.ddManageLoginAutoSteamClear.Click += new System.EventHandler(this.ddManageLoginAutoSteamClear_Click);
+            this.ddManageLoginClickCreds.Name = "ddManageLoginClickCreds";
+            this.ddManageLoginClickCreds.Size = new System.Drawing.Size(199, 22);
+            this.ddManageLoginClickCreds.Text = "Click Credentials";
             // 
             // FormMain
             // 
@@ -937,6 +945,7 @@
         private System.Windows.Forms.ToolStripMenuItem ddManageLoginNormalNoCheck;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem ddManageLoginAutoSteamClear;
+        private System.Windows.Forms.ToolStripMenuItem ddManageLoginClickCreds;
     }
 }
 

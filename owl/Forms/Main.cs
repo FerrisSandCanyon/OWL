@@ -14,7 +14,6 @@ namespace owl
         public Class.Account SelectedAccount = null; // Reference to the first selected account in lvData
 
         // Form title tracking
-        public bool   title_isLoggingIn = false;
         public string title_status      = null,
                       title_fallback    = null;
 
@@ -83,7 +82,7 @@ namespace owl
                 }
             }
             )).Start();
-
+            
             FormMain_UpdateTitle();
 
             #if !DEBUG
@@ -103,7 +102,7 @@ namespace owl
         {
             this.Text = this.title_fallback +
                        (Globals.CurrentProfile != null && Globals.CurrentProfile.LastSaved != DateTime.MinValue ? $" | Last Save: {Globals.CurrentProfile.LastSaved}" : "") +
-                       (this.title_isLoggingIn ? " | Logging in..." : "") +
+                       (Globals.IsLoggingIn ? " | Logging in..." : "") +
                        (string.IsNullOrWhiteSpace(this.title_status) ? "" : $" | {this.title_status}");
         }
 
@@ -638,14 +637,9 @@ namespace owl
                     Event_AddCooldown(ddManageCooldown21hours, null);
                     break;
 
-                // Force Login
+                // Login
                 case Keys.Control | Keys.F:
-                    AccountLogin(1);
-                    break;
-
-                // Normal Login with no checks
-                case Keys.Control | Keys.G:
-                    AccountLogin(2);
+                    AccountLogin(Globals.Config.loginMethod);
                     break;
 
                 // Add New Account
@@ -667,6 +661,23 @@ namespace owl
                 case Keys.Control | Keys.A:
                     DdManageObtainStart_Click(null, null);
                     break;
+
+                // Open URL
+                case Keys.Control | Keys.O:
+                {
+                    foreach (KeyValuePair<string, Class.Account> _acc in Utils.ProfileInfo.GetSelectedItems())
+                    {
+                        if (string.IsNullOrWhiteSpace(_acc.Value.SteamURL))
+                            continue;
+
+                        new Thread(() =>
+                        {
+                            Process.Start("https://steamcommunity.com/" + _acc.Value.SteamURL);
+                        }).Start();
+                    }
+
+                    break;
+                }
 
                 default:
                     return base.ProcessCmdKey(ref msg, keyData);
@@ -783,7 +794,6 @@ namespace owl
                 _lsi.Dispose();
             }
         }
-
-#endregion
     }
+#endregion
 }

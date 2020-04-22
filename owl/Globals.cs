@@ -19,6 +19,8 @@ namespace owl
         public static string passKey = "";   // Store the passkey. No intention for deep security other than simple obfuscation to steer away from plain text.
         public static readonly string Charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // Predefined charset
 
+        public static bool IsLoggingIn = false;
+
         // Global constant information
         public static class Info
         {

@@ -44,6 +44,13 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClip = new System.Windows.Forms.Button();
             this.cbUpdate = new System.Windows.Forms.CheckBox();
+            this.rtbLogMetNormal = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.rtbLogMetForce = new System.Windows.Forms.RadioButton();
+            this.rtbLogMetNormalNoCheck = new System.Windows.Forms.RadioButton();
+            this.rtbLogMetClickCreds = new System.Windows.Forms.RadioButton();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -206,12 +213,81 @@
             this.cbUpdate.Text = "Check update on startup";
             this.cbUpdate.UseVisualStyleBackColor = true;
             // 
+            // rtbLogMetNormal
+            // 
+            this.rtbLogMetNormal.AutoSize = true;
+            this.rtbLogMetNormal.Location = new System.Drawing.Point(21, 34);
+            this.rtbLogMetNormal.Name = "rtbLogMetNormal";
+            this.rtbLogMetNormal.Size = new System.Drawing.Size(62, 17);
+            this.rtbLogMetNormal.TabIndex = 26;
+            this.rtbLogMetNormal.TabStop = true;
+            this.rtbLogMetNormal.Text = "Normal";
+            this.rtbLogMetNormal.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rtbLogMetClickCreds);
+            this.groupBox1.Controls.Add(this.rtbLogMetNormalNoCheck);
+            this.groupBox1.Controls.Add(this.rtbLogMetForce);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.rtbLogMetNormal);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(15, 164);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(399, 59);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Login Method";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(50, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(302, 13);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Login method used when pressing the login shortcut key";
+            // 
+            // rtbLogMetForce
+            // 
+            this.rtbLogMetForce.AutoSize = true;
+            this.rtbLogMetForce.Location = new System.Drawing.Point(89, 34);
+            this.rtbLogMetForce.Name = "rtbLogMetForce";
+            this.rtbLogMetForce.Size = new System.Drawing.Size(53, 17);
+            this.rtbLogMetForce.TabIndex = 29;
+            this.rtbLogMetForce.TabStop = true;
+            this.rtbLogMetForce.Text = "Force";
+            this.rtbLogMetForce.UseVisualStyleBackColor = true;
+            // 
+            // rtbLogMetNormalNoCheck
+            // 
+            this.rtbLogMetNormalNoCheck.AutoSize = true;
+            this.rtbLogMetNormalNoCheck.Location = new System.Drawing.Point(148, 34);
+            this.rtbLogMetNormalNoCheck.Name = "rtbLogMetNormalNoCheck";
+            this.rtbLogMetNormalNoCheck.Size = new System.Drawing.Size(120, 17);
+            this.rtbLogMetNormalNoCheck.TabIndex = 30;
+            this.rtbLogMetNormalNoCheck.TabStop = true;
+            this.rtbLogMetNormalNoCheck.Text = "Normal (No Check)";
+            this.rtbLogMetNormalNoCheck.UseVisualStyleBackColor = true;
+            // 
+            // rtbLogMetClickCreds
+            // 
+            this.rtbLogMetClickCreds.AutoSize = true;
+            this.rtbLogMetClickCreds.Location = new System.Drawing.Point(274, 34);
+            this.rtbLogMetClickCreds.Name = "rtbLogMetClickCreds";
+            this.rtbLogMetClickCreds.Size = new System.Drawing.Size(110, 17);
+            this.rtbLogMetClickCreds.TabIndex = 31;
+            this.rtbLogMetClickCreds.TabStop = true;
+            this.rtbLogMetClickCreds.Text = "Click Credentials";
+            this.rtbLogMetClickCreds.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(429, 160);
+            this.ClientSize = new System.Drawing.Size(429, 235);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbUpdate);
             this.Controls.Add(this.btnClip);
             this.Controls.Add(this.btnSave);
@@ -236,6 +312,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.FormSettings_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +336,11 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClip;
         private System.Windows.Forms.CheckBox cbUpdate;
+        private System.Windows.Forms.RadioButton rtbLogMetNormal;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton rtbLogMetClickCreds;
+        private System.Windows.Forms.RadioButton rtbLogMetNormalNoCheck;
+        private System.Windows.Forms.RadioButton rtbLogMetForce;
     }
 }

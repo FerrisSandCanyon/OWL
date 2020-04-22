@@ -118,6 +118,12 @@ namespace owl.Class
                 return false;
             }
 
+            if (Globals.IsLoggingIn)
+            {
+                MessageBox.Show("The application is already actively logging in an account!", "Login Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             // Make sure steam is closed
             if (mode != 2)
             {
@@ -134,7 +140,7 @@ namespace owl.Class
                 }
             }
 
-            Globals.hFormMain.title_isLoggingIn = true;
+            Globals.IsLoggingIn = true;
             Globals.hFormMain.FormMain_UpdateTitle();
 
             if (Globals.LastAccountLogin != null)
@@ -150,7 +156,7 @@ namespace owl.Class
                 Process.Start(Globals.Config.steamPath + "/Steam.exe", $"-login \"{this.Username}\" \"{this.Password}\" {Globals.Config.steamParam}");
                 Globals.hFormMain.Invoke(new Action(() =>
                 {
-                    Globals.hFormMain.title_isLoggingIn = false;
+                    Globals.IsLoggingIn = false;
                     Globals.hFormMain.FormMain_UpdateTitle();
                 }));
             }

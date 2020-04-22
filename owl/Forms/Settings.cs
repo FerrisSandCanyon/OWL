@@ -8,6 +8,27 @@ namespace owl.Forms
     {
 
         private bool clipmode = false;
+        private RadioButton[] LoginMethodRTBControls = new RadioButton[4] { null, null, null, null };
+
+        private int LoginMethodControlRef
+        {
+            get
+            {
+
+                for (int x = 0; x < LoginMethodRTBControls.Length; x++)
+                {
+                    if (LoginMethodRTBControls[x].Checked)
+                        return x;
+                }
+
+                return -1;
+            }
+
+            set
+            {
+                LoginMethodRTBControls[value].Checked = true;
+            }
+        }
 
         public Settings()
         {
@@ -16,14 +37,20 @@ namespace owl.Forms
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-            tbPath.Text      = Globals.Config.steamPath ?? "";
-            tbParam.Text     = Globals.Config.steamParam ?? "";
-            tbCD.Text        = Globals.Config.cooldownRefresh.ToString() ?? "800";
-            tbThread.Text    = Globals.Config.maxThreads.ToString() ?? "4";
-            cbForce.Checked  = Globals.Config.forceStatus;
-            cbMask.Checked   = Globals.Config.maskPassword;
-            clipmode         = Globals.Config.clipboardDetail;
-            cbUpdate.Checked = Globals.Config.startupUpdateChk;
+            LoginMethodRTBControls[0] = rtbLogMetNormal;
+            LoginMethodRTBControls[1] = rtbLogMetForce;
+            LoginMethodRTBControls[2] = rtbLogMetNormalNoCheck;
+            LoginMethodRTBControls[3] = rtbLogMetClickCreds;
+
+            tbPath.Text           = Globals.Config.steamPath ?? "";
+            tbParam.Text          = Globals.Config.steamParam ?? "";
+            tbCD.Text             = Globals.Config.cooldownRefresh.ToString() ?? "800";
+            tbThread.Text         = Globals.Config.maxThreads.ToString() ?? "4";
+            cbForce.Checked       = Globals.Config.forceStatus;
+            cbMask.Checked        = Globals.Config.maskPassword;
+            clipmode              = Globals.Config.clipboardDetail;
+            cbUpdate.Checked      = Globals.Config.startupUpdateChk;
+            LoginMethodControlRef = Globals.Config.loginMethod;
 
             BtnClip_SetTxt();
         }
@@ -56,6 +83,7 @@ namespace owl.Forms
             Globals.Config.maskPassword     = cbMask.Checked;
             Globals.Config.clipboardDetail  = clipmode;
             Globals.Config.startupUpdateChk = cbUpdate.Checked;
+            Globals.Config.loginMethod      = LoginMethodControlRef;
 
             if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath))
             {
