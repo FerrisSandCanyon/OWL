@@ -46,10 +46,10 @@
             this.cbUpdate = new System.Windows.Forms.CheckBox();
             this.rtbLogMetNormal = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.rtbLogMetForce = new System.Windows.Forms.RadioButton();
-            this.rtbLogMetNormalNoCheck = new System.Windows.Forms.RadioButton();
             this.rtbLogMetClickCreds = new System.Windows.Forms.RadioButton();
+            this.rtbLogMetNormalNoCheck = new System.Windows.Forms.RadioButton();
+            this.rtbLogMetForce = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +72,6 @@
             this.tbPath.ReadOnly = true;
             this.tbPath.Size = new System.Drawing.Size(212, 22);
             this.tbPath.TabIndex = 12;
-            this.tbPath.Text = "C:/Program Files (x86)/Steam";
             // 
             // tbParam
             // 
@@ -102,7 +101,6 @@
             this.tbCD.Name = "tbCD";
             this.tbCD.Size = new System.Drawing.Size(46, 22);
             this.tbCD.TabIndex = 16;
-            this.tbCD.Text = "800";
             // 
             // label3
             // 
@@ -140,7 +138,6 @@
             this.tbThread.Name = "tbThread";
             this.tbThread.Size = new System.Drawing.Size(53, 22);
             this.tbThread.TabIndex = 19;
-            this.tbThread.Text = "4";
             // 
             // cbForce
             // 
@@ -155,8 +152,6 @@
             // cbMask
             // 
             this.cbMask.AutoSize = true;
-            this.cbMask.Checked = true;
-            this.cbMask.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbMask.Location = new System.Drawing.Point(249, 125);
             this.cbMask.Name = "cbMask";
             this.cbMask.Size = new System.Drawing.Size(105, 17);
@@ -239,25 +234,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login Method";
             // 
-            // label6
+            // rtbLogMetClickCreds
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(50, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(302, 13);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Login method used when pressing the login shortcut key";
-            // 
-            // rtbLogMetForce
-            // 
-            this.rtbLogMetForce.AutoSize = true;
-            this.rtbLogMetForce.Location = new System.Drawing.Point(89, 34);
-            this.rtbLogMetForce.Name = "rtbLogMetForce";
-            this.rtbLogMetForce.Size = new System.Drawing.Size(53, 17);
-            this.rtbLogMetForce.TabIndex = 29;
-            this.rtbLogMetForce.TabStop = true;
-            this.rtbLogMetForce.Text = "Force";
-            this.rtbLogMetForce.UseVisualStyleBackColor = true;
+            this.rtbLogMetClickCreds.AutoSize = true;
+            this.rtbLogMetClickCreds.Location = new System.Drawing.Point(274, 34);
+            this.rtbLogMetClickCreds.Name = "rtbLogMetClickCreds";
+            this.rtbLogMetClickCreds.Size = new System.Drawing.Size(110, 17);
+            this.rtbLogMetClickCreds.TabIndex = 31;
+            this.rtbLogMetClickCreds.TabStop = true;
+            this.rtbLogMetClickCreds.Text = "Click Credentials";
+            this.rtbLogMetClickCreds.UseVisualStyleBackColor = true;
             // 
             // rtbLogMetNormalNoCheck
             // 
@@ -270,16 +256,25 @@
             this.rtbLogMetNormalNoCheck.Text = "Normal (No Check)";
             this.rtbLogMetNormalNoCheck.UseVisualStyleBackColor = true;
             // 
-            // rtbLogMetClickCreds
+            // rtbLogMetForce
             // 
-            this.rtbLogMetClickCreds.AutoSize = true;
-            this.rtbLogMetClickCreds.Location = new System.Drawing.Point(274, 34);
-            this.rtbLogMetClickCreds.Name = "rtbLogMetClickCreds";
-            this.rtbLogMetClickCreds.Size = new System.Drawing.Size(110, 17);
-            this.rtbLogMetClickCreds.TabIndex = 31;
-            this.rtbLogMetClickCreds.TabStop = true;
-            this.rtbLogMetClickCreds.Text = "Click Credentials";
-            this.rtbLogMetClickCreds.UseVisualStyleBackColor = true;
+            this.rtbLogMetForce.AutoSize = true;
+            this.rtbLogMetForce.Location = new System.Drawing.Point(89, 34);
+            this.rtbLogMetForce.Name = "rtbLogMetForce";
+            this.rtbLogMetForce.Size = new System.Drawing.Size(53, 17);
+            this.rtbLogMetForce.TabIndex = 29;
+            this.rtbLogMetForce.TabStop = true;
+            this.rtbLogMetForce.Text = "Force";
+            this.rtbLogMetForce.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(50, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(302, 13);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Login method used when pressing the login shortcut key";
             // 
             // Settings
             // 

@@ -96,8 +96,6 @@ namespace owl
             #if DEBUG
                 Debug.WriteLine(String.Format("Config Content after check ({0}): {1}\nShould Resave: ", Globals.Info.cfgPath, JsonConvert.SerializeObject(Globals.Config), shouldResave ? "yes" : "no"));
             #endif
-            
-            Debug.WriteLine("The window was " + (PInvoke.winuser.FindWindow("vguiPopupWindow", "Steam Login") == IntPtr.Zero ? "not" : "") + " found.");
 
             return true;
         }

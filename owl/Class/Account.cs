@@ -110,7 +110,7 @@ namespace owl.Class
         }
 
         // Login the account
-        public bool Login(int mode = 0)
+        public bool Login(LOGINMETHOD mode = 0)
         {
             if (string.IsNullOrWhiteSpace(this.Username) || string.IsNullOrWhiteSpace(this.Password))
             {
@@ -124,13 +124,13 @@ namespace owl.Class
                 return false;
             }
 
-            // Make sure steam is closed
-            if (mode != 2)
+            // Make sure steam is closed. Only check if logging in with normal or force
+            if (mode < LOGINMETHOD.NORMAL_NO_CHECK)
             {
                 Process[] _temp_proc_list;
                 while ((_temp_proc_list = Process.GetProcessesByName("Steam")).Count() > 0)
                 {
-                    if (mode == 1 || MessageBox.Show("OWL has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    if (mode == LOGINMETHOD.FORCE || MessageBox.Show("OWL has detected that the Steam client is still running. Would you like to close it forcibly? This is not recommended since it can cause instability. Only choose this option if you know what you're doing.", "Login Account", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                         foreach (Process steam in _temp_proc_list)
                             steam.Kill();
                     else
@@ -153,7 +153,16 @@ namespace owl.Class
 
             new Thread(new ThreadStart(() =>
             {
-                Process.Start(Globals.Config.steamPath + "/Steam.exe", $"-login \"{this.Username}\" \"{this.Password}\" {Globals.Config.steamParam}");
+                if (mode == LOGINMETHOD.CLICK_CREDENTIALS)
+                {
+                    Class.Account _acc = this;
+                    new Forms.ClickLogin(ref _acc).ShowDialog();
+                }
+                else 
+                {
+                    Process.Start(Globals.Config.steamPath + "/Steam.exe", $"-login \"{this.Username}\" \"{this.Password}\" {Globals.Config.steamParam}");
+                }
+                
                 Globals.hFormMain.Invoke(new Action(() =>
                 {
                     Globals.IsLoggingIn = false;

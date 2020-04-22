@@ -51,6 +51,8 @@ namespace owl
                 ddManageCooldownCustom.Visible = false;
 
                 ddAccountImportSAGGC.Visible = false;
+
+                ddManageLoginClickCreds.Visible = false;
             #endif
 
             this.title_fallback = this.Text;
@@ -583,7 +585,7 @@ namespace owl
 
         private void DdManageLoginNormal_Click(object sender, EventArgs e)
         {
-            AccountLogin();
+            AccountLogin(LOGINMETHOD.NORMAL);
         }
 
         private void DdManageLoginForce_Click(object sender, EventArgs e)
@@ -596,7 +598,12 @@ namespace owl
             AccountLogin(2);
         }
 
-        private void AccountLogin(int mode = 0)
+        private void ddManageLoginClickCreds_Click(object sender, EventArgs e)
+        {
+            AccountLogin(3);
+        }
+
+        private void AccountLogin(LOGINMETHOD mode = NORMAL)
         {
             if (lvData.SelectedItems.Count != 1)
             {

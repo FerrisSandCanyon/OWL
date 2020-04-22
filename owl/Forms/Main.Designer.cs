@@ -832,6 +832,7 @@
             this.ddManageLoginClickCreds.Name = "ddManageLoginClickCreds";
             this.ddManageLoginClickCreds.Size = new System.Drawing.Size(199, 22);
             this.ddManageLoginClickCreds.Text = "Click Credentials";
+            this.ddManageLoginClickCreds.Click += new System.EventHandler(this.ddManageLoginClickCreds_Click);
             // 
             // FormMain
             // 
