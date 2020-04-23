@@ -12,10 +12,10 @@ namespace owl.PInvoke
         // https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-rect
         public struct RECT
         {
-            public long left;
-            public long top;
-            public long right;
-            public long bottom;
+            public UInt32 left;
+            public UInt32 top;
+            public UInt32 right;
+            public UInt32 bottom;
         };
 
         // https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-windowinfo
@@ -45,6 +45,6 @@ namespace owl.PInvoke
 
         // https://www.pinvoke.net/default.aspx/user32.getforegroundwindow
         [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
+        public static extern IntPtr GetForegroundWindow();
     }
 }

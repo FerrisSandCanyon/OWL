@@ -93,6 +93,15 @@ namespace owl
             #endif
         }
 
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Globals.IsLoggingIn || Globals.ParserQueue != null && Globals.ParserQueue.IsAlive)
+            {
+                MessageBox.Show("Please make sure all tasks are finished before terminating the program.", "Close Aborted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Cancel = true;
+            }
+        }
+
         // Legacy 
         public void FormMain_SetTitle(string _status = null)
         {

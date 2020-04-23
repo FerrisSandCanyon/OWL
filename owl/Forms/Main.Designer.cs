@@ -55,6 +55,7 @@
             this.ddManageLoginNormal = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageLoginForce = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageLoginNormalNoCheck = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddManageLoginClickCreds = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.ddManageLoginAutoSteamClear = new System.Windows.Forms.ToolStripMenuItem();
             this.ddManageClipboard = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,7 +116,6 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
-            this.ddManageLoginClickCreds = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -256,7 +256,7 @@
             this.ddManageObtainInfo});
             this.ddManageObtain.Image = global::owl.Properties.Resources.refresh;
             this.ddManageObtain.Name = "ddManageObtain";
-            this.ddManageObtain.Size = new System.Drawing.Size(180, 22);
+            this.ddManageObtain.Size = new System.Drawing.Size(160, 22);
             this.ddManageObtain.Text = "Obtain Info";
             // 
             // ddManageObtainStart
@@ -325,7 +325,7 @@
             this.ddManageLoginAutoSteamClear});
             this.ddManageLogin.Image = global::owl.Properties.Resources.keyboard;
             this.ddManageLogin.Name = "ddManageLogin";
-            this.ddManageLogin.Size = new System.Drawing.Size(180, 22);
+            this.ddManageLogin.Size = new System.Drawing.Size(160, 22);
             this.ddManageLogin.Text = "Login";
             // 
             // ddManageLoginNormal
@@ -349,6 +349,13 @@
             this.ddManageLoginNormalNoCheck.Text = "Normal (No Check)";
             this.ddManageLoginNormalNoCheck.Click += new System.EventHandler(this.ddManageLoginNormalNoCheck_Click);
             // 
+            // ddManageLoginClickCreds
+            // 
+            this.ddManageLoginClickCreds.Name = "ddManageLoginClickCreds";
+            this.ddManageLoginClickCreds.Size = new System.Drawing.Size(199, 22);
+            this.ddManageLoginClickCreds.Text = "Click Credentials";
+            this.ddManageLoginClickCreds.Click += new System.EventHandler(this.ddManageLoginClickCreds_Click);
+            // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
@@ -370,7 +377,7 @@
             this.ddManageClipboardAll});
             this.ddManageClipboard.Image = global::owl.Properties.Resources.clipboard;
             this.ddManageClipboard.Name = "ddManageClipboard";
-            this.ddManageClipboard.Size = new System.Drawing.Size(180, 22);
+            this.ddManageClipboard.Size = new System.Drawing.Size(160, 22);
             this.ddManageClipboard.Text = "Clipboard";
             // 
             // ddManageClipboardUserPass
@@ -416,7 +423,7 @@
             this.ddManageCooldownCustom});
             this.ddManageCooldown.Image = global::owl.Properties.Resources.alarm_clock;
             this.ddManageCooldown.Name = "ddManageCooldown";
-            this.ddManageCooldown.Size = new System.Drawing.Size(180, 22);
+            this.ddManageCooldown.Size = new System.Drawing.Size(160, 22);
             this.ddManageCooldown.Text = "Cooldown";
             this.ddManageCooldown.Click += new System.EventHandler(this.ddManageCooldown_Click);
             // 
@@ -499,7 +506,7 @@
             this.duplicateToToolStripMenuItem});
             this.ddSteamUserData.Image = global::owl.Properties.Resources.steam_logo16;
             this.ddSteamUserData.Name = "ddSteamUserData";
-            this.ddSteamUserData.Size = new System.Drawing.Size(180, 22);
+            this.ddSteamUserData.Size = new System.Drawing.Size(160, 22);
             this.ddSteamUserData.Text = "Steam User Data";
             // 
             // deleteToolStripMenuItem
@@ -827,13 +834,6 @@
             this.tbNote.TabIndex = 11;
             this.tbNote.TextChanged += new System.EventHandler(this.TbNote_TextChanged);
             // 
-            // ddManageLoginClickCreds
-            // 
-            this.ddManageLoginClickCreds.Name = "ddManageLoginClickCreds";
-            this.ddManageLoginClickCreds.Size = new System.Drawing.Size(199, 22);
-            this.ddManageLoginClickCreds.Text = "Click Credentials";
-            this.ddManageLoginClickCreds.Click += new System.EventHandler(this.ddManageLoginClickCreds_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -851,6 +851,7 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OWL";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.toolstrip.ResumeLayout(false);
             this.toolstrip.PerformLayout();

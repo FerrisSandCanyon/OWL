@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace owl.Forms
@@ -67,7 +62,7 @@ namespace owl.Forms
 
 #if !DEBUG
             lbldbg.Visible = false;
-            this.Height = 92;
+            this.Height = 96;
 #endif
         }
 
@@ -92,16 +87,36 @@ namespace owl.Forms
                 Thread.Sleep(500);
             }
 
-            // Track user input and window while making sure steam and the login form is still present
-            while (!isSteamRunning && (hSteamWnd_ = hSteamWnd) == IntPtr.Zero)
-            {
-                Thread.Sleep(500);
+            status = "Ready...";
 
+            // Track user input and window while making sure steam and the login form is still present
+            while (isSteamRunning && (hSteamWnd_ = hSteamWnd) != IntPtr.Zero)
+            {
+                Thread.Sleep(1);
+
+                if (PInvoke.winuser.GetForegroundWindow() != hSteamWnd_)
+                    continue;
+                
                 if (!PInvoke.winuser.GetWindowInfo(hSteamWnd_, ref windowinfo))
                     continue;
-
+                
                 curpos = Cursor.Position;
+
+                this.Invoke(new Action(() =>
+                {
+                    this.Location = new Point(
+                        (int)(windowinfo.rcWindow.left - windowinfo.cxWindowBorders + 1),
+                        (int)(windowinfo.rcWindow.top + (windowinfo.rcWindow.bottom - windowinfo.rcWindow.top) + 6)
+                        );
+                }));
             }
+
+            status = "Sending close...";
+
+            this.Invoke(new Action(() =>
+            {
+                this.Close();
+            }));
         }
 
         private void ClickLogin_Load(object sender, EventArgs e)
@@ -115,12 +130,16 @@ namespace owl.Forms
 #if DEBUG
             dbgThread = new Thread(() =>
             {
-                this.Invoke(new Action(() =>
+                while (true)
                 {
-                    lbldbg.Text = String.Format(
-                    "steam hwnd:{0}\nsteam pos: {1}, {2} cursor pos: {3}, {4}\ndebug info: {5}",
-                    this.hSteamWnd_.ToString(), windowinfo.rcWindow.left.ToString(), windowinfo.rcWindow.top.ToString(), curpos.X.ToString(), curpos.Y.ToString(), "");
-                }));
+                    Thread.Sleep(500);
+                    this.Invoke(new Action(() =>
+                    {
+                        lbldbg.Text = String.Format(
+                        "steam hwnd:{0}\nsteam pos: {1}, {2} cursor pos: {3}, {4}\ndebug info: {5}",
+                        this.hSteamWnd_.ToString(), windowinfo.rcWindow.left.ToString(), windowinfo.rcWindow.top.ToString(), curpos.X.ToString(), curpos.Y.ToString(), "");
+                    }));
+                }
             });
 
             dbgThread.Start();
@@ -129,6 +148,8 @@ namespace owl.Forms
 
         private void ClickLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
+            status = "Closing...";
+
             thWorker.Abort();
 
 #if DEBUG
