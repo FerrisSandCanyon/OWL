@@ -12,25 +12,25 @@ namespace owl.PInvoke
         // https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-rect
         public struct RECT
         {
-            long left;
-            long top;
-            long right;
-            long bottom;
+            public long left;
+            public long top;
+            public long right;
+            public long bottom;
         };
 
         // https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-windowinfo
         public struct WINDOWINFO
         {
-            UInt32 cbSize;
-            RECT rcWindow;
-            RECT rcClient;
-            UInt32 dwStyle;
-            UInt32 dwExStyle;
-            UInt32 dwWindowStatus;
-            uint cxWindowBorders;
-            uint cyWindowBorders;
-            UInt16 atomWindowType; // https://stackoverflow.com/questions/10525511/what-is-the-atom-data-type
-            UInt16 wCreatorVersion;
+            public UInt32 cbSize;
+            public RECT rcWindow;
+            public RECT rcClient;
+            public UInt32 dwStyle;
+            public UInt32 dwExStyle;
+            public UInt32 dwWindowStatus;
+            public uint cxWindowBorders;
+            public uint cyWindowBorders;
+            public UInt16 atomWindowType; // https://stackoverflow.com/questions/10525511/what-is-the-atom-data-type
+            public UInt16 wCreatorVersion;
         };
 
 

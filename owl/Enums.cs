@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace owl
 {
-    public enum LOGINMETHOD : int
+    public enum LOGINMETHOD
     {
         NORMAL,
         FORCE,

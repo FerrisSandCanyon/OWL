@@ -7,19 +7,20 @@ namespace owl.Class
 {
     public class Config
     {
-        public string steamPath        = "C:/Program Files (x86)/Steam",   // Path to steam directory
-                      defaultProfile   = "default",                        // Default profile to be loaded
-                      hashedKey        = "",                               // Hashed key / password
-                      steamParam       = "";                               // Custom steam startup parameters
+        public string      steamPath        = "C:/Program Files (x86)/Steam",   // Path to steam directory
+                           defaultProfile   = "default",                        // Default profile to be loaded
+                           hashedKey        = "",                               // Hashed key / password
+                           steamParam       = "";                               // Custom steam startup parameters
+                           
+        public int         cooldownRefresh  = 800,                              // Cooldown refresh rate measured in milliseconds
+                           maxThreads       = 4;                                // Maximum threads that can run at the same time
 
-        public int    cooldownRefresh  = 800,                              // Cooldown refresh rate measured in milliseconds
-                      maxThreads       = 4,                                // Maximum threads that can run at the same time
-                      loginMethod      = 0;                                // Login Method used by the shortcut key
+        public LOGINMETHOD loginMethod      = 0;                                // Login Method used by the shortcut key
 
-        public bool   forceStatus      = false,                            // Forces status check on accounts with Bans
-                      maskPassword     = true,                             // Display the password in plain text or mask it with • on the accounts form
-                      clipboardDetail  = false,                            // Dictates clipboard mode whether to use a single line (false) or detailed (true) format
-                      startupUpdateChk = true;                             // Checks for updates at startup
+        public bool        forceStatus      = false,                            // Forces status check on accounts with Bans
+                           maskPassword     = true,                             // Display the password in plain text or mask it with • on the accounts form
+                           clipboardDetail  = false,                            // Dictates clipboard mode whether to use a single line (false) or detailed (true) format
+                           startupUpdateChk = true;                             // Checks for updates at startup
     }
 }
 

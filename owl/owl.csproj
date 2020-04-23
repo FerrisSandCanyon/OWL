@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Class\LVIAccount.cs" />
     <Compile Include="Class\ProfileInfo.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Forms\AccountInfo.cs">
       <SubType>Form</SubType>
     </Compile>

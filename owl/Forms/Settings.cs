@@ -50,7 +50,7 @@ namespace owl.Forms
             cbMask.Checked        = Globals.Config.maskPassword;
             clipmode              = Globals.Config.clipboardDetail;
             cbUpdate.Checked      = Globals.Config.startupUpdateChk;
-            LoginMethodControlRef = Globals.Config.loginMethod;
+            LoginMethodControlRef = (int)Globals.Config.loginMethod;
 
             BtnClip_SetTxt();
         }
@@ -83,7 +83,7 @@ namespace owl.Forms
             Globals.Config.maskPassword     = cbMask.Checked;
             Globals.Config.clipboardDetail  = clipmode;
             Globals.Config.startupUpdateChk = cbUpdate.Checked;
-            Globals.Config.loginMethod      = LoginMethodControlRef;
+            Globals.Config.loginMethod      = (LOGINMETHOD)LoginMethodControlRef;
 
             if (!Utils.Config.Save(ref Globals.Config, Globals.Info.cfgPath))
             {

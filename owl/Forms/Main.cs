@@ -590,20 +590,20 @@ namespace owl
 
         private void DdManageLoginForce_Click(object sender, EventArgs e)
         {
-            AccountLogin(1);
+            AccountLogin(LOGINMETHOD.FORCE);
         }
 
         private void ddManageLoginNormalNoCheck_Click(object sender, EventArgs e)
         {
-            AccountLogin(2);
+            AccountLogin(LOGINMETHOD.NORMAL_NO_CHECK);
         }
 
         private void ddManageLoginClickCreds_Click(object sender, EventArgs e)
         {
-            AccountLogin(3);
+            AccountLogin(LOGINMETHOD.CLICK_CREDENTIALS);
         }
 
-        private void AccountLogin(LOGINMETHOD mode = NORMAL)
+        private void AccountLogin(LOGINMETHOD mode = LOGINMETHOD.NORMAL)
         {
             if (lvData.SelectedItems.Count != 1)
             {

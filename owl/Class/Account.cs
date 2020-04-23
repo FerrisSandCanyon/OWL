@@ -81,7 +81,7 @@ namespace owl.Class
             }
 
             this.SetText("Init parser...");
-
+            
             // Initialize the parser
             try
             {
@@ -110,7 +110,7 @@ namespace owl.Class
         }
 
         // Login the account
-        public bool Login(LOGINMETHOD mode = 0)
+        public bool Login(LOGINMETHOD mode = LOGINMETHOD.NORMAL)
         {
             if (string.IsNullOrWhiteSpace(this.Username) || string.IsNullOrWhiteSpace(this.Password))
             {
