@@ -152,18 +152,13 @@ namespace owl.Forms
             }));
         }
 
+        // Checks if the user cursor is currently hovering the specified area
         private bool AreaHovered(Rectangle area)
         {
-            // Checks if the user cursor is currently hovering the specified fill space
-            if (curpos.X >= windowinfo.rcWindow.left + area.Left
-            &&  curpos.X <= windowinfo.rcWindow.left + area.Right
-            &&  curpos.Y >= windowinfo.rcWindow.top  + area.Top
-            &&  curpos.Y <= windowinfo.rcWindow.top  + area.Bottom)
-            {
-                return true;
-            }
-
-            return false;
+            return (curpos.X >= windowinfo.rcWindow.left + area.Left
+                 && curpos.X <= windowinfo.rcWindow.left + area.Right
+                 && curpos.Y >= windowinfo.rcWindow.top  + area.Top
+                 && curpos.Y <= windowinfo.rcWindow.top  + area.Bottom);
         }
 
         private void ClickLogin_Load(object sender, EventArgs e)
