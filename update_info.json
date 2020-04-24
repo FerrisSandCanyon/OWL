@@ -1,7 +1,7 @@
 {
     "vMajor":0,
-    "vMinor":5,
+    "vMinor":6,
     "vPatch":0,
-    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.5.0",
-    "desc":"Added Transfer account, Added persistent last login indicator, and small improvements."
+    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.6.0",
+    "desc":"Added Click login method, custom login method for the ctrl + f shortcut key, added ctrl + o shortcut key to open the steam url, other improvements."
 }

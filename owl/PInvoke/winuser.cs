@@ -46,5 +46,9 @@ namespace owl.PInvoke
         // https://www.pinvoke.net/default.aspx/user32.getforegroundwindow
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
+
+        // https://www.pinvoke.net/default.aspx/user32.getasynckeystate
+        [DllImport("user32.dll")]
+        public static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
     }
 }

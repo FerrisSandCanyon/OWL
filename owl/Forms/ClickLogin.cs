@@ -10,11 +10,15 @@ namespace owl.Forms
 {
     public partial class ClickLogin : Form
     {
-        private Class.Account      account    = null;
+        Class.Account              account    = null;
         PInvoke.winuser.WINDOWINFO windowinfo = new PInvoke.winuser.WINDOWINFO();
         Point                      curpos;
         IntPtr                     hSteamWnd_ = IntPtr.Zero;
         Thread                     thWorker;
+        bool                       didClick   = false;
+
+        static Rectangle rectUserField = new Rectangle(117, 90,  329, 22);
+        static Rectangle rectPassField = new Rectangle(117, 124, 329, 22);
 
 #if DEBUG
         Thread dbgThread; // Handle to the debug display thread
@@ -88,7 +92,7 @@ namespace owl.Forms
             }
 
             status = "Ready...";
-
+            
             // Track user input and window while making sure steam and the login form is still present
             while (isSteamRunning && (hSteamWnd_ = hSteamWnd) != IntPtr.Zero)
             {
@@ -101,14 +105,43 @@ namespace owl.Forms
                     continue;
                 
                 curpos = Cursor.Position;
-
+                
+                // Track the steam window and set this window alongside the steam login window
                 this.Invoke(new Action(() =>
                 {
                     this.Location = new Point(
                         (int)(windowinfo.rcWindow.left - windowinfo.cxWindowBorders + 1),
-                        (int)(windowinfo.rcWindow.top + (windowinfo.rcWindow.bottom - windowinfo.rcWindow.top) + 6)
+                        (int)(windowinfo.rcWindow.top + (windowinfo.rcWindow.bottom - windowinfo.rcWindow.top) + 3)
                         );
                 }));
+
+                bool isLMDown = PInvoke.winuser.GetAsyncKeyState(Keys.LButton) != 0;
+
+                if (isLMDown)
+                    didClick = true;
+
+                if (didClick && !isLMDown)
+                {
+                    bool isUserField = false;
+
+                    if ((isUserField = AreaHovered(rectUserField)) || AreaHovered(rectPassField))
+                    {
+                        // Clear the field
+                        SendKeys.SendWait("^A");
+                        SendKeys.SendWait("{BS}");
+
+                        // Place the fill to the clipboard
+                        Clipboard.SetText(isUserField ? account.Username : account.Password);
+
+                        // Place it on the field
+                        SendKeys.SendWait("^V");
+
+                        // Clear the clipboard
+                        Clipboard.Clear();
+                    }
+
+                    didClick = false;
+                }
             }
 
             status = "Sending close...";
@@ -119,12 +152,27 @@ namespace owl.Forms
             }));
         }
 
+        private bool AreaHovered(Rectangle area)
+        {
+            // Checks if the user cursor is currently hovering the specified fill space
+            if (curpos.X >= windowinfo.rcWindow.left + area.Left
+            &&  curpos.X <= windowinfo.rcWindow.left + area.Right
+            &&  curpos.Y >= windowinfo.rcWindow.top  + area.Top
+            &&  curpos.Y <= windowinfo.rcWindow.top  + area.Bottom)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void ClickLogin_Load(object sender, EventArgs e)
         {
             status = "Initializing...";
             
             lblAcc.Text += account.Username; // Setup account label
             thWorker = new Thread(WorkerThread);
+            thWorker.SetApartmentState(ApartmentState.STA);
             thWorker.Start();
 
 #if DEBUG
