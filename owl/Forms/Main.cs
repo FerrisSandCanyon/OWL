@@ -51,8 +51,6 @@ namespace owl
                 ddManageCooldownCustom.Visible = false;
 
                 ddAccountImportSAGGC.Visible = false;
-
-                ddManageLoginClickCreds.Visible = false;
             #endif
 
             this.title_fallback = this.Text;
