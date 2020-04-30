@@ -111,7 +111,7 @@ namespace owl.Forms
                 {
                     this.Location = new Point(
                         (int)(windowinfo.rcWindow.left - windowinfo.cxWindowBorders + 1),
-                        (int)(windowinfo.rcWindow.top + (windowinfo.rcWindow.bottom - windowinfo.rcWindow.top) + 3)
+                        (int)(windowinfo.rcWindow.bottom  + 3)
                         );
                 }));
 
