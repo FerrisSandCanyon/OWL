@@ -116,6 +116,7 @@
             this.chStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.swapAccountPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -538,6 +539,7 @@
             this.setAsDefaultProfileToolStripMenuItem,
             this.toolStripSeparator5,
             this.transferAccountsToolStripMenuItem,
+            this.swapAccountPositionToolStripMenuItem,
             this.toolStripSeparator10,
             this.importConvertToolStripMenuItem,
             this.refreshListToolStripMenuItem});
@@ -553,7 +555,7 @@
             // 
             this.addProfileToolStripMenuItem.Image = global::owl.Properties.Resources.plus;
             this.addProfileToolStripMenuItem.Name = "addProfileToolStripMenuItem";
-            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.addProfileToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.addProfileToolStripMenuItem.Text = "Add Profile";
             this.addProfileToolStripMenuItem.Click += new System.EventHandler(this.AddProfileToolStripMenuItem_Click);
             // 
@@ -561,19 +563,19 @@
             // 
             this.removeProfileToolStripMenuItem.Image = global::owl.Properties.Resources.minus;
             this.removeProfileToolStripMenuItem.Name = "removeProfileToolStripMenuItem";
-            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.removeProfileToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.removeProfileToolStripMenuItem.Text = "Remove Profile";
             this.removeProfileToolStripMenuItem.Click += new System.EventHandler(this.RemoveProfileToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(193, 6);
             // 
             // setAsDefaultProfileToolStripMenuItem
             // 
             this.setAsDefaultProfileToolStripMenuItem.Name = "setAsDefaultProfileToolStripMenuItem";
-            this.setAsDefaultProfileToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.setAsDefaultProfileToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.setAsDefaultProfileToolStripMenuItem.Text = "Set as default profile";
             this.setAsDefaultProfileToolStripMenuItem.Click += new System.EventHandler(this.SetAsDefaultProfileToolStripMenuItem_Click);
             // 
@@ -581,31 +583,31 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripSeparator5.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(193, 6);
             // 
             // transferAccountsToolStripMenuItem
             // 
             this.transferAccountsToolStripMenuItem.Name = "transferAccountsToolStripMenuItem";
-            this.transferAccountsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.transferAccountsToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.transferAccountsToolStripMenuItem.Text = "Transfer Accounts";
             this.transferAccountsToolStripMenuItem.Click += new System.EventHandler(this.transferAccountsToolStripMenuItem_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(193, 6);
             // 
             // importConvertToolStripMenuItem
             // 
             this.importConvertToolStripMenuItem.Name = "importConvertToolStripMenuItem";
-            this.importConvertToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.importConvertToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.importConvertToolStripMenuItem.Text = "Import / Convert";
             this.importConvertToolStripMenuItem.Click += new System.EventHandler(this.importConvertToolStripMenuItem_Click);
             // 
             // refreshListToolStripMenuItem
             // 
             this.refreshListToolStripMenuItem.Name = "refreshListToolStripMenuItem";
-            this.refreshListToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.refreshListToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.refreshListToolStripMenuItem.Text = "Refresh List";
             this.refreshListToolStripMenuItem.Click += new System.EventHandler(this.refreshListToolStripMenuItem_Click);
             // 
@@ -834,6 +836,13 @@
             this.tbNote.TabIndex = 11;
             this.tbNote.TextChanged += new System.EventHandler(this.TbNote_TextChanged);
             // 
+            // swapAccountPositionToolStripMenuItem
+            // 
+            this.swapAccountPositionToolStripMenuItem.Name = "swapAccountPositionToolStripMenuItem";
+            this.swapAccountPositionToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.swapAccountPositionToolStripMenuItem.Text = "Swap Account Position";
+            this.swapAccountPositionToolStripMenuItem.Click += new System.EventHandler(this.swapAccountPositionToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -948,6 +957,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem ddManageLoginAutoSteamClear;
         private System.Windows.Forms.ToolStripMenuItem ddManageLoginClickCreds;
+        private System.Windows.Forms.ToolStripMenuItem swapAccountPositionToolStripMenuItem;
     }
 }
 

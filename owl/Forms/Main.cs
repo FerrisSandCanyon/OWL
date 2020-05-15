@@ -203,6 +203,44 @@ namespace owl
             Registry.SetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "RememberPassword", 0, RegistryValueKind.DWord);
         }
 
+        private void swapAccountPositionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Globals.CurrentProfile == null)
+            {
+                MessageBox.Show("No profile loaded.", "Swap Accounts Position", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ListView.SelectedListViewItemCollection selitems = lvData.SelectedItems;
+
+            if (selitems.Count != 2)
+            {
+                MessageBox.Show("Please select 2 items to swap positions.", "Swap Accounts Position", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // for backwards compability, we store the class object id. in later versions the account class itself has this information.
+            string swapA_ClassObjectID  = lvData.SelectedItems[0].SubItems[0].Text;
+            string swapB_ClassObjectID = lvData.SelectedItems[1].SubItems[0].Text;
+
+            // Store the first account temporarily
+            Class.Account swap_Account = Globals.CurrentProfile.Profiles[swapA_ClassObjectID];
+
+            // Swap the two accounts and Re-assign the class object id
+            (Globals.CurrentProfile.Profiles[swapA_ClassObjectID] = Globals.CurrentProfile.Profiles[swapB_ClassObjectID]).ClassObjectID = swapA_ClassObjectID;
+            (Globals.CurrentProfile.Profiles[swapB_ClassObjectID] = swap_Account).ClassObjectID = swapB_ClassObjectID;
+
+            // Assign the new last login properly if applicable
+            bool isSwapA = swapA_ClassObjectID == Globals.CurrentProfile.LastAccountLoggedIn;
+            if (isSwapA || swapB_ClassObjectID == Globals.CurrentProfile.LastAccountLoggedIn)
+            {
+                Globals.CurrentProfile.LastAccountLoggedIn = isSwapA ? swapB_ClassObjectID : swapA_ClassObjectID;
+            }
+
+            // Reload the table
+            CbProfile_LoadToTable();
+        }
+
         #region Profile
 
         // Loads the selected profile.
@@ -229,6 +267,14 @@ namespace owl
             if (Globals.CurrentProfile == null)
                 Application.Exit();
 
+            CbProfile_LoadToTable();
+
+            FormMain_UpdateTitle();
+        }
+
+        // Load the current profile into the table
+        private void CbProfile_LoadToTable()
+        {
             lvData.Items.Clear();
 
             if (Globals.CurrentProfile.vProfileFormat < Globals.Info.vProfileFormat)
@@ -244,7 +290,6 @@ namespace owl
                     Class.Account _account = _data.Value;
                     Utils.Account.AddToTable(ref lvData, _data.Key, ref _account);
                 }
-            FormMain_UpdateTitle();
         }
 
         // Searches the profile directory for profile jsons
