@@ -218,7 +218,7 @@ namespace owl
                 MessageBox.Show("Please select 2 items to swap positions.", "Swap Accounts Position", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            
             // for backwards compability, we store the class object id. in later versions the account class itself has this information.
             string swapA_ClassObjectID  = lvData.SelectedItems[0].SubItems[0].Text;
             string swapB_ClassObjectID = lvData.SelectedItems[1].SubItems[0].Text;

@@ -19,6 +19,7 @@ namespace owl.Forms
 
         static Rectangle rectUserField = new Rectangle(117, 90,  329, 22);
         static Rectangle rectPassField = new Rectangle(117, 124, 329, 22);
+        static Rectangle rectLoginBtn  = new Rectangle(117, 181, 162, 29);
 
 #if DEBUG
         Thread dbgThread; // Handle to the debug display thread
@@ -141,6 +142,9 @@ namespace owl.Forms
                     }
 
                     didClick = false;
+
+                    if (AreaHovered(rectLoginBtn))
+                        break;
                 }
             }
 
