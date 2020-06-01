@@ -47,11 +47,13 @@ You can configure OWL through the settings form or manually through the <i>confi
     "defaultProfile":"default",
     "hashedKey":"",
     "steamParam":"",
-    "cooldownRefresh":500,
-    "maxThreads":8,
+    "cooldownRefresh":800,
+    "maxThreads":4,
+    "loginMethod":0,
     "forceStatus":false,
-    "maskPassword":false,
-    "clipboardDetail":true
+    "maskPassword":true,
+    "clipboardDetail":false,
+    "startupUpdateChk":true
 }
 ```
 
