@@ -1,7 +1,7 @@
 {
     "vMajor":0,
     "vMinor":6,
-    "vPatch":1,
-    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.6.1",
-    "desc":"FIX: forgot to re enable click credentials option in release mode | Added Click login method, custom login method for the ctrl + f shortcut key, added ctrl + o shortcut key to open the steam url, other improvements."
+    "vPatch":2,
+    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.6.2",
+    "desc":"Added Swap account positions, Click login auto close on login press"
 }
