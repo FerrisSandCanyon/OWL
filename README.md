@@ -75,5 +75,8 @@ You can configure OWL through the settings form or manually through the <i>confi
 * <a href="https://github.com/GeReV/NSoup">NSoup</a> for parsing HTML (<a href="https://www.nuget.org/packages/NSoup/">NuGet</a>)
 * <a href="https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki">System.Data.SQLite</a> for parsing firefox local storage (<a href="https://www.nuget.org/packages/System.Data.SQLite/">NuGet</a>)
 
+### Further Development
+Project is mostly dead and I am no longer going to continue with this code base as I am aware that this project is badly written, horribly documented, riddled with bad coding practice and horrible implementation.
+
 ## To Do
 * Local Storage import for Chrome

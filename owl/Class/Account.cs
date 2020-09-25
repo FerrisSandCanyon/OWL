@@ -38,7 +38,8 @@ namespace owl.Class
                          Username      = null,
                          Password      = null,
                          Note          = null,
-                         ClassObjectID = null;
+                         ClassObjectID = null,
+                         SteamID3      = null;
 
         public bool      Banned        = false;
 
@@ -197,6 +198,34 @@ namespace owl.Class
             return true;
         }
 
+        /// <summary>
+        /// Resolves the steam user id 3 based off the steam community id in the SteamURL member
+        /// </summary>
+        /// <returns>Returns the Steam ID 3 of the user if successful, otherwise returns null.</returns>
+        public string ResolveSteamID3()
+        {
+            if (!string.IsNullOrWhiteSpace(this.SteamID3))
+                return this.SteamID3;
+
+            if (string.IsNullOrWhiteSpace(this.SteamURL) || !this.SteamURL.StartsWith("profiles/"))
+            {
+                MessageBox.Show("Invalid steam URL!", "Steam ID 3 Resolver", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+                
+
+            const UInt64 steamid64   = 76561197960265728ul;
+            UInt64       CommunityID = 0;
+
+            if (!UInt64.TryParse(this.SteamURL.Substring(9), out CommunityID))
+            {
+                MessageBox.Show("Cant parse steam community id", "Steam ID 3 Resolver", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            return (this.SteamID3 = (CommunityID - steamid64).ToString());
+        }
+
         // =============
         // Parser Thread
         // =============
@@ -239,6 +268,8 @@ namespace owl.Class
             this.SetText((this.Banned = !(_steamPage.Select(".profile_ban")).IsEmpty).ToString(), 4);
             this.LastInfoUpdate = DateTime.Now;
             this.SetText("Finished!");
+
+            Debug.WriteLine(this.ResolveSteamID3());
 
             --RunningParserThreads;
         }
