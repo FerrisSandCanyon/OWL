@@ -1,7 +1,7 @@
 {
     "vMajor":0,
     "vMinor":7,
-    "vPatch":0,
-    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.7.0",
-    "desc":"Added steam user data manager for duplication and deletion"
+    "vPatch":1,
+    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.7.1",
+    "desc":"Added steam user data manager for duplication and deletion, update checking patch"
 }

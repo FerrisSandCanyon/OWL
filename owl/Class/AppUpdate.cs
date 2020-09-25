@@ -69,7 +69,7 @@ namespace owl.Utils
 
             if (Globals.AppUpdateInfo.IsNewer())
             {
-                if (MessageBox.Show($"A newer version of OWL is available! version {Globals.AppUpdateInfo.vMajor}.{Globals.AppUpdateInfo.vMinor}.{Globals.AppUpdateInfo.vMinor}\n\n{Globals.AppUpdateInfo.desc}\n\nWould you like to open the download link: {Globals.AppUpdateInfo.dlLink}?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show($"A newer version of OWL is available! version {Globals.AppUpdateInfo.vMajor}.{Globals.AppUpdateInfo.vMinor}.{Globals.AppUpdateInfo.vPatch}\n\n{Globals.AppUpdateInfo.desc}\n\nWould you like to open the download link: {Globals.AppUpdateInfo.dlLink}?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     Process.Start(Globals.AppUpdateInfo.dlLink);
             }
             else

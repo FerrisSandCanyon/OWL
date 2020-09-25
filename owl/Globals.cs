@@ -26,7 +26,7 @@ namespace owl
         {
             public static readonly int    vMajor         = 0,
                                           vMinor         = 7,
-                                          vPatch         = 0,
+                                          vPatch         = 1,
                                           vProfileFormat = 1;
 
             public static readonly string verStr         = $"{vMajor}.{vMinor}.{vPatch}",
