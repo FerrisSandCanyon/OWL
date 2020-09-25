@@ -2,8 +2,8 @@
 A multipurpose tool for managing Steam accounts
 <table>
     <tr><td><b>State</b></td><td>Beta</td></tr>
-    <tr><td><b>Latest Release</b></td><td>0.6.2</td></tr>
-    <tr><td><b>License</b></td><td>???</td></tr>
+    <tr><td><b>Latest Release</b></td><td>0.7.0</td></tr>
+    <tr><td><b>License</b></td><td>MIT</td></tr>
 </table>
 
 <img src="ss.png"/>
@@ -18,7 +18,7 @@ A multipurpose tool for managing Steam accounts
 * Protection of information (Encryption/Obfuscation + Hashing)
 * Import accounts from <a href="https://github.com/Ashesh3/Steam-Account-Generator">Steam Account Generator</a> ✓
 * Import accounts from  <a href="https://accgen.cathook.club">Cathook's Account Generator</a>'s Local Storage (Firefox ✓)
-* Steam User Data Management
+* Steam User Data Management ✓
 * Steam Account Editor
 * Steam Hour Booster
 

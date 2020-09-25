@@ -5,6 +5,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using Microsoft.Win32;
+using System.Linq;
 
 namespace owl
 {
@@ -42,7 +43,6 @@ namespace owl
             this.Text += " [DEBUG MODE]";
 #else // Release
                 ddUtils.Visible = false;
-                ddSteamUserData.Visible = false;
 
                 ddManageObtainFullStart.Visible = false;
                 ddManageObtainFullAbort.Visible = false;
@@ -233,7 +233,16 @@ namespace owl
 
         private void ddSteamUserDataDuplicate_Click(object sender, EventArgs e)
         {
+            if (lvData.SelectedItems.Count < 2)
+            {
+                MessageBox.Show("Select atleast 2 items to duplicate user data to and from.", "Duplicate Userdata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            var selectedAccs = Utils.ProfileInfo.GetSelectedItems();
+            var parentacc = selectedAccs.ElementAt(0);
+            selectedAccs.Remove(parentacc.Key);
+            new Forms.DuplicateUserData(parentacc.Value, selectedAccs.Values.ToList()).ShowDialog();
         }
 
         private void swapAccountPositionToolStripMenuItem_Click(object sender, EventArgs e)

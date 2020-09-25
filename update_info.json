@@ -1,7 +1,7 @@
 {
     "vMajor":0,
-    "vMinor":6,
-    "vPatch":2,
-    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.6.2",
-    "desc":"Added Swap account positions, Click login auto close on login press"
+    "vMinor":7,
+    "vPatch":0,
+    "dlLink":"https://github.com/FerrisSandCanyon/OWL/releases/tag/0.7.0",
+    "desc":"Added steam user data manager for duplication and deletion"
 }

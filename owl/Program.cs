@@ -21,7 +21,7 @@ namespace owl
                 MessageBox.Show("Initialization failed!", "OWL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Globals.hFormMain = new FormMain());

@@ -101,6 +101,12 @@
     <Compile Include="Forms\ClickLogin.Designer.cs">
       <DependentUpon>ClickLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DuplicateUserData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DuplicateUserData.Designer.cs">
+      <DependentUpon>DuplicateUserData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Import.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ClickLogin.resx">
       <DependentUpon>ClickLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DuplicateUserData.resx">
+      <DependentUpon>DuplicateUserData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Import.resx">
       <DependentUpon>Import.cs</DependentUpon>
