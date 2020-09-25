@@ -269,8 +269,6 @@ namespace owl.Class
             this.LastInfoUpdate = DateTime.Now;
             this.SetText("Finished!");
 
-            Debug.WriteLine(this.ResolveSteamID3());
-
             --RunningParserThreads;
         }
 

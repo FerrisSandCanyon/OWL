@@ -14,8 +14,8 @@ namespace owl
         public Class.Account SelectedAccount = null; // Reference to the first selected account in lvData
 
         // Form title tracking
-        public string title_status      = null,
-                      title_fallback    = null;
+        public string title_status = null,
+                      title_fallback = null;
 
         public FormMain()
         {
@@ -38,9 +38,9 @@ namespace owl
             // Initialization
             // ==============
 
-            #if DEBUG
-                this.Text += " [DEBUG MODE]";
-            #else // Release
+#if DEBUG
+            this.Text += " [DEBUG MODE]";
+#else // Release
                 ddUtils.Visible = false;
                 ddSteamUserData.Visible = false;
 
@@ -51,7 +51,7 @@ namespace owl
                 ddManageCooldownCustom.Visible = false;
 
                 ddAccountImportSAGGC.Visible = false;
-            #endif
+#endif
 
             this.title_fallback = this.Text;
             Globals.hMainThread = Thread.CurrentThread;
@@ -82,13 +82,13 @@ namespace owl
                 }
             }
             )).Start();
-            
+
             FormMain_UpdateTitle();
 
-            #if !DEBUG
+#if !DEBUG
             if (Globals.Config.startupUpdateChk)
                 Utils.AppUpdate.CheckUpdateWrapper(true);
-            #endif
+#endif
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -201,6 +201,39 @@ namespace owl
         {
             Registry.SetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "AutoLoginUser", "", RegistryValueKind.String);
             Registry.SetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "RememberPassword", 0, RegistryValueKind.DWord);
+        }
+
+        private void ddSteamUserDataDelete_Click(object sender, EventArgs e)
+        {
+            if (lvData.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("No items selected.", "Delete Userdata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string log = "";
+            foreach (KeyValuePair<string, Class.Account> account in Utils.ProfileInfo.GetSelectedItems())
+            {
+                string id3 = account.Value.ResolveSteamID3();
+
+                if (id3 == null)
+                    continue;
+
+                string finalpath = Path.Combine(Globals.Config.steamPath, $"userdata/{id3}");
+
+                if (!Directory.Exists(finalpath))
+                    continue;
+
+                Directory.Delete(finalpath, true);
+                log += $"\n* {account.Value.Username} ({finalpath})";
+            }
+
+            MessageBox.Show(log, "Deletion log", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ddSteamUserDataDuplicate_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void swapAccountPositionToolStripMenuItem_Click(object sender, EventArgs e)
